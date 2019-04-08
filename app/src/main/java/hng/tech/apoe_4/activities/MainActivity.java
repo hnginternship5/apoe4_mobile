@@ -23,11 +23,10 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        showProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ProfileActivity.class));
-            }
-        });
+        showProfile.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, ProfileActivity.class)));
+
+        findViewById(R.id.show_login).setOnClickListener( v ->
+            startActivity(new Intent(MainActivity.this, LoginActivity.class)));
     }
 }
