@@ -44,7 +44,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_account_circle_black_24dp"
-            android:text="Full Name"
+            android:text="  Full Name"
+            android:layout_gravity="center"
+
             android:padding="8dp"
             android:textStyle="bold"/>
 
@@ -52,14 +54,16 @@
             android:id="@+id/nameRegInput"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/emailReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_email_black_24dp"
-            android:text="Email"
+            android:text="  Email"
+            android:layout_gravity="center"
             android:padding="8dp"
             android:textStyle="bold"/>
 
@@ -67,7 +71,8 @@
             android:id="@+id/emailRegInput"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="textWebEmailAddress" />
+            android:inputType="textWebEmailAddress"
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:id="@+id/passReg"
@@ -75,21 +80,22 @@
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_lock_black_24dp"
             android:padding="8dp"
-            android:text="Password"
-            android:textAlignment="viewStart"
+            android:text="  Password"
+            android:layout_gravity="center"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/passRegInput"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:layout_marginBottom="10dp"/>
 
         <TextView
             android:id="@+id/confirmPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="4dp"
             android:text="Confirm Password"
             android:textStyle="bold"/>
 
