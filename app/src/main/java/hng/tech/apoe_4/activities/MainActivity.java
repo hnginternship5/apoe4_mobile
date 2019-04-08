@@ -1,7 +1,9 @@
-package hng.tech.apoe_4;
+package hng.tech.apoe_4.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import hng.tech.apoe_4.R;
 
 public class MainActivity extends AppCompatActivity {
 
