@@ -22,6 +22,7 @@ public class ProfilePresenter {
         MainApplication.getApiInterface().getUser().enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                profileView.finiishProcess();
                 if (response.isSuccessful()){
                     profileView.onSuccess("success");
                     if (response.body() != null) {
@@ -36,6 +37,7 @@ public class ProfilePresenter {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                profileView.finiishProcess();
                 profileView.onError(t.getMessage());
             }
         });
