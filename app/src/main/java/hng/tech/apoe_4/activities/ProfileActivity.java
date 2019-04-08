@@ -1,6 +1,6 @@
 package hng.tech.apoe_4.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +40,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
         ButterKnife.bind(this);
 
         presenter = new ProfilePresenter(this);
+
+        presenter.fetchData();
     }
 
     @Override
@@ -65,7 +67,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
     @Override
     public void updateUI(Data user) {
         Glide.with(this).load(user.getAvatar()).into(imageView);
-        age.setText(user.getId());
+        age.setText(String.valueOf(user.getId()));
         nok.setText(user.getFirstName());
         name.setText(user.getLastName());
     }
