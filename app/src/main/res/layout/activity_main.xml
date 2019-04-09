@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+
         android:id="@+id/splash"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,5 +28,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showProfile" />
+    <Button
+        android:id="@+id/show_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Login!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.174" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
