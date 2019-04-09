@@ -16,6 +16,9 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.showProfile)
     Button showProfile;
 
+    @BindView(R.id.splash)
+    Button splash;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+            }
+        });
+
+        splash.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, splashScreen.class);
+                startActivity(intent);
             }
         });
     }
