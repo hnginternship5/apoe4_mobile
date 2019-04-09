@@ -23,7 +23,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.splashScreen" />
+
         <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.NavDrawerActivity"
+            android:label="@string/title_activity_nav_drawer"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+
+
+
+
     </application>
 
 </manifest>
