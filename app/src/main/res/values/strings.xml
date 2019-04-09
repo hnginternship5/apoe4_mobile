@@ -3,6 +3,10 @@
     <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
     <string name="title_activity_nav_drawer">NavDrawerActivity</string>
 
+    <string name="buttontxt">Getting Started</string>
+    <string name="buttonskip">Skip</string>
+    <string name="buttonback">Back</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
