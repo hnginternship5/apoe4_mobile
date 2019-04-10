@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#1260ae</color>
     <color name="colorAccent">#D81B60</color>
 
-    App color
+    <!--App color-->
     <color name="white">#ffffff</color>
 </resources>
