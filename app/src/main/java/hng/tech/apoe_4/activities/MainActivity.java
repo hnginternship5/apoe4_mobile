@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.submit_DOB)
     Button submit_DOB ;
 
+    @BindView(R.id.submit_whg)
+    Button submit_WHG;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,10 @@ public class MainActivity extends AppCompatActivity
 
         findViewById(R.id.show_registration).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
+
+        findViewById(R.id.submit_whg).setOnClickListener( v ->
+                startActivity(new Intent(MainActivity.this, WHGActivity.class)));
+
 
     }
 
