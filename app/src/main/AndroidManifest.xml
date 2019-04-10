@@ -12,13 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.DOB_page"></activity>
+        <activity android:name=".activities.WHGActivity"></activity>
+        <activity android:name=".activities.DOB_page" />
         <activity android:name=".activities.ForumActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.splashScreen" />
         <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.MainActivity"
+        <activity
+            android:name=".activities.MainActivity"
             android:label="@string/home"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

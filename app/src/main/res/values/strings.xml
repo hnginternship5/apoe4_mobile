@@ -18,4 +18,71 @@
     <string name="date_of_birth">Date of Birth</string>
     <string name="sign_up">Sign Up</string>
 
+
+    <string-array name="height">
+        <item>Height</item>
+        <item>200cm</item>
+        <item>198cm</item>
+        <item>196cm</item>
+        <item>194cm</item>
+        <item>192cm</item>
+        <item>190cm</item>
+        <item>188cm</item>
+        <item>186cm</item>
+        <item>184cm</item>
+        <item>182cm</item>
+        <item>180cm</item>
+        <item>178cm</item>
+        <item>176cm</item>
+        <item>174cm</item>
+        <item>172cm</item>
+        <item>170cm</item>
+        <item>168cm</item>
+        <item>166cm</item>
+        <item>164cm</item>
+        <item>162cm</item>
+        <item>160cm</item>
+        <item>158cm</item>
+        <item>156cm</item>
+        <item>154cm</item>
+        <item>152cm</item>
+        <item>150cm</item>
+        <item>148cm</item>
+    </string-array>
+
+    <string-array name="weight">
+        <item>Weight</item>
+        <item>20kg</item>
+        <item>25kg</item>
+        <item>30kg</item>
+        <item>35kg</item>
+        <item>40kg</item>
+        <item>45kg</item>
+        <item>50kg</item>
+        <item>55kg</item>
+        <item>60kg</item>
+        <item>65kg</item>
+        <item>70kg</item>
+        <item>75kg</item>
+        <item>80kg</item>
+        <item>85kg</item>
+        <item>90kg</item>
+        <item>95kg</item>
+        <item>100kg</item>
+        <item>105kg</item>
+        <item>110kg</item>
+        <item>115kg</item>
+        <item>120kg</item>
+    </string-array>
+
+
+
+
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
 </resources>
