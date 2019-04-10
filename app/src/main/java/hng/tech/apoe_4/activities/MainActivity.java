@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity
         findViewById(R.id.show_login).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
-        submit_DOB.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DOB_page.class)));
+//        submit_DOB.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DOB_page.class)));
 
         findViewById(R.id.show_registration).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
