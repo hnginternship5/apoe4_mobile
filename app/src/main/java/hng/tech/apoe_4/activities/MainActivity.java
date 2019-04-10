@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +65,9 @@ public class MainActivity extends AppCompatActivity
 
         findViewById(R.id.show_login).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+
+        findViewById(R.id.show_registration).setOnClickListener( v ->
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
 
     }
 

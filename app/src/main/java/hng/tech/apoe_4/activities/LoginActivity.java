@@ -20,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText login_email, login_password;
 
+    // todo: waiting on api to complete login task
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
