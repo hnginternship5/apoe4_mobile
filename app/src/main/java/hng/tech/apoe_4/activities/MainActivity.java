@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
         submit_DOB.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DOB_page.class)));
+
+        findViewById(R.id.show_registration).setOnClickListener( v ->
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
 
     }
 
