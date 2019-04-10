@@ -17,7 +17,8 @@
         <activity android:name=".activities.ProfileActivity" />
         <activity android:name=".activities.splashScreen" />
 
-        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar"  />
         <activity android:name=".activities.MainActivity"
             android:label="@string/home"
             android:theme="@style/AppTheme.NoActionBar" >
