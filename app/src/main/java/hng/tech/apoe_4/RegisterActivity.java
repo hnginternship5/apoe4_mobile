@@ -1,14 +1,18 @@
 package hng.tech.apoe_4;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import hng.tech.apoe_4.activities.Home;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.utils.MainApplication;
 import retrofit2.Call;
@@ -53,8 +57,11 @@ public class RegisterActivity extends AppCompatActivity {
                             if (response.isSuccessful()){
                                 if (response.body() != null) {
 
-                                    Toast.makeText(RegisterActivity.this, response.body().getAccessToken(),
+                                    Toast.makeText(RegisterActivity.this, "Registration Success",
                                             Toast.LENGTH_SHORT).show();
+
+                                    Prefs.putString("accessToken", response.body().getAccessToken());
+                                    startActivity(new Intent(RegisterActivity.this, Home.class));
                                 }
                             }
 //                        Toast.makeText(RegisterActivity.this,"",
