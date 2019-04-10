@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,9 @@
             android:name=".activities.Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".activities.WHGActivity"></activity>
+
         <activity android:name=".activities.DOB_page" />
         <activity android:name=".activities.ForumActivity" />
         <activity android:name=".RegisterActivity" />
