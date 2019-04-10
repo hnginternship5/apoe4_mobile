@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="hng.tech.apoe_4">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".utils.MainApplication"
@@ -12,15 +12,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".activities.ProfileActivity"></activity>
-        <activity android:name=".activities.MainActivity">
 
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".activities.WHGActivity"></activity>
+
+        <activity android:name=".activities.DOB_page" />
+        <activity android:name=".activities.ForumActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.splashScreen">
+
+        </activity>
+        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/home"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

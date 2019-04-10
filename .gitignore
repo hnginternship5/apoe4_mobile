@@ -11,7 +11,6 @@
 /build
 /captures
 .externalNativeBuild
-/gradle.properties
 /gradle/wrapper/gradle-wrapper.properties
 /.idea/codeStyles/Project.xml
 !/gradle.properties
