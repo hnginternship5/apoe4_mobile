@@ -44,7 +44,16 @@ public class LoginActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Login Success: " ,Toast.LENGTH_SHORT).show();
                     Prefs.putString("accessToken", response.body().getAccessToken());
-                    startActivity(new Intent(LoginActivity.this, Home.class));
+                    if (!Prefs.getBoolean("savedDOB", false)) {
+                        startActivity(new Intent(LoginActivity.this, DOB_page.class));
+                        finish();
+                    }
+                    else if (Prefs.getBoolean("savedDOB", false) && Prefs.getBoolean("selectedWHG", false)){
+                        startActivity(new Intent(LoginActivity.this, Home.class));
+                        finish();
+                    }
+                    else
+                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
                 }
                 else Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
             }

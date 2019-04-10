@@ -1,9 +1,12 @@
 package hng.tech.apoe_4.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
+
+import com.pixplicity.easyprefs.library.Prefs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
@@ -32,6 +35,18 @@ public class DOB_page extends AppCompatActivity {
             String year = "Year = " + dateOfBirthPicker.getYear();
             // display the values by using a toast
             Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
+
+            Prefs.putBoolean("savedDOB", true);
+
+            if (!Prefs.getBoolean("selectedWHG", false)){
+                startActivity(new Intent(DOB_page.this, WHGActivity.class));
+                finish();
+            }
+
+            else {
+                startActivity(new Intent(DOB_page.this, Home.class));
+                finish();
+            }
 
         });
     }

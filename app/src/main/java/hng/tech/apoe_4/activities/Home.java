@@ -42,7 +42,7 @@ public class Home extends AppCompatActivity {
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
             switch (item.getItemId()){
                 case R.id.navigation_results:{
-
+                    openFragment(new HomeFragment());
                     return true;
                 }
 
@@ -52,7 +52,7 @@ public class Home extends AppCompatActivity {
                 }
 
                 case R.id.navigation_forum:{
-
+                    openFragment(new HomeFragment());
                     return true;
                 }
 
