@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.pixplicity.easyprefs.library.Prefs;
+
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.RegisterActivity;
@@ -39,8 +41,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
 
-                if (response.isSuccessful())
-                    Toast.makeText(LoginActivity.this, "accessToken: " +  response.body().getAccessToken(),Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this, "Login Success: " ,Toast.LENGTH_SHORT).show();
+                    Prefs.putString("accessToken", response.body().getAccessToken());
+                    startActivity(new Intent(LoginActivity.this, Home.class));
+                }
                 else Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
             }
 

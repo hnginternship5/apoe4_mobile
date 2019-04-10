@@ -8,4 +8,6 @@
     <!--App color-->
     <color name="white">#ffffff</color>
     <color name="figmaBlue">#3380CC</color>
+    <color name="figmaGrey">#FBFBFB</color>
+    <color name="figmaDarkGrey">#FBFBFB</color>
 </resources>

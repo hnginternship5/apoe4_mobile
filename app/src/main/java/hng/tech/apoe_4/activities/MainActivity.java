@@ -7,6 +7,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,8 +34,13 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.submit_DOB)
     Button submit_DOB ;
 
+
+    @BindView(R.id.goHome)
+    Button goHome;
+
     @BindView(R.id.submit_whg)
     Button submit_WHG;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         showForum.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ForumActivity.class)));
 
+        goHome.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Home.class)));
 
         splash.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
