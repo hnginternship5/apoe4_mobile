@@ -22,7 +22,7 @@ public class ForumActivity extends AppCompatActivity {
 
         webView = findViewById(R.id.forum_webView);
         progressDialog = new ProgressDialog(this);
-        Url = "google.com";
+        Url = "https://www.google.com";
         WebSettings  webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(Url);
