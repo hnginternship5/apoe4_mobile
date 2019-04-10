@@ -18,7 +18,7 @@ public class MainApplication extends Application {
     private static MainApplication instance;
     private static ApiInterface apiInterface;
 
-    public static String BASE_URL = "https://reqres.in/api/";
+    public static String BASE_URL = "https://api.apoe4.app/api/v1/";
 
 
     Gson gson = new GsonBuilder()
