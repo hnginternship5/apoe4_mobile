@@ -1,6 +1,6 @@
 package hng.tech.apoe_4.retrofit;
 
-import hng.tech.apoe_4.retrofit.responses.AuthResponse;
+import hng.tech.apoe_4.retrofit.responses.AccessToken;
 import hng.tech.apoe_4.retrofit.responses.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -16,10 +16,9 @@ public interface ApiInterface {
 
     @POST("auth/register")
     @FormUrlEncoded
-    Call<AuthResponse> register(@Field("firstName") String firstName,
-                                @Field("lastName") String lastName,
-                                @Field("email") String email,
-                                @Field("password") String password);
-    @POST("auth/login")
-    Call<AuthResponse> login(@Body User user);
+    Call<AccessToken> registerUser(@Field("firstName") String firstName,
+                                   @Field("lastName") String lastName,
+                                   @Field("email") String email,
+                                   @Field("password") String password);
+
 }

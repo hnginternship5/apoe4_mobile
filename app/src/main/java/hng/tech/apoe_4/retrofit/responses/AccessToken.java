@@ -3,7 +3,8 @@ package hng.tech.apoe_4.retrofit.responses;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AuthResponse {
+public class AccessToken {
+
     @SerializedName("accessToken")
     @Expose
     private String accessToken;
