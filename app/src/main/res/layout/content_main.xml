@@ -77,5 +77,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splash" />
 
+    <Button
+        android:id="@+id/goHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="GoHome"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@+id/showProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/showForum" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
