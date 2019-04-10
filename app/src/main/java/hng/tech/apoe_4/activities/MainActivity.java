@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity
     @BindView(R.id.splash)
     Button splash;
 
+    @BindView(R.id.showForum)
+    Button showForum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity
 
 
         ButterKnife.bind(this);
+
+        showForum.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ForumActivity.class)));
 
 
         splash.setOnClickListener(new View.OnClickListener() {
