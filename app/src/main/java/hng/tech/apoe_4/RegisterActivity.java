@@ -2,6 +2,7 @@ package hng.tech.apoe_4;
 
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -9,8 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hng.tech.apoe_4.retrofit.responses.AuthResponse;
-import hng.tech.apoe_4.utils.MainApplication;
+import hng.tech.apoe_4.retrofit.ApiInterface;
+import hng.tech.apoe_4.retrofit.responses.AccessToken;
+import hng.tech.apoe_4.utils.ApiUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,49 +32,47 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.reg_btn)
     Button registerButton;
 
+    //Declaring ApiInterface
+    private ApiInterface apiInterface;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         ButterKnife.bind(this);
-        registerButton.setOnClickListener(v -> {
-            Toast.makeText(this, "aToast", Toast.LENGTH_SHORT).show();
-            String[] name = fullName.getText().toString().trim().split(" ");
-            String firstName = name[0];
-            String lastName = name.length > 1 ? name[1] : "aLastName";
-            String regEmail = email.getText().toString().trim();
-            String regPassword = password.getText().toString().trim();
-            MainApplication.getApiInterface().register(
-                    firstName,
-                    lastName,
-                    regEmail,
-                    regPassword)
-                    .enqueue(new Callback<AuthResponse>() {
-                        @Override
-                        public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                            if (response.isSuccessful()){
-                                if (response.body() != null) {
+        apiInterface = ApiUtils.getAPIService();
 
-                                    Toast.makeText(RegisterActivity.this, response.body().getAccessToken(),
-                                            Toast.LENGTH_SHORT).show();
-                                }
-                            }
-//                        Toast.makeText(RegisterActivity.this,"",
-//                                Toast.LENGTH_SHORT).show();
-                        }
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = fullName.getText().toString();
+                String lastName = fullName.getText().toString();
+                String userEmail = email.getText().toString();
+                String userPassword = password.getText().toString();
 
-                        @Override
-                        public void onFailure(Call<AuthResponse> call, Throwable t) {
-                            //Todo Logic to handle failure
-                        }
-                    });
+                Call<AccessToken> call = apiInterface.registerUser(firstName,lastName,
+                        userEmail,userPassword);
 
+                call.enqueue(new Callback<AccessToken>() {
+                    @Override
+                    public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
+
+                        Toast.makeText(getApplicationContext(),"SUCCESSFUL",
+                                Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),response.body().toString(),
+                                Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AccessToken> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(),"ERROR",Toast.LENGTH_LONG).show();
+
+                    }
+                });
+            }
         });
     }
 
-    public boolean validateForm() {
 
-        //todo logic to validate form before sending request to server
-        return true;
-    }
 }

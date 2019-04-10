@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.RegisterActivity;
-import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.retrofit.responses.User;
 import hng.tech.apoe_4.utils.MainApplication;
 import retrofit2.Call;
