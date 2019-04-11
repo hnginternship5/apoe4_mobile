@@ -43,7 +43,9 @@ public class Home extends AppCompatActivity {
 
         logoutImageView.setOnClickListener(view -> {
             Prefs.putString("accessToken", "");
+            Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(Home.this, LoginActivity.class));
+            finish();
         });
 
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
