@@ -1,33 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ResultsFragment">
-
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <include layout="@layout/custom_app_bar"/>
-
-    </com.google.android.material.appbar.AppBarLayout>
+    android:fillViewport="true"
+    tools:context=".fragments.ResultsFragment">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/navigationView"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             tools:layout_editor_absoluteX="0dp" />
 
         <Button
@@ -44,7 +33,7 @@
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="16dp"
             android:text="Results"
             android:textColor="@color/colorAccent"
             android:textSize="24sp"
@@ -58,13 +47,11 @@
             android:id="@+id/textView85"
             android:layout_width="wrap_content"
             android:layout_height="28dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
             android:text="You are currently feeling"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/goodButton"
             app:layout_constraintEnd_toEndOf="@+id/goodButton"
             app:layout_constraintStart_toStartOf="@+id/goodButton"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -73,15 +60,15 @@
             android:id="@+id/goodButton"
             android:layout_width="287dp"
             android:layout_height="45dp"
-            android:layout_marginBottom="88dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/buttons_on_click"
             android:gravity="center"
             android:text="Good"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2" />
+            app:layout_constraintStart_toStartOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/textView85" />
 
         <TextView
             android:id="@+id/textView8"
@@ -100,14 +87,12 @@
             android:id="@+id/textView9eee"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:text="12/10/2009"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button2"
             app:layout_constraintEnd_toStartOf="@+id/textView10"
             app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toEndOf="@+id/textView8"
@@ -143,43 +128,43 @@
             android:layout_width="match_parent"
             android:layout_height="129dp"
             android:layout_margin="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/button_grey_bg"
             android:text="TIP\n Eat a little more fish today and be sure to feel extra good"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/login_email"
             app:layout_constraintEnd_toEndOf="@+id/login_email"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/login_email" />
+            app:layout_constraintStart_toStartOf="@+id/login_email"
+            app:layout_constraintTop_toBottomOf="@+id/textView9eee" />
 
         <EditText
             android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="127dp"
             android:layout_margin="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/text_bg"
             android:ems="10"
             android:padding="8dp"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
             app:layout_constraintEnd_toEndOf="@+id/login_emaillll"
-            app:layout_constraintStart_toStartOf="@+id/login_emaillll" />
+            app:layout_constraintStart_toStartOf="@+id/login_emaillll"
+            app:layout_constraintTop_toBottomOf="@+id/button2" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             android:background="@drawable/button_grey_bg"
             android:text="Details"
             android:textAllCaps="false"
-            app:layout_constraintBottom_toTopOf="@+id/login_emaillll"
-            app:layout_constraintEnd_toEndOf="@+id/login_email" />
+            app:layout_constraintEnd_toEndOf="@+id/login_email"
+            app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
         <EditText
             android:id="@+id/login_emaillll"
@@ -187,36 +172,22 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="184dp"
             android:background="@drawable/text_bg_special"
             android:ems="10"
             android:hint="Notes"
             android:padding="8dp"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/navigationView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigationView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:background="?android:attr/windowBackground"
-            app:itemBackground="@color/figmaGrey"
-            app:itemIconTint="@color/figmaBlue"
-            app:itemTextColor="@color/figmaBlue"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:menu="@menu/navigation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>

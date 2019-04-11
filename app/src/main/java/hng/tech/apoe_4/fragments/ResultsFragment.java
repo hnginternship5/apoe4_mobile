@@ -1,4 +1,4 @@
-package hng.tech.apoe_4.activities;
+package hng.tech.apoe_4.fragments;
 
 import android.os.Bundle;
 
@@ -21,5 +21,9 @@ public class ResultsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_results, container, false);
+    }
+
+    public static ResultsFragment newInstance(){
+        return new ResultsFragment();
     }
 }
