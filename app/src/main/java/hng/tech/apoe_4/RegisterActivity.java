@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
 
                                     Prefs.putString("accessToken", response.body().getAccessToken());
-                                    startActivity(new Intent(RegisterActivity.this, Home.class));
+                                    startActivity(new Intent(RegisterActivity.this, DOB_page.class));
                                 }
                             }
 //                        Toast.makeText(RegisterActivity.this,"",
