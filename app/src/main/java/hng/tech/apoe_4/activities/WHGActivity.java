@@ -1,20 +1,32 @@
 package hng.tech.apoe_4.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+
+import com.pixplicity.easyprefs.library.Prefs;
 
 public class WHGActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    @BindView(R.id.button)
+    Button done;
+
+    String weigh, height, gender;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whg);
+
+        ButterKnife.bind(this);
 
 
 //         This is for Height Spinner
@@ -42,6 +54,12 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
         gender_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         gender_spinner.setAdapter(gender_adapter);
         gender_spinner.setOnItemSelectedListener(this);
+
+        done.setOnClickListener(v ->{
+            Prefs.putBoolean("selectedWHG", true);
+            startActivity(new Intent(WHGActivity.this, Home.class));
+            finish();
+        });
     }
 
     @Override
