@@ -2,6 +2,7 @@ package hng.tech.apoe_4.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.MainApplication;
+import hng.tech.apoe_4.utils.ProgressAnim;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -38,10 +40,16 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.temp)
     TextView tempText;
 
+    private float from = (float)0;
+    private float to;
+    private String temp;
+    double progress;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
+        
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 
@@ -74,10 +82,15 @@ public class TodayFragment extends Fragment {
                 if (response.isSuccessful()) {
                     double temp = response.body().getMain().getTemp();
                     double tempMax = response.body().getMain().getTempMax();
+                    Log.d("TAG", "temp: " + temp);
+                    Log.d("TAG", "tempMax: " + tempMax);
 
-                    double progress = (temp / tempMax) * 100;
+                    progress = (temp / tempMax) * 100;
+                    Log.d("TAG", "progress: " + progress);
 
-                    tempProgress.setProgress((int) progress);
+//                    tempProgress.setProgress((int) progress);
+                    setAnimation();
+
                     tempText.setText(String.valueOf((int) temp) + "C");
                 }
             }
@@ -87,7 +100,18 @@ public class TodayFragment extends Fragment {
 
             }
         });
+
+
         return view;
+    }
+
+    //this method helps with animating progress bar
+
+    private void setAnimation() {
+        to = (float)progress;
+        ProgressAnim anim = new ProgressAnim(tempProgress, from, to);
+        anim.setDuration(2000);
+        tempProgress.startAnimation(anim);
     }
 
     public static TodayFragment newInstance() {
