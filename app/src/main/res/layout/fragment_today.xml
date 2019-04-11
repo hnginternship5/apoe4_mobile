@@ -11,12 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/custom_app_bar"
-            android:id="@+id/customBar"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
 
         <TextView
             android:id="@+id/textView6"
@@ -30,7 +24,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/customBar" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/tempProgress"

@@ -20,7 +20,14 @@ public class SplashActivity extends AppCompatActivity {
         if (accesToken.isEmpty()){
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
         }
-
+        else if (!Prefs.getBoolean("savedDOB", false)) {
+            startActivity(new Intent(SplashActivity.this, DOB_page.class));
+            finish();
+        }
+        else if (Prefs.getBoolean("savedDOB", false) && !Prefs.getBoolean("selectedWHG", false)){
+            startActivity(new Intent(SplashActivity.this, WHGActivity.class));
+            finish();
+        }
         else {
             startActivity(new Intent(SplashActivity.this, Home.class));
         }
