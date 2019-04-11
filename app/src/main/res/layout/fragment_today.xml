@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Today"
+            android:textColor="@color/figmaBlue"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/tempProgress"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/custom_progress"
+            android:secondaryProgress="100"
+            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
+            app:layout_constraintEnd_toStartOf="@+id/stepsProgress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+
+        <ImageView
+            android:id="@+id/tempImage"
+            android:layout_width="38dp"
+            android:layout_height="42dp"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/tempProgress"
+            app:layout_constraintEnd_toEndOf="@+id/tempProgress"
+            app:layout_constraintStart_toStartOf="@+id/tempProgress"
+            app:layout_constraintTop_toTopOf="@+id/tempProgress"
+            app:srcCompat="@drawable/ic_thermometer" />
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/stepsProgress"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_centerInParent="true"
+
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="80"
+            android:progressDrawable="@drawable/custom_progress"
+            android:secondaryProgress="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <ImageView
+            android:id="@+id/stepsImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            app:srcCompat="@drawable/ic_steps"
+            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
+            app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
+            app:layout_constraintStart_toStartOf="@+id/stepsProgress"
+            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/sleepProgress"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="50"
+            android:progressDrawable="@drawable/custom_progress"
+            android:secondaryProgress="100"
+            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/stepsProgress"
+            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+
+        <ImageView
+            android:id="@+id/textView1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="@+id/sleepProgress"
+            app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
+            app:layout_constraintStart_toStartOf="@+id/sleepProgress"
+            app:layout_constraintTop_toTopOf="@+id/sleepProgress"
+            app:srcCompat="@drawable/ic_sleep" />
+
+        <TextView
+            android:id="@+id/temp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="28C"
+            android:textColor="@color/figmaBlue"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/tempProgress"
+            app:layout_constraintStart_toStartOf="@+id/tempProgress"
+            app:layout_constraintTop_toBottomOf="@+id/tempProgress" />
+
+        <TextView
+            android:id="@+id/steps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="3,280"
+            android:textColor="@color/figmaBlue"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
+            app:layout_constraintStart_toStartOf="@+id/stepsProgress"
+            app:layout_constraintTop_toBottomOf="@+id/stepsProgress" />
+
+        <TextView
+            android:id="@+id/sleep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="6hrs"
+            android:textColor="@color/figmaBlue"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
+            app:layout_constraintStart_toStartOf="@+id/sleepProgress"
+            app:layout_constraintTop_toBottomOf="@+id/sleepProgress" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/figmaBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView12" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:srcCompat="@drawable/ic_app_icon_mini" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="24sp"
+            android:textColor="#000"
+
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="sans-serif-black"
+            android:text="How are you today?"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView6" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/imageView6"
+            app:layout_constraintStart_toStartOf="@id/imageView6"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:text="Great"
+                android:textAllCaps="false"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/figmaBlue"
+                android:textSize="20sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:textAllCaps="false"
+                android:text="Good"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/figmaBlue"
+                android:textSize="20sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:text="Ok"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/figmaBlue"
+                android:textSize="20sp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:textAllCaps="false"
+                android:gravity="center"
+                android:layout_margin="8dp"
+                android:text="Poor"
+                android:background="@drawable/button_bg"
+                android:textColor="@color/figmaBlue"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Steps"
+            android:textSize="20sp"
+            android:textColor="@color/figmaBlue"
+            app:layout_constraintStart_toStartOf="@+id/steps"
+            app:layout_constraintEnd_toEndOf="@id/steps"
+            app:layout_constraintTop_toBottomOf="@+id/steps" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sleep"
+            android:textColor="@color/figmaBlue"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@+id/sleep"
+            app:layout_constraintStart_toStartOf="@+id/sleep"
+            app:layout_constraintTop_toBottomOf="@+id/sleep" />
+
+
+        <!--<LinearLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--android:orientation="horizontal"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView6">-->
+
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/tempLayout"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:clickable="false"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="20dp"-->
+        <!--&gt;-->
+
+        <!--<me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+        <!--android:id="@+id/tempProgress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--style="@style/Widget.MaterialProgressBar.ProgressBar.Large"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:indeterminate="false"-->
+        <!--android:max="100"-->
+        <!--android:progress="50"-->
+        <!--android:progressDrawable="@drawable/custom_progress"-->
+        <!--android:secondaryProgress="100" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/tempImage"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="false"-->
+        <!--app:srcCompat="@drawable/ic_thermometer" />-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_below="@id/tempProgress"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/temp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="28"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="right"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@color/figmaBlue"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="^C"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="left"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@color/figmaBlue"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/stepsLayout"-->
+        <!--android:layout_weight="2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:clickable="false"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="20dp">-->
+
+        <!--<me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+        <!--android:id="@+id/stepsProgress"-->
+        <!--android:layout_width="120dp"-->
+        <!--style="@style/Widget.MaterialProgressBar.ProgressBar.Large"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:layout_centerInParent="true"-->
+
+        <!--android:indeterminate="false"-->
+        <!--android:max="100"-->
+        <!--android:progress="50"-->
+        <!--android:progressDrawable="@drawable/custom_progress"-->
+        <!--android:secondaryProgress="100" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/stepsImage"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="false"-->
+        <!--android:src="@drawable/ic_steps" />-->
+
+        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+        <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="center"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_marginTop="8dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="100dp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_below="@id/stepsProgress"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="wrap_content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:id="@+id/steps"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="3,208"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="right"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@color/figmaBlue"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="0dp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:text="steps"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_weight="1"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:gravity="left"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textColor="@color/figmaBlue"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:textSize="20sp"&ndash;&gt;-->
+        <!--&lt;!&ndash;android:layout_height="0dp" />&ndash;&gt;-->
+        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+        <!--</RelativeLayout>-->
+        <!--<RelativeLayout-->
+        <!--android:id="@+id/sleepLayout"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:clickable="false"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="20dp">-->
+
+        <!--<me.zhanghai.android.materialprogressbar.MaterialProgressBar-->
+        <!--android:id="@+id/sleepProgress"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--style="@style/Widget.MaterialProgressBar.ProgressBar.Large"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:indeterminate="false"-->
+        <!--android:max="100"-->
+        <!--android:progress="50"-->
+        <!--android:progressDrawable="@drawable/custom_progress"-->
+        <!--android:secondaryProgress="100" />-->
+
+        <!--<ImageView-->
+        <!--android:id="@+id/textView1"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:clickable="false"-->
+        <!--android:src="@drawable/ic_sleep" />-->
+
+        <!--</RelativeLayout>-->
+        <!--</LinearLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

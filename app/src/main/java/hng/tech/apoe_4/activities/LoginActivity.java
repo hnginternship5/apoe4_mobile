@@ -2,9 +2,15 @@ package hng.tech.apoe_4.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.pixplicity.easyprefs.library.Prefs;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
@@ -19,6 +25,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText login_email, login_password;
+    RelativeLayout prog;
+    TextView text5;
 
     // todo: waiting on api to complete login task
 
@@ -29,23 +37,56 @@ public class LoginActivity extends AppCompatActivity {
 
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
+        text5 = findViewById(R.id.textView5);
+        prog = findViewById(R.id.progress);
     }
 
     public void login(View view) {
         String email = login_email.getText().toString().trim();
         String password = login_password.getText().toString().trim();
 
+
+        //display progress
+        prog.setVisibility(View.VISIBLE);
+        text5.setVisibility(View.INVISIBLE);
+
+
+
+        if(validateForm(email)){
+            return;
+        }
+
         MainApplication.getApiInterface().login(new User(email, password)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
 
-                if (response.isSuccessful())
-                    Toast.makeText(LoginActivity.this, "accessToken: " +  response.body().getAccessToken(),Toast.LENGTH_SHORT).show();
-                else Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
+                if (response.isSuccessful()) {
+                    prog.setVisibility(View.INVISIBLE);
+                    text5.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActivity.this, "Login Success: " ,Toast.LENGTH_SHORT).show();
+                    Prefs.putString("accessToken", response.body().getAccessToken());
+                    if (!Prefs.getBoolean("savedDOB", false)) {
+                        startActivity(new Intent(LoginActivity.this, DOB_page.class));
+                        finish();
+                    }
+                    else if (Prefs.getBoolean("savedDOB", false) && Prefs.getBoolean("selectedWHG", false)){
+                        startActivity(new Intent(LoginActivity.this, Home.class));
+                        finish();
+                    }
+                    else
+                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
+                }
+                else {
+                    prog.setVisibility(View.INVISIBLE);
+                    text5.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
+                prog.setVisibility(View.INVISIBLE);
+                text5.setVisibility(View.VISIBLE);
                 Toast.makeText(LoginActivity.this, t.getMessage() ,Toast.LENGTH_SHORT).show();
             }
         });
@@ -57,8 +98,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean validateForm(){
-        //todo logic to validate input from user before sending data to server
+    public boolean validateForm(String email){
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            login_email.setError("Invalid email address");
+            return true;
+        }
         return false;
     }
 }
