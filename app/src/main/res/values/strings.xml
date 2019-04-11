@@ -77,13 +77,13 @@
     </string-array>
 
 
-
-
-
     <string-array name="gender">
         <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
         <item>Other</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
