@@ -34,29 +34,29 @@ public class Home extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        openFragment(TodayFragment.newInstance());
+        openFragment(TodayFragment.newInstance(), "today");
 
 
 
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
             switch (item.getItemId()){
                 case R.id.navigation_results:{
-                    openFragment(ResultsFragment.newInstance());
+                    openFragment(ResultsFragment.newInstance(), "result");
                     return true;
                 }
 
                 case R.id.navigation_today:{
-                    openFragment(TodayFragment.newInstance());
+                    openFragment(TodayFragment.newInstance(), "today");
                     return true;
                 }
 
                 case R.id.navigation_forum:{
-                    openFragment(ForumFragment.newInstance());
+                    openFragment(ForumFragment.newInstance(), "forum");
                     return true;
                 }
 
                 default:{
-                    openFragment(ResultsFragment.newInstance());
+                    openFragment(ResultsFragment.newInstance(), "result");
                     return true;
                 }
             }
@@ -67,21 +67,25 @@ public class Home extends AppCompatActivity {
 
     }
 
-    private void openFragment(Fragment fragment){
+    private void openFragment(Fragment fragment, String tag){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.container, fragment);
+        transaction.replace(R.id.container, fragment, tag);
         transaction.addToBackStack(fragment.getTag());
+        Log.d("TAG","fragment tag: "+fragment.getTag());
         transaction.commit();
     }
 //this method helps to handle backpress between fragments
     private void pressingBack() {
 
-            if (count == 0) {
-                openFragment(TodayFragment.newInstance());
-                count =1;
+        TodayFragment todayFragment = (TodayFragment) getSupportFragmentManager().findFragmentByTag("today");
+
+           if (todayFragment != null && todayFragment.isVisible()) {
+
+               finishAffinity();
             }
             else {
-               finishAffinity();
+
+               openFragment(TodayFragment.newInstance(), "today");
             }
     }
 
