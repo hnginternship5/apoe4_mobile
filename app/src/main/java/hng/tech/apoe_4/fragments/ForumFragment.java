@@ -1,4 +1,4 @@
-package hng.tech.apoe_4.fragment;
+package hng.tech.apoe_4.fragments;
 
 
 import android.app.ProgressDialog;
@@ -73,6 +73,10 @@ public class ForumFragment extends Fragment {
             }
         });
         return layout;
+    }
+
+    public static ForumFragment newInstance() {
+        return new ForumFragment();
     }
 
 }
