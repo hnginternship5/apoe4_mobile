@@ -60,7 +60,6 @@ public class RegisterActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         registerButton.setOnClickListener(v -> {
-            Toast.makeText(this, "aToast", Toast.LENGTH_SHORT).show();
             //make progress bar visible
             prog2.setVisibility(View.VISIBLE);
             String[] name = fullName.getText().toString().trim().split(" ");
@@ -69,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
             String regEmail = email.getText().toString().trim();
             String regPassword = password.getText().toString().trim();
             if(validateForm(firstName,lastName,regEmail,regPassword)){
+                prog2.setVisibility(View.GONE);
                 return;
             }
             MainApplication.getApiInterface().register(
@@ -79,9 +79,10 @@ public class RegisterActivity extends AppCompatActivity {
                     .enqueue(new Callback<AuthResponse>() {
                         @Override
                         public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
+                            prog2.setVisibility(View.GONE);
                             if (response.isSuccessful()){
                                 if (response.body() != null) {
-                                    prog2.setVisibility(View.INVISIBLE);
+                                    prog2.setVisibility(View.GONE);
                                     Toast.makeText(RegisterActivity.this, "Registration Success",
                                             Toast.LENGTH_SHORT).show();
 
@@ -95,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<AuthResponse> call, Throwable t) {
-                            prog2.setVisibility(View.INVISIBLE);
+                            prog2.setVisibility(View.GONE);
                             //Todo Logic to handle failure
                         }
                     });
