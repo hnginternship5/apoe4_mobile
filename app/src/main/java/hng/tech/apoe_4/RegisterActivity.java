@@ -36,13 +36,17 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.reg_btn)
     Button registerButton;
 
+
     @BindView(R.id.accept_terms_and_conditions)
     CheckBox termsAndCondition;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
         ButterKnife.bind(this);
         registerButton.setOnClickListener(v -> {
             Toast.makeText(this, "aToast", Toast.LENGTH_SHORT).show();
