@@ -3,8 +3,10 @@ package hng.tech.apoe_4;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
@@ -34,6 +36,11 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.reg_btn)
     Button registerButton;
 
+    @BindView(R.id.progress2)
+    RelativeLayout prog2;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         registerButton.setOnClickListener(v -> {
             Toast.makeText(this, "aToast", Toast.LENGTH_SHORT).show();
+            //make progress bar visible
+            prog2.setVisibility(View.VISIBLE);
             String[] name = fullName.getText().toString().trim().split(" ");
             String firstName = name[0];
             String lastName = name.length > 1 ? name[1] : "aLastName";
@@ -56,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
                         public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
                             if (response.isSuccessful()){
                                 if (response.body() != null) {
-
+                                    prog2.setVisibility(View.INVISIBLE);
                                     Toast.makeText(RegisterActivity.this, "Registration Success",
                                             Toast.LENGTH_SHORT).show();
 
@@ -70,6 +79,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<AuthResponse> call, Throwable t) {
+                            prog2.setVisibility(View.INVISIBLE);
                             //Todo Logic to handle failure
                         }
                     });
