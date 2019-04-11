@@ -37,10 +37,16 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.tempProgress)
     ProgressBar tempProgress;
 
+    @BindView(R.id.stepsProgress)
+    ProgressBar stepsProgress;
+
+    @BindView(R.id.sleepProgress)
+    ProgressBar sleepProgress;
+
     @BindView(R.id.temp)
     TextView tempText;
 
-    private float from = (float)0;
+    private float from = (float)10;
     private float to;
     private String temp;
     double progress;
@@ -101,6 +107,9 @@ public class TodayFragment extends Fragment {
             }
         });
 
+        getSleepTime();
+        getStepNumber();
+
 
         return view;
     }
@@ -112,6 +121,22 @@ public class TodayFragment extends Fragment {
         ProgressAnim anim = new ProgressAnim(tempProgress, from, to);
         anim.setDuration(2000);
         tempProgress.startAnimation(anim);
+    }
+
+    //this method the amount of sleep later
+    private  void getSleepTime () {
+        to = (float)80;
+        ProgressAnim anim = new ProgressAnim(sleepProgress, from, to);
+        anim.setDuration(2000);
+        sleepProgress.startAnimation(anim);
+    }
+
+    //this method the amount of steps later
+    private  void getStepNumber () {
+        to = (float)90;
+        ProgressAnim anim = new ProgressAnim(stepsProgress, from, to);
+        anim.setDuration(2000);
+        stepsProgress.startAnimation(anim);
     }
 
     public static TodayFragment newInstance() {
