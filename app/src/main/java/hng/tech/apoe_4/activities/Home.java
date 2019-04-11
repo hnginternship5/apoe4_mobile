@@ -1,18 +1,10 @@
 package hng.tech.apoe_4.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-import android.widget.Button;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
@@ -38,6 +30,8 @@ public class Home extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        openFragment(TodayFragment.newInstance());
+
 
 
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
@@ -58,7 +52,7 @@ public class Home extends AppCompatActivity {
                 }
 
                 default:{
-
+                    openFragment(ResultsFragment.newInstance());
                     return true;
                 }
             }
@@ -72,7 +66,7 @@ public class Home extends AppCompatActivity {
     private void openFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.container, fragment);
-        transaction.addToBackStack(null);
+        transaction.addToBackStack(fragment.getTag());
         transaction.commit();
     }
 
