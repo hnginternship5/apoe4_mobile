@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -44,13 +43,14 @@ public class Home extends AppCompatActivity {
         openFragment(TodayFragment.newInstance(), "today");
 
 
-        logoutImageView.setOnClickListener(x -> {
-            Prefs.putString("accessToken", "");
-            Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
-        }
-        );
+        logoutImageView.setOnClickListener(x -> 
+                 {
+                    Prefs.putString("accessToken", "");
+                    Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, LoginActivity.class));
+                    finish();
+                 });
+
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
             switch (item.getItemId()){
                 case R.id.navigation_results:{
