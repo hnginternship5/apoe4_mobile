@@ -25,7 +25,9 @@ import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.ProgressAnim;
+
 import im.delight.android.location.SimpleLocation;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -51,16 +53,19 @@ public class TodayFragment extends Fragment {
     private float from = (float)10;
     private float to;
     private String temp;
+
     double progress, lat, lng;
     SimpleLocation location;
     Context mContext = getActivity();
     char degree = '\u00B0';
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
+        
 
 // construct a new instance of SimpleLocation
         location = new SimpleLocation(getActivity());
@@ -110,6 +115,7 @@ public class TodayFragment extends Fragment {
                     Log.d("TAG", "temp: " + temp);
                     Log.d("TAG", "tempMax: " + tempMax);
 
+
                     progress = (temp / tempMax) * 100;
                     Log.d("TAG", "progress: " + progress);
 
@@ -117,6 +123,8 @@ public class TodayFragment extends Fragment {
                     setAnimation();
 
                     tempText.setText(String.valueOf((int) temp) + degree +"C");
+
+
                 }
             }
 
