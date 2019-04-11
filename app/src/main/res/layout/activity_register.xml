@@ -3,8 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:scrollbars="none"
     tools:context=".RegisterActivity">
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_logo"
+            app:srcCompat="@drawable/ic_logo"
             android:layout_marginTop="20dp"/>
 
         <TextView
@@ -104,7 +107,15 @@
             android:text="@string/sign_up"
             android:textColor="#FFFFFF"
             android:textAlignment="center" />
-
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/progress2"
+            android:visibility="invisible">
+            <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"/>
+        </RelativeLayout>
     </LinearLayout>
-
 </ScrollView>
