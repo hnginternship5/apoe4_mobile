@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
 
 public class Home extends AppCompatActivity {
@@ -42,7 +43,7 @@ public class Home extends AppCompatActivity {
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
             switch (item.getItemId()){
                 case R.id.navigation_results:{
-                    openFragment(new HomeFragment());
+                    openFragment(ResultsFragment.newInstance());
                     return true;
                 }
 

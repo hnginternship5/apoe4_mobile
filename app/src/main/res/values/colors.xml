@@ -10,4 +10,5 @@
     <color name="figmaBlue">#3380CC</color>
     <color name="figmaGrey">#FBFBFB</color>
     <color name="figmaDarkGrey">#FBFBFB</color>
+    <color name="gray">#D3D3D3</color>
 </resources>

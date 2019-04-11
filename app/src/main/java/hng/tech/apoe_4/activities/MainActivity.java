@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -40,6 +39,9 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.submit_whg)
     Button submit_WHG;
+
+    @BindView(R.id.resultsFragment)
+    Button resultsFragment;
 
 
     @Override
@@ -80,6 +82,9 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
 
 //        submit_DOB.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DOB_page.class)));
+
+        resultsFragment.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, resultsFragment.getClass())));
+
 
         findViewById(R.id.show_registration).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class)));

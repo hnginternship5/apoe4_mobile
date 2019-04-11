@@ -9,7 +9,11 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_app_icon"
         android:label="@string/app_name"
+
         android:roundIcon="@mipmap/ic_app_icon"
+
+        android:roundIcon="@mipmap/apoe_logo"
+
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
