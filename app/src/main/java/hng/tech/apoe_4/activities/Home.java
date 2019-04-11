@@ -1,8 +1,11 @@
 package hng.tech.apoe_4.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -23,6 +26,8 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private int count = 0;
 
+    @BindView(R.id.logout)
+    ImageView logoutImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +37,13 @@ public class Home extends AppCompatActivity {
 //        setSupportActionBar(toolbar);
 
 
+
         ButterKnife.bind(this);
 
         openFragment(TodayFragment.newInstance(), "today");
 
 
+        logoutImageView.setOnClickListener(x -> startActivity(new Intent(this, LoginActivity.class)));
 
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
             switch (item.getItemId()){
