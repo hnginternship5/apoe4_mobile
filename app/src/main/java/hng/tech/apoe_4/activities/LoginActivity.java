@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
@@ -21,6 +24,8 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText login_email, login_password;
+    RelativeLayout prog;
+    TextView text5;
 
     // todo: waiting on api to complete login task
 
@@ -31,17 +36,26 @@ public class LoginActivity extends AppCompatActivity {
 
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
+        text5 = findViewById(R.id.textView5);
+        prog = findViewById(R.id.progress);
     }
 
     public void login(View view) {
         String email = login_email.getText().toString().trim();
         String password = login_password.getText().toString().trim();
 
+        //display progress
+        prog.setVisibility(View.VISIBLE);
+        text5.setVisibility(View.INVISIBLE);
+
+
         MainApplication.getApiInterface().login(new User(email, password)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
 
                 if (response.isSuccessful()) {
+                    prog.setVisibility(View.INVISIBLE);
+                    text5.setVisibility(View.VISIBLE);
                     Toast.makeText(LoginActivity.this, "Login Success: " ,Toast.LENGTH_SHORT).show();
                     Prefs.putString("accessToken", response.body().getAccessToken());
                     if (!Prefs.getBoolean("savedDOB", false)) {
@@ -55,11 +69,17 @@ public class LoginActivity extends AppCompatActivity {
                     else
                         startActivity(new Intent(LoginActivity.this, WHGActivity.class));
                 }
-                else Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
+                else {
+                    prog.setVisibility(View.INVISIBLE);
+                    text5.setVisibility(View.VISIBLE);
+                    Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
             public void onFailure(Call<AuthResponse> call, Throwable t) {
+                prog.setVisibility(View.INVISIBLE);
+                text5.setVisibility(View.VISIBLE);
                 Toast.makeText(LoginActivity.this, t.getMessage() ,Toast.LENGTH_SHORT).show();
             }
         });
