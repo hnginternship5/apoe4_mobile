@@ -2,6 +2,7 @@ package hng.tech.apoe_4.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,7 +37,9 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         String email = login_email.getText().toString().trim();
         String password = login_password.getText().toString().trim();
-
+        if(validateForm(email)){
+            return;
+        }
         MainApplication.getApiInterface().login(new User(email, password)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
@@ -71,8 +74,11 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public boolean validateForm(){
-        //todo logic to validate input from user before sending data to server
+    public boolean validateForm(String email){
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            login_email.setError("Invalid email address");
+            return true;
+        }
         return false;
     }
 }
