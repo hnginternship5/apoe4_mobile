@@ -40,15 +40,9 @@ public class DOB_page extends AppCompatActivity {
 
             Prefs.putBoolean("savedDOB", true);
 
-            if (!Prefs.getBoolean("selectedWHG", false)){
                 startActivity(new Intent(DOB_page.this, WHGActivity.class));
                 finish();
-            }
 
-            else {
-                startActivity(new Intent(DOB_page.this, Home.class));
-                finish();
-            }
 
         });
     }
