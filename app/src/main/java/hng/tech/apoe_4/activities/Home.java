@@ -138,6 +138,7 @@ public class Home extends AppCompatActivity {
                                 Log.d(TAG, "onComplete: found location!");
                             }else {
                                 // ask the user to enable location access
+                                Toast.makeText(Home.this, "Please enable location", Toast.LENGTH_SHORT).show();
                                 SimpleLocation.openSettings(getApplicationContext());
                             }
 
