@@ -3,18 +3,26 @@ package hng.tech.apoe_4.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
@@ -27,8 +35,29 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private int count = 0;
 
-    @BindView(R.id.logout)
-    ImageView logoutImageView;
+//    @BindView(R.id.logout)
+//    ImageView logoutImageView;
+
+    @BindView(R.id.drawer_layout)
+    DrawerLayout drawer;
+
+    @BindView(R.id.navigation)
+    NavigationView navigationView;
+
+    @BindView(R.id.circleImageView)
+    CircleImageView circleImageView;
+
+    @BindView(R.id.patientName)
+    TextView patientName;
+
+    @BindView(R.id.settings)
+    RelativeLayout settings;
+
+    @BindView(R.id.schedule)
+    RelativeLayout schedule;
+
+    @BindView(R.id.drawer_signOut)
+    RelativeLayout signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +73,30 @@ public class Home extends AppCompatActivity {
         openFragment(TodayFragment.newInstance(), "today");
 
 
-        logoutImageView.setOnClickListener(x -> {
-                    Prefs.putString("accessToken", "");
-                    Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, LoginActivity.class));
-                    finish();
+//        logoutImageView.setOnClickListener(x -> {
+//
+//        });
+
+        circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
+
+        settings.setOnClickListener(v -> {
+
+            drawer.closeDrawer(GravityCompat.START);
+        });
+
+        schedule.setOnClickListener(v -> {
+
+            drawer.closeDrawer(GravityCompat.START);
+        });
+
+        signout.setOnClickListener(v ->{
+
+            Prefs.putString("accessToken", "");
+            Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+
+            drawer.closeDrawer(GravityCompat.START);
         });
 
         BottomNavigationView.OnNavigationItemSelectedListener listener = item -> {
