@@ -3,8 +3,10 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+
 import android.location.Location;
 import android.os.Build;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +27,10 @@ import java.util.concurrent.TimeUnit;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+
+
+import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,7 +72,6 @@ public class TodayFragment extends Fragment {
 
     Context mContext = getActivity();
     char degree = '\u00B0';
-
 
     @Nullable
     @Override
