@@ -3,6 +3,10 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+
+import android.location.Location;
+import android.os.Build;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,26 +16,29 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+
+
 import androidx.core.content.ContextCompat;
+
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
-import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.ProgressAnim;
-
 import im.delight.android.location.SimpleLocation;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -39,6 +46,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static hng.tech.apoe_4.activities.Home.lat;
+import static hng.tech.apoe_4.activities.Home.lng;
+
 
 public class TodayFragment extends Fragment {
 
@@ -57,69 +68,16 @@ public class TodayFragment extends Fragment {
     private float from = (float)10;
     private float to;
     private String temp;
+    double progress;
 
-    double progress, lat, lng;
-    SimpleLocation location;
     Context mContext = getActivity();
     char degree = '\u00B0';
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_CALENDAR)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.READ_CONTACTS},
-                    421);
-
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 421:{
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    location.beginUpdates();
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-
-                    Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT).show();
-                }
-                return;
-
-            }
-
-            default:
-                return;
-        }
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        
 
-// construct a new instance of SimpleLocation
-        location = new SimpleLocation(getActivity());
-
-        // if we can't access the location yet
-        if (!location.hasLocationEnabled()) {
-            // ask the user to enable location access
-            Toast.makeText(getActivity(), "Enable Location Permission", Toast.LENGTH_LONG).show();
-            SimpleLocation.openSettings(getActivity());
-        }else {
-            lat  =location.getLatitude();
-            lng= location.getLongitude();
-        }
 
 
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
@@ -147,7 +105,7 @@ public class TodayFragment extends Fragment {
 
         ApiInterface apiInterface = mRetrofit.create(ApiInterface.class);
 
-        apiInterface.getWeather(lat, lng).enqueue(new Callback<WeatherResponse>() {
+        apiInterface.getWeather(lng, lat).enqueue(new Callback<WeatherResponse>() {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                 if (response.isSuccessful()) {
@@ -156,7 +114,6 @@ public class TodayFragment extends Fragment {
                     Log.d("TAG", "temp: " + temp);
                     Log.d("TAG", "tempMax: " + tempMax);
 
-
                     progress = (temp / tempMax) * 100;
                     Log.d("TAG", "progress: " + progress);
 
@@ -164,8 +121,6 @@ public class TodayFragment extends Fragment {
                     setAnimation();
 
                     tempText.setText(String.valueOf((int) temp) + degree +"C");
-
-
                 }
             }
 
@@ -181,6 +136,8 @@ public class TodayFragment extends Fragment {
 
         return view;
     }
+
+
 
     //this method helps with animating progress bar
 
