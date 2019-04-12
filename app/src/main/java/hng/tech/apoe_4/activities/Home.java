@@ -114,12 +114,12 @@ public class Home extends AppCompatActivity {
         openFragment(TodayFragment.newInstance(), "today");
 
 
-        logoutImageView.setOnClickListener(x -> {
+        /*logoutImageView.setOnClickListener(x -> {
                     Prefs.putString("accessToken", "");
                     Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LoginActivity.class));
                     finish();
-});
+});*/
 
         circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
 
