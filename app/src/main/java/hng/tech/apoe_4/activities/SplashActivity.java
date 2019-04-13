@@ -27,6 +27,9 @@ public class SplashActivity extends AppCompatActivity {
         else if (Prefs.getBoolean("savedDOB", false) && !Prefs.getBoolean("selectedWHG", false)){
             startActivity(new Intent(SplashActivity.this, WHGActivity.class));
             finish();
+        }else if (Prefs.getBoolean("savedDOB", false) && Prefs.getBoolean("selectedWHG", false) && !Prefs.getBoolean("answeredQuestions", false)) {
+            startActivity(new Intent(SplashActivity.this, QuestionsActivity.class));
+            finish();
         }
         else {
             startActivity(new Intent(SplashActivity.this, Home.class));
