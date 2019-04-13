@@ -38,7 +38,7 @@ public class ForumFragment extends Fragment {
         View layout = inflater.inflate(R.layout.fragment_forum, container, false);
         webView = layout.findViewById(R.id.forum_webView);
         progressDialog = new ProgressDialog(getContext());
-        Url = "https://www.google.com";
+        Url = "https://www.alzu.org/forum/list.php?6";
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(Url);
