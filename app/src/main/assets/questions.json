@@ -1,0 +1,91 @@
+{
+ "Questions": [
+
+    {
+      
+      "qTitle":"How are you today",
+      "qAnswers":[
+        {
+         "title":"day",
+         "answer":"great"
+        },
+        {
+         "title":"day",
+         "answer":"good"
+        },
+        {
+         "title":"day",
+         "answer":"fair"
+        },
+        {
+         "title":"day",
+          "answer":"bad"
+        }
+        
+      ]
+    },
+    
+     {
+      
+      "qTitle":"How was your night",
+      "qAnswers":[
+        {
+          "title":"day",
+          "answer":"great"
+        },
+        {
+          "title":"day",
+          "answer":"good"
+        },
+        {
+          "title":"day",
+          "answer":"fair"
+        },
+        {
+          "title":"day",
+          "answer":"bad"
+        }
+        
+      ]
+    },
+     {
+      
+      "qTitle":"What exercise are you planning on doing today",
+      "qAnswers":[
+        {
+         "title":"planned activities",
+         "answer":"Push up"
+        },
+        {
+         "title":"planned activities",
+         "answer":"Run"
+        },
+        {
+         "title":"planned activities",
+         "answer":"Gym"
+        },
+        {
+         "title":"planned activities",
+         "answer":"None"
+        }
+        
+      ]
+    },
+     {
+      
+      "qTitle":"Do you want to set an reminder",
+      "qAnswers":[
+        {
+         "title":"reminder",
+         "answer":"yes"
+        },
+        {
+         "title":"reminder",
+         "answer":"no"
+        }
+      ]
+    }
+  ]
+
+
+ }

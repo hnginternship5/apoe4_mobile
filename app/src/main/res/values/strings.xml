@@ -18,6 +18,13 @@
     <string name="date_of_birth">Date of Birth</string>
     <string name="sign_up">Sign Up</string>
     <string name="title_activity_home">Home</string>
+    
+    
+    <string name="quest1">Are you using the app for yourself?</string>
+    <string name="quest2">Have you gone for Apoe4 test?</string>
+    <string name="quest3">Are you a smoker?</string>
+    <string name="quest4">Any history of High Blood Pressure?</string>
+    <string name="quest5">Are you diabetic?</string>
 
 
     <string-array name="height">

@@ -30,7 +30,7 @@ public class ForumFragment extends Fragment {
 //    private ProgressDialog progressDialog;
 
     @BindView(R.id.loading)
-    MaterialProgressBar progressBar;
+    ProgressBar progressBar;
 
     public ForumFragment() {
         // Required empty public constructor

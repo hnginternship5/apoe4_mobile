@@ -34,7 +34,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_height="match_parent">
 
-            <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            <ProgressBar
                 android:layout_width="match_parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -42,7 +42,8 @@
                 android:id="@+id/loading"
                 android:indeterminate="true"
                 android:visibility="gone"
-                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginTop="-6dp"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_height="wrap_content" />
 
             <FrameLayout
