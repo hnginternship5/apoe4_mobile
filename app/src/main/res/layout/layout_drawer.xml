@@ -29,13 +29,14 @@
                     android:gravity="center_vertical"
                     android:orientation="vertical">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <ImageView
                         android:id="@+id/civ_user_drawer"
                         android:layout_width="132dp"
                         android:layout_height="132dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="50dp"
-                        android:src="@drawable/ellipse"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_app_icon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 

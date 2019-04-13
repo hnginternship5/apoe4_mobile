@@ -45,7 +45,7 @@ public class ForumFragment extends Fragment {
         progressBar = getActivity().findViewById(R.id.loading);
         webView = layout.findViewById(R.id.forum_webView);
 //        progressDialog = new ProgressDialog(getContext());
-        Url = "https://www.alzu.org/forum/list.php?6";
+        Url = "https://apoe4.discussion.community/";
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(Url);
