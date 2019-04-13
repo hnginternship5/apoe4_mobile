@@ -19,16 +19,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:layout_editor_absoluteX="0dp" />
 
-        <Button
-            android:layout_width="53dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/ic_navigate_before_black_24dp"
-            app:layout_constraintBottom_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toStartOf="@+id/goodButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView9" />
-
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
@@ -150,8 +140,8 @@
             android:ems="10"
             android:padding="8dp"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/login_emaillll"
-            app:layout_constraintStart_toStartOf="@+id/login_emaillll"
+            app:layout_constraintEnd_toEndOf="@+id/notes"
+            app:layout_constraintStart_toStartOf="@+id/notes"
             app:layout_constraintTop_toBottomOf="@+id/button2" />
 
         <Button
@@ -167,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
         <EditText
-            android:id="@+id/login_emaillll"
+            android:id="@+id/notes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
