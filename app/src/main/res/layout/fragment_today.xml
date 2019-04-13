@@ -166,10 +166,12 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/questions_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view"
-            tools:listitem="@layout/question"
-            android:layout_marginStart="@dimen/fab_margin">
+            tools:listitem="@layout/question">
 
         </androidx.recyclerview.widget.RecyclerView>
 
