@@ -45,10 +45,7 @@ import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
-<<<<<<< HEAD
 import hng.tech.apoe_4.utils.DataUtil;
-=======
->>>>>>> android
 import hng.tech.apoe_4.utils.ProgressAnim;
 import im.delight.android.location.SimpleLocation;
 import okhttp3.OkHttpClient;
@@ -94,6 +91,7 @@ public class TodayFragment extends Fragment {
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
+    private SimpleLocation location;
 
 
     @Override
@@ -281,6 +279,7 @@ public class TodayFragment extends Fragment {
         }
         //questionAdapter.setAnswerList(answerDataList1);
     }
+
 
     public static TodayFragment newInstance() {
         return new TodayFragment();
