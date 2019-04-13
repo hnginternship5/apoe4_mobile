@@ -57,8 +57,14 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
 
         done.setOnClickListener(v ->{
             Prefs.putBoolean("selectedWHG", true);
-            startActivity(new Intent(WHGActivity.this, Home.class));
-            finish();
+            if (!Prefs.getBoolean("answeredQuestions", false)){
+                startActivity(new Intent(WHGActivity.this, QuestionsActivity.class));
+                finish();
+            }else{
+                startActivity(new Intent(WHGActivity.this, Home.class));
+                finish();
+            }
+
         });
     }
 
