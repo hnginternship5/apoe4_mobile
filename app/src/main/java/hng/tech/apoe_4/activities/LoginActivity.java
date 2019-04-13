@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 else {
                     prog.setVisibility(View.INVISIBLE);
                     text5.setVisibility(View.VISIBLE);
-                    Toast.makeText(LoginActivity.this, "accessToken: error" ,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "Incorrect email or password." ,Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onFailure(Call<AuthResponse> call, Throwable t) {
                 prog.setVisibility(View.INVISIBLE);
                 text5.setVisibility(View.VISIBLE);
-                Toast.makeText(LoginActivity.this, t.getMessage() ,Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "Incorrect email or password." ,Toast.LENGTH_SHORT).show();
             }
         });
 //        Toast.makeText(LoginActivity.this, "Email: "+email+"\nPassword: "+password, Toast.LENGTH_LONG).show();

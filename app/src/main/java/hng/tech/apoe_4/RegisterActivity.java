@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<AuthResponse> call, Throwable t) {
                             prog2.setVisibility(View.GONE);
-                            //Todo Logic to handle failure
+                           //TODO display error message
                         }
                     });
 
@@ -118,9 +118,9 @@ public class RegisterActivity extends AppCompatActivity {
             hasError = true;
             email.setError("Invalid email address");
         }
-        if (regPassword.isEmpty()){
+        if (regPassword.isEmpty() || (regPassword.length() < 6)){
             hasError = true;
-            password.setError("Please enter a password");
+            password.setError("Please enter a valid password of more than 6 characters");
         }else if(!regPassword.equals(confirmPassword.getText().toString().trim())){
             hasError = true;
             password.setError("Password do no match");
