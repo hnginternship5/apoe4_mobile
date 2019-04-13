@@ -65,7 +65,7 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
 
     @BindView(R.id.circleImageView)
-    CircleImageView circleImageView;
+    ImageView circleImageView;
 
     @BindView(R.id.patientName)
     TextView patientName;
