@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
@@ -22,12 +25,17 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.QuestionAdapter;
+import hng.tech.apoe_4.models.AnswerData;
+import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
-import hng.tech.apoe_4.utils.MainApplication;
+import hng.tech.apoe_4.utils.DataUtil;
 import hng.tech.apoe_4.utils.ProgressAnim;
 
 import im.delight.android.location.SimpleLocation;
@@ -54,6 +62,8 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.temp)
     TextView tempText;
 
+
+
     private float from = (float)10;
     private float to;
     private String temp;
@@ -62,6 +72,15 @@ public class TodayFragment extends Fragment {
     SimpleLocation location;
     Context mContext = getActivity();
     char degree = '\u00B0';
+
+    private QuestionAdapter questionAdapter;
+    private RecyclerView questions_view;
+    private LinearLayoutManager linearLayoutManager;
+    private String assetName;
+    private String arrayName;
+    private List<QuestionData> questionDataList;
+    private List<AnswerData> answerDataList;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -106,7 +125,14 @@ public class TodayFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-        
+
+        questions_view = view.findViewById(R.id.questions_view);
+
+        assetName = "Questions";
+        setRecyclerView();
+        showData();
+
+
 
 // construct a new instance of SimpleLocation
         location = new SimpleLocation(getActivity());
@@ -119,6 +145,7 @@ public class TodayFragment extends Fragment {
         }else {
             lat  =location.getLatitude();
             lng= location.getLongitude();
+            Log.d("TAG", "location-> " + lat + " " + lng );
         }
 
 
@@ -182,6 +209,8 @@ public class TodayFragment extends Fragment {
         return view;
     }
 
+
+
     //this method helps with animating progress bar
 
     private void setAnimation() {
@@ -205,6 +234,39 @@ public class TodayFragment extends Fragment {
         ProgressAnim anim = new ProgressAnim(stepsProgress, from, to);
         anim.setDuration(2000);
         stepsProgress.startAnimation(anim);
+    }
+//this prepares the recycler view
+    private void setRecyclerView() {
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        questions_view.setLayoutManager(linearLayoutManager);
+        questionAdapter = new QuestionAdapter(getActivity());
+        questions_view.setHasFixedSize(true);
+        questions_view.setAdapter(questionAdapter);
+
+    }
+// this methods fetch the data from the json asset file and displays the data
+    public void showData(){
+        questionDataList = DataUtil.openTheData(getContext(),assetName);
+        if (questionDataList.size() != 0) {
+            questionAdapter.setQuestionDataList(questionDataList);
+
+        }
+    }
+
+    private void showAnswers() {
+        List<List<AnswerData>> answerDataList1 = new ArrayList<>();
+
+        for (int j = 0; j < questionDataList.size(); j++) {
+            String qAnswer = questionDataList.get(j).getqAnswers();
+            Log.d("TAG", "showAnswers: " + qAnswer);
+
+            arrayName = "{ qAnswers: " + qAnswer + "}";
+            answerDataList = DataUtil.loadAnswers(arrayName);
+            Log.d("TAG", "showAnswers: " + arrayName);
+
+          answerDataList1.add(answerDataList);
+        }
+        //questionAdapter.setAnswerList(answerDataList1);
     }
 
     public static TodayFragment newInstance() {
