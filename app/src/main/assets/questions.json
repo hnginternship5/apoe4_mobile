@@ -7,19 +7,19 @@
       "qAnswers":[
         {
          "title":"day",
-         "answer":"great"
+         "answer":"Great"
         },
         {
          "title":"day",
-         "answer":"good"
+         "answer":"Good"
         },
         {
          "title":"day",
-         "answer":"fair"
+         "answer":"Fair"
         },
         {
          "title":"day",
-          "answer":"bad"
+          "answer":"Bad"
         }
         
       ]
@@ -31,19 +31,19 @@
       "qAnswers":[
         {
           "title":"day",
-          "answer":"great"
+          "answer":"Great"
         },
         {
           "title":"day",
-          "answer":"good"
+          "answer":"Good"
         },
         {
           "title":"day",
-          "answer":"fair"
+          "answer":"Fair"
         },
         {
           "title":"day",
-          "answer":"bad"
+          "answer":"Bad"
         }
         
       ]
@@ -77,11 +77,11 @@
       "qAnswers":[
         {
          "title":"reminder",
-         "answer":"yes"
+         "answer":"Yes"
         },
         {
          "title":"reminder",
-         "answer":"no"
+         "answer":"No"
         }
       ]
     }
