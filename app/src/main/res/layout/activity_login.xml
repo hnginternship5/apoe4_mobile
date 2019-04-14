@@ -119,7 +119,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
 
-        <ImageView
+        <!--<ImageView
             android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -129,7 +129,15 @@
             android:layout_weight="1"
             android:background="@drawable/icon_bg"
             android:padding="14dp"
-            app:srcCompat="@drawable/ic_google" />
+            app:srcCompat="@drawable/ic_google" />-->
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/sign_in_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="googgleSignIn"
+            android:layout_gravity="center"/>
 
         <ImageView
             android:id="@+id/imageView4"

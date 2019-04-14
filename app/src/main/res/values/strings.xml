@@ -19,6 +19,8 @@
     <string name="sign_up">Sign Up</string>
     <string name="title_activity_home">Home</string>
 
+    <string name="client_ID">255727373228-l9adehuac6m63dt09c7vpdn2svn5ps7m.apps.googleusercontent.com</string>
+
 
     <string-array name="height">
         <item>Height</item>

@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -92,6 +93,7 @@ public class Home extends AppCompatActivity {
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
     SimpleLocation locations;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,8 +138,16 @@ public class Home extends AppCompatActivity {
         signout.setOnClickListener(v ->{
 
             Prefs.putString("accessToken", "");
+            Intent intent = new Intent(this, LoginActivity.class);
+            mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                }
+            });
             Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(intent);
             finish();
 
             drawer.closeDrawer(GravityCompat.START);
