@@ -13,8 +13,12 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ProgressBar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +27,10 @@ public class ForumFragment extends Fragment {
 
     private WebView webView;
     private String Url;
-    private ProgressDialog progressDialog;
+//    private ProgressDialog progressDialog;
 
+    @BindView(R.id.loading)
+    ProgressBar progressBar;
 
     public ForumFragment() {
         // Required empty public constructor
@@ -36,9 +42,10 @@ public class ForumFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View layout = inflater.inflate(R.layout.fragment_forum, container, false);
+        progressBar = getActivity().findViewById(R.id.loading);
         webView = layout.findViewById(R.id.forum_webView);
-        progressDialog = new ProgressDialog(getContext());
-        Url = "https://www.alzu.org/forum/list.php?6";
+//        progressDialog = new ProgressDialog(getContext());
+        Url = "https://apoe4.discussion.community/";
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.loadUrl(Url);
@@ -47,9 +54,9 @@ public class ForumFragment extends Fragment {
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
-                progressDialog.setTitle("Page Loading");
-                progressDialog.setMessage("Here we take you as us...");
-                progressDialog.show();
+//                progressDialog.setTitle("Page Loading");
+//                progressDialog.setMessage("Here we take you as us...");
+                progressBar.setVisibility(View.VISIBLE);
             }
             //here we handled a custom error page whenever there is any error
             @Override
@@ -63,7 +70,7 @@ public class ForumFragment extends Fragment {
             @Override
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
-                progressDialog.dismiss();
+                progressBar.setVisibility(View.GONE);
             }
             //here we handle clicks to other pages.
             @Override
