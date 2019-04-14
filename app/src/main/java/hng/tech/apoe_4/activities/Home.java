@@ -66,10 +66,13 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
 
     @BindView(R.id.circleImageView)
-    CircleImageView circleImageView;
+    ImageView circleImageView;
 
     @BindView(R.id.patientName)
     TextView patientName;
+
+    @BindView(R.id.tv_username_drawer)
+    TextView userNameDrawer;
 
     @BindView(R.id.settings)
     RelativeLayout settings;
@@ -102,16 +105,21 @@ public class Home extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         locations = new SimpleLocation(this);
-
-        //get Location Permission
-           getLocationPermission();
-         //get device Location
-
-
-
-
-
         ButterKnife.bind(this);
+
+        patientName.setText(Prefs.getString("firstName", "John") + "\t"
+        + Prefs.getString("lastName", "Doe"));
+
+        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                + Prefs.getString("lastName", "Doe"));
+        //get Location Permission
+        getLocationPermission();
+        //get device Location
+
+
+
+
+
 
         openFragment(TodayFragment.newInstance(), "today");
 

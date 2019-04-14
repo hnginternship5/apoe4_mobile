@@ -119,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                     prog.setVisibility(View.INVISIBLE);
                     text5.setVisibility(View.VISIBLE);
                     Toast.makeText(LoginActivity.this, "Login Success: " ,Toast.LENGTH_SHORT).show();
+                    Log.d("TAG", "onResponse: " + response.body().getAccessToken());
                     Prefs.putString("accessToken", response.body().getAccessToken());
                     if (!Prefs.getBoolean("savedDOB", false)) {
                         startActivity(new Intent(LoginActivity.this, DOB_page.class));

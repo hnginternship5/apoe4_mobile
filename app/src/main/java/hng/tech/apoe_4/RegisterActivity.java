@@ -90,6 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
 
                                     Prefs.putString("accessToken", response.body().getAccessToken());
+                                    Prefs.putString("firstName", firstName);
+                                    Prefs.putString("lastName", lastName);
                                     startActivity(new Intent(RegisterActivity.this, DOB_page.class));
                                 }
                             }
