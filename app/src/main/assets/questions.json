@@ -30,19 +30,19 @@
       "qTitle":"How was your night",
       "qAnswers":[
         {
-          "title":"day",
+          "title":"night",
           "answer":"great"
         },
         {
-          "title":"day",
+          "title":"night",
           "answer":"good"
         },
         {
-          "title":"day",
+          "title":"night",
           "answer":"fair"
         },
         {
-          "title":"day",
+          "title":"night",
           "answer":"bad"
         }
         
