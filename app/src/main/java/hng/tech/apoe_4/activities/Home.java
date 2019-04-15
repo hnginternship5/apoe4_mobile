@@ -65,7 +65,6 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private int count = 0;
 
-    public static  String USER_ID;
 
 //    @BindView(R.id.logout)
 //    ImageView logoutImageView;
@@ -117,7 +116,6 @@ public class Home extends AppCompatActivity {
     private boolean mLocationPermissionsGranted;
     SimpleLocation locations;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,14 +125,15 @@ public class Home extends AppCompatActivity {
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 
+        //PreferenceManager.getDefaultSharedPreferences(this).edit().clear().apply();
         patientName.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
 
-
         setWHGValues();
+        calculateAge();
         //get Location Permission
         getLocationPermission();
         //get device Location
@@ -211,6 +210,22 @@ public class Home extends AppCompatActivity {
             heightDrawer.setText(list.get(1));
             gender = list.get(2);
         }
+    }
+
+    private void calculateAge(){
+        Calendar today = Calendar.getInstance();
+        Calendar dob = Calendar.getInstance();
+        dob.setTimeInMillis(DOB_page.getDOB());
+
+        int currentAge = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
+            currentAge--;
+        }
+
+        String info = gender+", "+currentAge+" years";
+
+        infoDrawer.setText(info);
     }
 
 
