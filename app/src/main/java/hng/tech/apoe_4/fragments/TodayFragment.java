@@ -297,7 +297,6 @@ public class TodayFragment extends Fragment {
         //questionAdapter.setAnswerList(answerDataList1);
     }
 
-
     public static TodayFragment newInstance() {
         return new TodayFragment();
     }
