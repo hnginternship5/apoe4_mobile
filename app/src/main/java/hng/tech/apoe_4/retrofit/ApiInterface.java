@@ -29,4 +29,7 @@ public interface ApiInterface {
                                 @Field("password") String password);
     @POST("auth/login")
     Call<AuthResponse> login(@Body User user);
+
+    @POST("questions/daily-question")
+    Call<>
 }

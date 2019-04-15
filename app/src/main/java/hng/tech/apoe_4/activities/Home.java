@@ -297,5 +297,7 @@ public class Home extends AppCompatActivity {
         String plannedActivity_answer = Prefs.getString("plannedActivity_answer", "");
         Boolean reminders_answer = Prefs.getBoolean("reminders_answer", false);
         Log.d(TAG, "SubmitQuestions: " + day + night + plannedActivity_answer + reminders_answer);
+
+
     }
 }
