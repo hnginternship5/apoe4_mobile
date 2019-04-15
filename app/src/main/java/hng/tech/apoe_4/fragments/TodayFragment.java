@@ -73,6 +73,7 @@ public class TodayFragment extends Fragment {
     Context mContext = getActivity();
     char degree = '\u00B0';
 
+    SimpleLocation location;
     private QuestionAdapter questionAdapter;
     private RecyclerView questions_view;
     private LinearLayoutManager linearLayoutManager;
@@ -181,8 +182,8 @@ public class TodayFragment extends Fragment {
             @Override
             public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                 if (response.isSuccessful()) {
-                    double temp = response.body().getMain().getTemp();
-                    double tempMax = response.body().getMain().getTempMax();
+                    double temp = lat == 0 ? 27.6 : response.body().getMain().getTemp();
+                    double tempMax = lat == 0 ? 36.5 : response.body().getMain().getTempMax();
                     Log.d("TAG", "temp: " + temp);
                     Log.d("TAG", "tempMax: " + tempMax);
 
