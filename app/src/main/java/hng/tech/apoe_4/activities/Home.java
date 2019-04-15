@@ -29,6 +29,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,6 +65,7 @@ public class Home extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     private int count = 0;
 
+    public static  String USER_ID;
 
 //    @BindView(R.id.logout)
 //    ImageView logoutImageView;
@@ -83,6 +85,9 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.tv_username_drawer)
     TextView userNameDrawer;
 
+    @BindView(R.id.tv_phone_number_drawer)
+    TextView infoDrawer;
+
     @BindView(R.id.height_drawer)
     TextView heightDrawer;
 
@@ -98,7 +103,7 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
 
-
+    static String gender;
 
     private static final String TAG = Home.class.getSimpleName();
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -111,6 +116,7 @@ public class Home extends AppCompatActivity {
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
     SimpleLocation locations;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,8 +133,8 @@ public class Home extends AppCompatActivity {
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
 
-        setWHGValues();
 
+        setWHGValues();
         //get Location Permission
         getLocationPermission();
         //get device Location
@@ -191,14 +197,22 @@ public class Home extends AppCompatActivity {
 
     }
 
-    public void setWHGValues(){
-        ArrayList<String> list = WHGActivity.loadWHGInfo(this);
+    private void setWHGValues(){
+        ArrayList<String> list = WHGActivity.loadWHGInfo();
         for(String x:list){
             Log.e(TAG,x);
         }
-        weightDrawer.setText(list.get(0));
-        heightDrawer.setText(list.get(1));
+        if(list.isEmpty()){
+            weightDrawer.setText("Weight");
+            heightDrawer.setText("Height");
+            gender = "Gender";
+        }else{
+            weightDrawer.setText(list.get(0));
+            heightDrawer.setText(list.get(1));
+            gender = list.get(2);
+        }
     }
+
 
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
@@ -224,6 +238,9 @@ public class Home extends AppCompatActivity {
                                 Toast.makeText(Home.this, "Please enable location", Toast.LENGTH_SHORT).show();
                                 SimpleLocation.openSettings(getApplicationContext());
                             }
+
+
+
 
                         }else{
                             Log.d(TAG, "onComplete: current location is null");

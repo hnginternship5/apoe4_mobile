@@ -75,28 +75,24 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
         });
     }
 
-    public  void saveWHGInfo(ArrayList<String> list,Context c){
-        SharedPreferences savedWHG = PreferenceManager.getDefaultSharedPreferences(c);
-        SharedPreferences.Editor editor = savedWHG.edit();
+    public  void saveWHGInfo(ArrayList<String> list){
 
-        editor.putInt("list_size",list.size());
+        Prefs.putInt("list_size",list.size());
 
         for(int i=0;i<list.size();i++){
-            editor.remove("list_size" + i);
-            editor.putString("list_size"+i,list.get(i));
+            Prefs.remove("list_size" + i);
+            Prefs.putString("list_size"+i,list.get(i));
         }
-
-        editor.apply();
     }
 
-    public static ArrayList<String> loadWHGInfo(Context c){
-        SharedPreferences savedContentLoad = PreferenceManager.getDefaultSharedPreferences(c);
+    public static ArrayList<String> loadWHGInfo(){
         listWHG.clear();
-        int size = savedContentLoad.getInt("list_size",0);
+        int size = Prefs.getInt("list_size",0);
 
         for(int i=0;i<size;i++){
-            listWHG.add(savedContentLoad.getString("list_size" +i,null));
+            listWHG.add(Prefs.getString("list_size" +i,null));
         }
+
         return listWHG;
     }
 
@@ -123,7 +119,7 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
                 break;
         }
 
-        saveWHGInfo(listWHG,this);
+        saveWHGInfo(listWHG);
 
     }
 
