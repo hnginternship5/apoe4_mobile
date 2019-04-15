@@ -46,10 +46,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.AnswerAdapter;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
+import hng.tech.apoe_4.retrofit.responses.DailyResponse;
+import hng.tech.apoe_4.retrofit.responses.DailyResponseData;
+import hng.tech.apoe_4.retrofit.responses.dailyQuestions;
+import hng.tech.apoe_4.utils.MainApplication;
 import im.delight.android.location.SimpleLocation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
 
@@ -340,5 +348,52 @@ public class Home extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         pressingBack();
+    }
+// this method post the answers to server when the submmit button is clicked
+    public void SubmitQuestions(View view) {
+        String day = Prefs.getString("day_answer", "");
+        String night = Prefs.getString("night_answer", "");
+        String plannedActivity_answer = Prefs.getString("plannedActivity_answer", "");
+        Boolean reminders_answer = Prefs.getBoolean("reminders_answer", false);
+        Log.d(TAG, "SubmitQuestions: " + day + night + plannedActivity_answer + reminders_answer);
+
+         MainApplication.getApiInterface().dailyQ(new dailyQuestions(day, night,
+                 plannedActivity_answer, reminders_answer)).
+                enqueue(new Callback<DailyResponse>() {
+                    @Override
+                    public void onResponse(Call<DailyResponse> call, Response<DailyResponse> response) {
+                        if (response.code()== 200){
+
+                            DailyResponseData data = response.body().getData();
+                            String day = data.getDay();
+                            String night = data.getNight();
+                            String plannedActivities = data.getPlannedActivities();
+                            String reminders;
+                            if (data.getReminders() == true) {
+                                reminders = "Yes";
+                            } else {
+                                reminders = "No";
+                            }
+
+                            Log.d(TAG, "onResponse-> " + day + night + plannedActivities +
+                                    reminders);
+                            Toast.makeText(Home.this,"Your Answers have been submited",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else {
+
+                            Toast.makeText(Home.this, "response: error" ,Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onResponse: " + response.message());
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<DailyResponse> call, Throwable t) {
+                        Toast.makeText(Home.this, t.getMessage() ,Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
     }
 }
