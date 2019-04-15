@@ -1,18 +1,25 @@
 package hng.tech.apoe_4.retrofit.responses;
 
-public class dailyQuestions {
+public class DailyResponseData {
+    private String _id;
     private String day;
     private String night;
     private String plannedActivities;
     private Boolean reminders;
+    private int __v;
 
-    public dailyQuestions(String day, String night, String plannedActivities, Boolean reminders) {
+    public DailyResponseData(String _id, String day, String night, String plannedActivities, Boolean reminders, int __v) {
+        this._id = _id;
         this.day = day;
         this.night = night;
         this.plannedActivities = plannedActivities;
         this.reminders = reminders;
+        this.__v = __v;
     }
 
+    public String get_id() {
+        return _id;
+    }
 
     public String getDay() {
         return day;
@@ -30,4 +37,7 @@ public class dailyQuestions {
         return reminders;
     }
 
+    public int get__v() {
+        return __v;
+    }
 }

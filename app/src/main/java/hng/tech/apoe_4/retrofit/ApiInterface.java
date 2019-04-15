@@ -1,8 +1,10 @@
 package hng.tech.apoe_4.retrofit;
 
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
+import hng.tech.apoe_4.retrofit.responses.DailyResponse;
 import hng.tech.apoe_4.retrofit.responses.User;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
+import hng.tech.apoe_4.retrofit.responses.dailyQuestions;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
@@ -31,5 +33,5 @@ public interface ApiInterface {
     Call<AuthResponse> login(@Body User user);
 
     @POST("questions/daily-question")
-    Call<>
+    Call<DailyResponse> dailyQ(@Body dailyQuestions questions);
 }

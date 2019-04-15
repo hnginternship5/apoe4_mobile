@@ -189,7 +189,8 @@
             android:background="@drawable/buttons"
             android:onClick="SubmitQuestions"
             android:textSize="20sp"
-            android:layout_marginBottom="@dimen/fab_margin"/>
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:visibility="gone"/>
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
