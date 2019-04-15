@@ -5,21 +5,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.ArrayList;
 
 public class WHGActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -27,7 +21,6 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
     Button done;
 
     String weigh, height, gender;
-    static ArrayList<String> listWHG = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +113,6 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
         }
 
         saveWHGInfo(listWHG);
-
     }
 
     @Override

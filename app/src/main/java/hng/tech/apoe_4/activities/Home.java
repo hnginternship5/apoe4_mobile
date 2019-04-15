@@ -3,13 +3,11 @@ package hng.tech.apoe_4.activities;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -31,6 +29,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -50,12 +49,7 @@ import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
-import hng.tech.apoe_4.retrofit.responses.User;
-import hng.tech.apoe_4.utils.MainApplication;
 import im.delight.android.location.SimpleLocation;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
 
@@ -64,8 +58,6 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.navigationView)
     BottomNavigationView bottomNavigationView;
     private int count = 0;
-
-    public static  String USER_ID;
 
 //    @BindView(R.id.logout)
 //    ImageView logoutImageView;
@@ -84,6 +76,7 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.tv_username_drawer)
     TextView userNameDrawer;
+
 
     @BindView(R.id.tv_phone_number_drawer)
     TextView infoDrawer;
@@ -128,16 +121,20 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
 
         patientName.setText(Prefs.getString("firstName", "John") + "\t"
-                + Prefs.getString("lastName", "Doe"));
+        + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
-
 
         setWHGValues();
         //get Location Permission
         getLocationPermission();
         //get device Location
+
+
+
+
+
 
         openFragment(TodayFragment.newInstance(), "today");
 
@@ -212,8 +209,6 @@ public class Home extends AppCompatActivity {
             gender = list.get(2);
         }
     }
-
-
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
@@ -308,19 +303,19 @@ public class Home extends AppCompatActivity {
         Log.d("TAG","fragment tag: "+fragment.getTag());
         transaction.commit();
     }
-    //this method helps to handle backpress between fragments
+//this method helps to handle backpress between fragments
     private void pressingBack() {
 
         TodayFragment todayFragment = (TodayFragment) getSupportFragmentManager().findFragmentByTag("today");
 
-        if (todayFragment != null && todayFragment.isVisible()) {
+           if (todayFragment != null && todayFragment.isVisible()) {
 
-            finishAffinity();
-        }
-        else {
+               finishAffinity();
+            }
+            else {
 
-            openFragment(TodayFragment.newInstance(), "today");
-        }
+               openFragment(TodayFragment.newInstance(), "today");
+            }
     }
 
     @Override
