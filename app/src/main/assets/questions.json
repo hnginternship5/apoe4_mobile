@@ -3,23 +3,23 @@
 
     {
       
-      "qTitle":"How are you today",
+      "qTitle":"How are you today?",
       "qAnswers":[
         {
          "title":"day",
-         "answer":"great"
+         "answer":"Great"
         },
         {
          "title":"day",
-         "answer":"good"
+         "answer":"Good"
         },
         {
          "title":"day",
-         "answer":"fair"
+         "answer":"Fair"
         },
         {
          "title":"day",
-          "answer":"bad"
+          "answer":"Bad"
         }
         
       ]
@@ -27,7 +27,7 @@
     
      {
       
-      "qTitle":"How was your night",
+      "qTitle":"How was your night?",
       "qAnswers":[
         {
           "title":"night",
@@ -50,7 +50,7 @@
     },
      {
       
-      "qTitle":"What exercise are you planning on doing today",
+      "qTitle":"What exercise are you planning on doing today?",
       "qAnswers":[
         {
          "title":"planned activities",
@@ -73,15 +73,15 @@
     },
      {
       
-      "qTitle":"Do you want to set an reminder",
+      "qTitle":"Do you want to set a reminder?",
       "qAnswers":[
         {
          "title":"reminder",
-         "answer":"yes"
+         "answer":"Yes"
         },
         {
          "title":"reminder",
-         "answer":"no"
+         "answer":"No"
         }
       ]
     }
