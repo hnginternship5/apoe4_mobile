@@ -8,6 +8,8 @@ public class User {
     @Expose
     private Data data;
 
+    private String email;
+    private String password;
     public Data getData() {
         return data;
     }
@@ -16,4 +18,8 @@ public class User {
         this.data = data;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }

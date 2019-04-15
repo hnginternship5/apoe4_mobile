@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +26,23 @@ public class MainActivity extends AppCompatActivity
 
     @BindView(R.id.splash)
     Button splash;
+
+    @BindView(R.id.showForum)
+    Button showForum;
+
+    @BindView(R.id.submit_DOB)
+    Button submit_DOB ;
+
+
+    @BindView(R.id.goHome)
+    Button goHome;
+
+    @BindView(R.id.submit_whg)
+    Button submit_WHG;
+
+    @BindView(R.id.resultsFragment)
+    Button resultsFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +64,9 @@ public class MainActivity extends AppCompatActivity
 
         ButterKnife.bind(this);
 
+        showForum.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ForumActivity.class)));
+
+        goHome.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Home.class)));
 
         splash.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -59,6 +80,18 @@ public class MainActivity extends AppCompatActivity
 
         findViewById(R.id.show_login).setOnClickListener( v ->
                 startActivity(new Intent(MainActivity.this, LoginActivity.class)));
+
+//        submit_DOB.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DOB_page.class)));
+
+        resultsFragment.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, resultsFragment.getClass())));
+
+
+        findViewById(R.id.show_registration).setOnClickListener( v ->
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class)));
+
+        findViewById(R.id.submit_whg).setOnClickListener( v ->
+                startActivity(new Intent(MainActivity.this, WHGActivity.class)));
+
 
     }
 
