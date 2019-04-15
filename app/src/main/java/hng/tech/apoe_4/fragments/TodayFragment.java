@@ -81,7 +81,7 @@ public class TodayFragment extends Fragment {
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
-    private SimpleLocation location;
+    //private SimpleLocation location;
 
 
     @Override
