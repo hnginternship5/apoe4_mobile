@@ -153,7 +153,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView12" />
 
-
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
@@ -176,6 +175,25 @@
         app:layout_constraintEnd_toEndOf="@+id/sleep"
         app:layout_constraintStart_toStartOf="@+id/sleep"
         app:layout_constraintTop_toBottomOf="@+id/sleep" />
+
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/submit_button"
+            android:text="SUBMIT"
+            app:layout_constraintTop_toBottomOf="@+id/questions_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/buttons"
+            android:onClick="SubmitQuestions"
+            android:textSize="20sp"
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:visibility="gone"/>
+
 
 
         <!--<LinearLayout-->
