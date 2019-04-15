@@ -3,10 +3,6 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
-import android.location.Location;
-import android.os.Build;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,24 +12,17 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-
-
 import androidx.core.content.ContextCompat;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,10 +34,7 @@ import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
-<<<<<<< HEAD
 import hng.tech.apoe_4.utils.DataUtil;
-=======
->>>>>>> android
 import hng.tech.apoe_4.utils.ProgressAnim;
 import im.delight.android.location.SimpleLocation;
 import okhttp3.OkHttpClient;
@@ -94,6 +80,7 @@ public class TodayFragment extends Fragment {
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
+    private SimpleLocation location;
 
 
     @Override
@@ -150,7 +137,7 @@ public class TodayFragment extends Fragment {
 
 
 // construct a new instance of SimpleLocation
-        location = new SimpleLocation(getActivity());
+        SimpleLocation location = new SimpleLocation(getActivity());
 
         // if we can't access the location yet
         if (!location.hasLocationEnabled()) {
