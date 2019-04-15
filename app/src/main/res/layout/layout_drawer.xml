@@ -139,7 +139,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
                         <TextView
-                            android:id="@+id/textView21"
+                            android:id="@+id/weight_drawer"
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:gravity="center"
