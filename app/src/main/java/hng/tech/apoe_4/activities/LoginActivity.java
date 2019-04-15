@@ -14,6 +14,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import hng.tech.apoe_4.ForgotPassword;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.RegisterActivity;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText login_email, login_password;
     RelativeLayout prog;
     TextView text5;
+    TextView forgotpass;
 
     // todo: waiting on api to complete login task
 
@@ -106,5 +108,9 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
         return false;
+    }
+    public void passwordforgot(View view){
+        Intent intent = new Intent(this, ForgotPassword.class);
+        startActivity(intent);
     }
 }
