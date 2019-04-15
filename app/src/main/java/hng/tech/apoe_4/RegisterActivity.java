@@ -27,8 +27,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 public class RegisterActivity extends AppCompatActivity {
 
     //DECLARING AND INITIALIZING VIEWS WITH BUTTERKNIFE

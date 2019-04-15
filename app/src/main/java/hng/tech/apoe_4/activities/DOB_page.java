@@ -14,6 +14,8 @@ import java.util.Calendar;
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.R;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 public class DOB_page extends AppCompatActivity {
 
 
