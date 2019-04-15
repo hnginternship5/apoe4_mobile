@@ -12,7 +12,7 @@
         android:id="@+id/imageView2"
         android:layout_width="72dp"
         android:layout_height="91dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -77,11 +77,12 @@
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/fpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Password?"
-        android:textColor="#000"
+        android:textColor="#CC3333"
+        android:onClick="passwordforgot"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/rememberMe"
         app:layout_constraintEnd_toEndOf="@+id/login_password"

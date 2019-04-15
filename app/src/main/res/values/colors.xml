@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3380cc</color>
+    <color name="colorPrimary">#032476</color>
     <color name="colorPrimaryDark">#1260ae</color>
     <color name="colorAccent">#3380cc</color>
     <!--<color name="colorAccent">#D81B60</color>-->
@@ -8,6 +8,8 @@
     <!--App color-->
     <color name="white">#ffffff</color>
     <color name="figmaBlue">#3380CC</color>
+    <color name="figmaBlueDark">#132F4B</color>
+    <color name="figmaBlueLight">#77AADD</color>
     <color name="figmaGrey">#FBFBFB</color>
     <color name="figmaDarkGrey">#FBFBFB</color>
     <color name="gray">#D3D3D3</color>

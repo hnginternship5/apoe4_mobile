@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,12 +88,12 @@ public class TodayFragment extends Fragment {
     SimpleLocation location;
     private QuestionAdapter questionAdapter;
     private RecyclerView questions_view;
+    private Button submit_button;
     private LinearLayoutManager linearLayoutManager;
     private String assetName;
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -139,7 +140,23 @@ public class TodayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
+        submit_button = view.findViewById(R.id.submit_button);
         questions_view = view.findViewById(R.id.questions_view);
+
+        //here we display the submit button whenever we scroll to the bottom of the page
+        questions_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+
+                if (!recyclerView.canScrollVertically(1)){
+                    submit_button.setVisibility(View.VISIBLE);
+                }
+                else {
+                    submit_button.setVisibility(View.GONE);
+                }
+            }
+        });
 
         assetName = "Questions";
         setRecyclerView();
