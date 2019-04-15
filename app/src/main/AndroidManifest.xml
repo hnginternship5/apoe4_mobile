@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="hng.tech.apoe_4">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".utils.MainApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_app_icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/apoe_logo"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".activities.ForumActivity"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.splashScreen" />
-
-        <activity android:name=".activities.LoginActivity" />
-        <activity android:name=".activities.MainActivity"
-            android:label="@string/home"
-            android:theme="@style/AppTheme.NoActionBar" >
-
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.QuestionsActivity" />
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-
-
+        <activity
+            android:name=".activities.Home"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.WHGActivity" />
+        <activity android:name=".activities.DOB_page" />
+        <activity android:name=".activities.ForumActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".activities.ProfileActivity" />
+        <activity android:name=".activities.splashScreen" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForgotPassword"></activity>
     </application>
 
 </manifest>

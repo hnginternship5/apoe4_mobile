@@ -12,4 +12,90 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="next">Next</string>
+    <string name="logo">logo</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="title_activity_home">Home</string>
+
+
+    <string name="quest1">Are you using the app for yourself?</string>
+    <string name="quest2">Have you gone for Apoe4 test?</string>
+    <string name="quest3">Are you a smoker?</string>
+    <string name="quest4">Any history of High Blood Pressure?</string>
+    <string name="quest5">Are you diabetic?</string>
+
+
+    <string-array name="height">
+        <item>Height</item>
+        <item>200cm</item>
+        <item>198cm</item>
+        <item>196cm</item>
+        <item>194cm</item>
+        <item>192cm</item>
+        <item>190cm</item>
+        <item>188cm</item>
+        <item>186cm</item>
+        <item>184cm</item>
+        <item>182cm</item>
+        <item>180cm</item>
+        <item>178cm</item>
+        <item>176cm</item>
+        <item>174cm</item>
+        <item>172cm</item>
+        <item>170cm</item>
+        <item>168cm</item>
+        <item>166cm</item>
+        <item>164cm</item>
+        <item>162cm</item>
+        <item>160cm</item>
+        <item>158cm</item>
+        <item>156cm</item>
+        <item>154cm</item>
+        <item>152cm</item>
+        <item>150cm</item>
+        <item>148cm</item>
+    </string-array>
+
+    <string-array name="weight">
+        <item>Weight</item>
+        <item>20kg</item>
+        <item>25kg</item>
+        <item>30kg</item>
+        <item>35kg</item>
+        <item>40kg</item>
+        <item>45kg</item>
+        <item>50kg</item>
+        <item>55kg</item>
+        <item>60kg</item>
+        <item>65kg</item>
+        <item>70kg</item>
+        <item>75kg</item>
+        <item>80kg</item>
+        <item>85kg</item>
+        <item>90kg</item>
+        <item>95kg</item>
+        <item>100kg</item>
+        <item>105kg</item>
+        <item>110kg</item>
+        <item>115kg</item>
+        <item>120kg</item>
+    </string-array>
+
+
+    <string-array name="gender">
+        <item>Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Alogo">APOE-4</string>
+    <string name="Forgot">Forgot Password</string>
+    <string name="forgotText">Please enter your email so we can help you reset your password</string>
+    <string name="email"> Email</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

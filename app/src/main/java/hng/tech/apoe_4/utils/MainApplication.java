@@ -1,9 +1,11 @@
 package hng.tech.apoe_4.utils;
 
 import android.app.Application;
+import android.content.ContextWrapper;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,7 +20,7 @@ public class MainApplication extends Application {
     private static MainApplication instance;
     private static ApiInterface apiInterface;
 
-    public static String BASE_URL = "https://reqres.in/api/";
+    public static String BASE_URL = "https://api.apoe4.app/api/v1/";
 
 
     Gson gson = new GsonBuilder()
@@ -34,6 +36,8 @@ public class MainApplication extends Application {
         return apiInterface;
     }
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -46,6 +50,13 @@ public class MainApplication extends Application {
                 .addInterceptor(loggingInterceptor)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
+                .build();
+
+        new Prefs.Builder()
+                .setContext(this)
+                .setMode(ContextWrapper.MODE_PRIVATE)
+                .setPrefsName(getPackageName())
+                .setUseDefaultSharedPreference(true)
                 .build();
 
 
