@@ -3,11 +3,13 @@ package hng.tech.apoe_4.activities;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -16,7 +18,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
 
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +49,12 @@ import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
+import hng.tech.apoe_4.retrofit.responses.User;
+import hng.tech.apoe_4.utils.MainApplication;
 import im.delight.android.location.SimpleLocation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
 
@@ -55,6 +63,7 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.navigationView)
     BottomNavigationView bottomNavigationView;
     private int count = 0;
+
 
 //    @BindView(R.id.logout)
 //    ImageView logoutImageView;
@@ -73,6 +82,12 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.tv_username_drawer)
     TextView userNameDrawer;
+
+    @BindView(R.id.height_drawer)
+    TextView heightDrawer;
+
+    @BindView(R.id.weight_drawer)
+    TextView weightDrawer;
 
     @BindView(R.id.settings)
     RelativeLayout settings;
@@ -96,7 +111,6 @@ public class Home extends AppCompatActivity {
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
     SimpleLocation locations;
-    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,28 +122,23 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
 
         patientName.setText(Prefs.getString("firstName", "John") + "\t"
-        + Prefs.getString("lastName", "Doe"));
+                + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
+
+        setWHGValues();
+
         //get Location Permission
         getLocationPermission();
         //get device Location
 
-
-
-
-
-
         openFragment(TodayFragment.newInstance(), "today");
 
 
-        /*logoutImageView.setOnClickListener(x -> {
-                    Prefs.putString("accessToken", "");
-                    Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
-                    finish();
-});*/
+//        logoutImageView.setOnClickListener(x -> {
+//
+//        });
 
         circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
 
@@ -146,16 +155,8 @@ public class Home extends AppCompatActivity {
         signout.setOnClickListener(v ->{
 
             Prefs.putString("accessToken", "");
-            Intent intent = new Intent(this, LoginActivity.class);
-            mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
             Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-            startActivity(intent);
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
 
             drawer.closeDrawer(GravityCompat.START);
@@ -190,6 +191,15 @@ public class Home extends AppCompatActivity {
 
     }
 
+    public void setWHGValues(){
+        ArrayList<String> list = WHGActivity.loadWHGInfo(this);
+        for(String x:list){
+            Log.e(TAG,x);
+        }
+        weightDrawer.setText(list.get(0));
+        heightDrawer.setText(list.get(1));
+    }
+
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
@@ -214,9 +224,6 @@ public class Home extends AppCompatActivity {
                                 Toast.makeText(Home.this, "Please enable location", Toast.LENGTH_SHORT).show();
                                 SimpleLocation.openSettings(getApplicationContext());
                             }
-
-
-
 
                         }else{
                             Log.d(TAG, "onComplete: current location is null");
@@ -284,19 +291,19 @@ public class Home extends AppCompatActivity {
         Log.d("TAG","fragment tag: "+fragment.getTag());
         transaction.commit();
     }
-//this method helps to handle backpress between fragments
+    //this method helps to handle backpress between fragments
     private void pressingBack() {
 
         TodayFragment todayFragment = (TodayFragment) getSupportFragmentManager().findFragmentByTag("today");
 
-           if (todayFragment != null && todayFragment.isVisible()) {
+        if (todayFragment != null && todayFragment.isVisible()) {
 
-               finishAffinity();
-            }
-            else {
+            finishAffinity();
+        }
+        else {
 
-               openFragment(TodayFragment.newInstance(), "today");
-            }
+            openFragment(TodayFragment.newInstance(), "today");
+        }
     }
 
     @Override
