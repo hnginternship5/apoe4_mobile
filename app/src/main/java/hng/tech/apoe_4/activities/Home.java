@@ -42,6 +42,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.adapters.AnswerAdapter;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
@@ -297,7 +298,7 @@ public class Home extends AppCompatActivity {
     public void onBackPressed() {
         pressingBack();
     }
-
+// this method post the answers to server when the submmit button is clicked
     public void SubmitQuestions(View view) {
         String day = Prefs.getString("day_answer", "");
         String night = Prefs.getString("night_answer", "");
@@ -325,6 +326,8 @@ public class Home extends AppCompatActivity {
 
                             Log.d(TAG, "onResponse-> " + day + night + plannedActivities +
                                     reminders);
+                            Toast.makeText(Home.this,"Your Answers have been submited",
+                                    Toast.LENGTH_LONG).show();
                         }
                         else {
 
@@ -340,5 +343,6 @@ public class Home extends AppCompatActivity {
 
                     }
                 });
+
     }
 }
