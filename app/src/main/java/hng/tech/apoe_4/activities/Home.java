@@ -1,12 +1,9 @@
 package hng.tech.apoe_4.activities;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,7 +16,6 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -31,8 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -40,12 +34,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
+import hng.tech.apoe_4.retrofit.responses.DailyResponse;
+import hng.tech.apoe_4.retrofit.responses.DailyResponseData;
+import hng.tech.apoe_4.retrofit.responses.dailyQuestions;
+import hng.tech.apoe_4.utils.MainApplication;
 import im.delight.android.location.SimpleLocation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class Home extends AppCompatActivity {
 
@@ -65,10 +65,13 @@ public class Home extends AppCompatActivity {
     NavigationView navigationView;
 
     @BindView(R.id.circleImageView)
-    CircleImageView circleImageView;
+    ImageView circleImageView;
 
     @BindView(R.id.patientName)
     TextView patientName;
+
+    @BindView(R.id.tv_username_drawer)
+    TextView userNameDrawer;
 
     @BindView(R.id.settings)
     RelativeLayout settings;
@@ -100,16 +103,21 @@ public class Home extends AppCompatActivity {
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
         locations = new SimpleLocation(this);
-
-        //get Location Permission
-           getLocationPermission();
-         //get device Location
-
-
-
-
-
         ButterKnife.bind(this);
+
+        patientName.setText(Prefs.getString("firstName", "John") + "\t"
+        + Prefs.getString("lastName", "Doe"));
+
+        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                + Prefs.getString("lastName", "Doe"));
+        //get Location Permission
+        getLocationPermission();
+        //get device Location
+
+
+
+
+
 
         openFragment(TodayFragment.newInstance(), "today");
 
@@ -118,7 +126,9 @@ public class Home extends AppCompatActivity {
 //
 //        });
 
-        circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
+        circleImageView.setOnClickListener(v -> {
+            drawer.openDrawer(Gravity.LEFT);
+        });
 
         settings.setOnClickListener(v -> {
 
@@ -177,10 +187,10 @@ public class Home extends AppCompatActivity {
         try{
             if(mLocationPermissionsGranted){
 
-                final Task location = mFusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
+                final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
-                    public void onComplete(@NonNull Task task) {
+                    public void onComplete(@NonNull Task<Location> task) {
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
@@ -201,6 +211,7 @@ public class Home extends AppCompatActivity {
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(Home.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
             }
@@ -281,5 +292,52 @@ public class Home extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         pressingBack();
+    }
+// this method post the answers to server when the submmit button is clicked
+    public void SubmitQuestions(View view) {
+        String day = Prefs.getString("day_answer", "");
+        String night = Prefs.getString("night_answer", "");
+        String plannedActivity_answer = Prefs.getString("plannedActivity_answer", "");
+        Boolean reminders_answer = Prefs.getBoolean("reminders_answer", false);
+        Log.d(TAG, "SubmitQuestions: " + day + night + plannedActivity_answer + reminders_answer);
+
+         MainApplication.getApiInterface().dailyQ(new dailyQuestions(day, night,
+                 plannedActivity_answer, reminders_answer)).
+                enqueue(new Callback<DailyResponse>() {
+                    @Override
+                    public void onResponse(Call<DailyResponse> call, Response<DailyResponse> response) {
+                        if (response.code()== 200){
+
+                            DailyResponseData data = response.body().getData();
+                            String day = data.getDay();
+                            String night = data.getNight();
+                            String plannedActivities = data.getPlannedActivities();
+                            String reminders;
+                            if (data.getReminders() == true) {
+                                reminders = "Yes";
+                            } else {
+                                reminders = "No";
+                            }
+
+                            Log.d(TAG, "onResponse-> " + day + night + plannedActivities +
+                                    reminders);
+                            Toast.makeText(Home.this,"Your Answers have been submited",
+                                    Toast.LENGTH_LONG).show();
+                        }
+                        else {
+
+                            Toast.makeText(Home.this, "response: error" ,Toast.LENGTH_SHORT).show();
+                            Log.d(TAG, "onResponse: " + response.message());
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<DailyResponse> call, Throwable t) {
+                        Toast.makeText(Home.this, t.getMessage() ,Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
     }
 }
