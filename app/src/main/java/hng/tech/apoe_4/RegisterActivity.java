@@ -19,6 +19,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.activities.DOB_page;
 import hng.tech.apoe_4.activities.Home;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
@@ -128,7 +129,8 @@ public class RegisterActivity extends AppCompatActivity {
             password.setError("Password do no match");
         }
         if(!termsAndCondition.isChecked()){
-            termsAndCondition.setError("You must agree to our terms and condition");
+            hasError = true;
+            Toasty.error(RegisterActivity.this,"You must agree to our terms and condition").show();
         }
 
         return hasError;
