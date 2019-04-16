@@ -22,10 +22,15 @@ import android.widget.Toast;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -71,8 +76,8 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 
 public class TodayFragment extends Fragment {
-
     FirebaseFirestore db;
+
     @BindView(R.id.tempProgress)
     ProgressBar tempProgress;
 
@@ -81,6 +86,9 @@ public class TodayFragment extends Fragment {
 
     @BindView(R.id.sleepProgress)
     ProgressBar sleepProgress;
+
+//    @BindView(R.id.loading)
+//    ProgressBar progressBar;
 
     @BindView(R.id.temp)
     TextView tempText;
@@ -98,12 +106,12 @@ public class TodayFragment extends Fragment {
     SimpleLocation location;
     private QuestionAdapter questionAdapter;
     private RecyclerView questions_view;
-    private Button submit_button;
     private LinearLayoutManager linearLayoutManager;
     private String assetName;
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -150,23 +158,7 @@ public class TodayFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
-        submit_button = view.findViewById(R.id.submit_button);
         questions_view = view.findViewById(R.id.questions_view);
-
-        //here we display the submit button whenever we scroll to the bottom of the page
-        questions_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-                if (!recyclerView.canScrollVertically(1)){
-                    submit_button.setVisibility(View.VISIBLE);
-                }
-                else {
-                    submit_button.setVisibility(View.GONE);
-                }
-            }
-        });
 
         assetName = "Questions";
         setRecyclerView();
@@ -246,6 +238,29 @@ public class TodayFragment extends Fragment {
             }
 
         };
+
+
+
+        db.collection("questions")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()){
+                    for (QueryDocumentSnapshot documentSnapshot : task.getResult()){
+//                        Log.e("aTag", documentSnapshot.getId() + " => " +  documentSnapshot.getData());
+
+                    }
+                }
+            }
+
+
+        });
+        adapter.startListening();
+        Log.e("count", "" + adapter.getItemCount());
+        adapter.notifyDataSetChanged();
+        questions_view.setAdapter(adapter);
+
+
 
 // construct a new instance of SimpleLocation
         location = new SimpleLocation(getActivity());
@@ -346,16 +361,16 @@ public class TodayFragment extends Fragment {
         anim.setDuration(2000);
         stepsProgress.startAnimation(anim);
     }
-//this prepares the recycler view
+    //this prepares the recycler view
     private void setRecyclerView() {
         linearLayoutManager = new LinearLayoutManager(getContext());
         questions_view.setLayoutManager(linearLayoutManager);
         questionAdapter = new QuestionAdapter(getActivity());
         questions_view.setHasFixedSize(true);
-        questions_view.setAdapter(questionAdapter);
+//        questions_view.setAdapter(questionAdapter);
 
     }
-// this methods fetch the data from the json asset file and displays the data
+    // this methods fetch the data from the json asset file and displays the data
     public void showData(){
         questionDataList = DataUtil.openTheData(getContext(),assetName);
         if (questionDataList.size() != 0) {
@@ -375,7 +390,7 @@ public class TodayFragment extends Fragment {
             answerDataList = DataUtil.loadAnswers(arrayName);
             Log.d("TAG", "showAnswers: " + arrayName);
 
-          answerDataList1.add(answerDataList);
+            answerDataList1.add(answerDataList);
         }
         //questionAdapter.setAnswerList(answerDataList1);
     }
@@ -383,7 +398,6 @@ public class TodayFragment extends Fragment {
     public static TodayFragment newInstance() {
         return new TodayFragment();
     }
-
     class QuestionsHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.question_title)

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+//import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,7 +66,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileView {
 
     @Override
     public void updateUI(Data user) {
-        Glide.with(this).load(user.getAvatar()).into(imageView);
+//        Glide.with(this).load(user.getAvatar()).into(imageView);
         age.setText(String.valueOf(user.getId()));
         nok.setText(user.getFirstName());
         name.setText(user.getLastName());
