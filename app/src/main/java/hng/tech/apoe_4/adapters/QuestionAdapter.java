@@ -21,9 +21,7 @@ import hng.tech.apoe_4.utils.DataUtil;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.QuestionViewHolder> {
 
     private List<QuestionData> questionDataList;
-    LayoutInflater layoutInflater;
     private Context context;
-    private   List<List<AnswerData>> answerDataList;
 
 
     public QuestionAdapter(Context context ) {
@@ -82,7 +80,6 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
 
     public void setAnswerList(List<List<AnswerData>>  answerDataList){
 
-        this.answerDataList = answerDataList;
         notifyDataSetChanged();
     }
 

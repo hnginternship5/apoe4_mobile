@@ -40,6 +40,7 @@
             android:label="@string/home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ForgotPassword"></activity>
+        <!--<activity android:name=".activities.question" />-->
     </application>
 
 </manifest>

@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -30,7 +32,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.activities.firebaseTest;
 import hng.tech.apoe_4.adapters.QuestionAdapter;
+import hng.tech.apoe_4.adapters.FirebaseTestAdapter;
 import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
@@ -51,6 +55,10 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 
 public class TodayFragment extends Fragment {
+
+    // Firebase components
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
 
     @BindView(R.id.tempProgress)
     ProgressBar tempProgress;
@@ -76,6 +84,7 @@ public class TodayFragment extends Fragment {
 
     SimpleLocation location;
     private QuestionAdapter questionAdapter;
+    private FirebaseTestAdapter firebaseTestAdapter;
     private RecyclerView questions_view;
     private Button submit_button;
     private LinearLayoutManager linearLayoutManager;
@@ -125,13 +134,20 @@ public class TodayFragment extends Fragment {
     }
 
 
+//    @Override
+//    public void onCreate(@Nullable Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
-
         submit_button = view.findViewById(R.id.submit_button);
         questions_view = view.findViewById(R.id.questions_view);
+
+//        firebaseDatabase = FirebaseDatabase.getInstance();
+//        databaseReference = firebaseDatabase.getReference();
 
         //here we display the submit button whenever we scroll to the bottom of the page
         questions_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -149,8 +165,34 @@ public class TodayFragment extends Fragment {
         });
 
         assetName = "Questions";
-        setRecyclerView();
-        showData();
+
+        // TODO Tie up here
+
+
+
+//        firebaseTest[] firebaseTest = new firebaseTest[]{
+//
+//                // TODO GET QUESTION AND QUESTION FROM DATABASE
+//
+////                databaseReference.child()
+//
+//
+//
+//        new firebaseTest("QUESTION", "QUESTION", android.R.drawable.ic_dialog_email),
+//
+//        };
+
+
+
+
+
+
+
+
+
+//        setRecyclerView();
+        setQuestions_view();
+//        showData();
 
 
 
@@ -253,13 +295,36 @@ public class TodayFragment extends Fragment {
         anim.setDuration(2000);
         stepsProgress.startAnimation(anim);
     }
+
+    // TODO modify method to reflect new changes
 //this prepares the recycler view
+
     private void setRecyclerView() {
+
         linearLayoutManager = new LinearLayoutManager(getContext());
         questions_view.setLayoutManager(linearLayoutManager);
         questionAdapter = new QuestionAdapter(getActivity());
         questions_view.setHasFixedSize(true);
         questions_view.setAdapter(questionAdapter);
+
+    }
+
+    private void setQuestions_view(){
+
+        firebaseTest[] firebaseTest = new firebaseTest[]{
+                new firebaseTest("QUESTION", "QUESTION", android.R.drawable.ic_dialog_email),
+                new firebaseTest("QUESTION2", "QUESTION3", android.R.drawable.ic_dialog_email),
+                new firebaseTest("QUESTIO4", "QUESTIO5", android.R.drawable.ic_dialog_email),
+        };
+
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        questions_view.setLayoutManager(linearLayoutManager);
+        firebaseTestAdapter = new FirebaseTestAdapter((firebaseTest));
+
+        questions_view.setHasFixedSize(true);
+
+        questions_view.setAdapter(firebaseTestAdapter);
 
     }
 // this methods fetch the data from the json asset file and displays the data

@@ -4,85 +4,68 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.activities.firebaseTest;
 
-public class TestAdapter extends RecyclerView.Adapter<TestAdapter.ViewHolder> {
+public class FirebaseTestAdapter extends RecyclerView.Adapter<FirebaseTestAdapter.ViewHolder> {
 
-    private List<String> mData;
-    private LayoutInflater mInflater;
-    private ItemClickListener mClickListener;
+    private firebaseTest[] myfirebaseTest;
 
-    // data is passed into the constructor
-    public TestAdapter(Context context, List<String> data) {
-        this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+    // RecyclerView recyclerView;
+    public FirebaseTestAdapter(firebaseTest[] firebaseTest) {
+        this.myfirebaseTest = firebaseTest;
     }
 
-    // inflates the row layout from xml when needed
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.question, parent, false);
-        return new ViewHolder(view);
+        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
+        View listItem = layoutInflater.inflate(R.layout.firebase_test, parent, false);
+        ViewHolder viewHolder = new ViewHolder(listItem);
+        return viewHolder;
     }
 
-    // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        final firebaseTest firebaseTest = myfirebaseTest[position];
+        holder.imageView.setImageResource(myfirebaseTest[position].getImgId());
+        holder.textView1.setText(myfirebaseTest[position].getQuestionTitle());
+        holder.textView2.setText(myfirebaseTest[position].getAnswerOptions());
+        holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(),"Works",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
-    // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return myfirebaseTest.length;
     }
 
-
-    // stores and recycles views as they are scrolled off screen
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-
-        ViewHolder(View itemView) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ImageView imageView;
+        public TextView textView1;
+        public TextView textView2;
+        public ConstraintLayout constraintLayout;
+        public ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.answers_view);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (mClickListener != null) mClickListener.onItemClick(view, getAdapterPosition());
+            this.imageView = (ImageView) itemView.findViewById(R.id.imageView6);
+            this.textView1 = (TextView) itemView.findViewById(R.id.question_title);
+            this.textView2= (TextView) itemView.findViewById(R.id.answer_option);
+            constraintLayout = (ConstraintLayout) itemView.findViewById(R.id.firebase_test);
         }
     }
 
-    // convenience method for getting data at click position
-    String getItem(int id) {
-        return mData.get(id);
-    }
-
-    // allows clicks events to be caught
-    void setClickListener(ItemClickListener itemClickListener) {
-        this.mClickListener = itemClickListener;
-    }
-
-    // parent activity will implement this method to respond to click events
-    public interface ItemClickListener {
-        void onItemClick(View view, int position);
-    }
 }
+
