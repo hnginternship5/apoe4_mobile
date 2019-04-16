@@ -130,7 +130,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
         if(!termsAndCondition.isChecked()){
             hasError = true;
-            Toasty.error(RegisterActivity.this,"You must agree to our terms and condition").show();
+            Toast.makeText(this,"You must agree to our terms and condition", Toast.LENGTH_SHORT).show();
         }
 
         return hasError;
