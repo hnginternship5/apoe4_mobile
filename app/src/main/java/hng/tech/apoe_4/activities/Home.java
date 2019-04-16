@@ -137,7 +137,7 @@ public class Home extends AppCompatActivity {
         circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
 
         settings.setOnClickListener(v -> {
-
+            startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
 
