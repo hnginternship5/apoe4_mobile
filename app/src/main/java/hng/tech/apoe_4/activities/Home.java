@@ -107,6 +107,8 @@ public class Home extends AppCompatActivity {
 
         if (Prefs.getBoolean("regFb", false)){
             patientName.setText(Prefs.getString("fullname", "John Doe"));
+            //load picture from facebook
+             Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
              userNameDrawer.setText(Prefs.getString("fullname", "John Doe"));
         }else{
             patientName.setText(Prefs.getString("firstName", "John") + "\t"
@@ -132,8 +134,7 @@ public class Home extends AppCompatActivity {
 //        logoutImageView.setOnClickListener(x -> {
 //
 //        });
-        //load picture from facebook
-        Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
+        
         
         circleImageView.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.LEFT);
