@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "376542755138-o4la37b238e32iakgfmko7qgbmju0dti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hng.tech.apoe_4",
+            "certificate_hash": "b2959b95f7a6c3406b711fb82da9cac985fe075f"
+          }
+        },
+        {
           "client_id": "376542755138-gt5nsc90svgrq7je7sk1fou5ss1eehkv.apps.googleusercontent.com",
           "client_type": 3
         }
