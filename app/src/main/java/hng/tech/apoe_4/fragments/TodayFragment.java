@@ -9,16 +9,23 @@ import android.os.Build;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -63,6 +70,7 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 public class TodayFragment extends Fragment {
 
+    FirebaseFirestore db;
     @BindView(R.id.tempProgress)
     ProgressBar tempProgress;
 
@@ -162,7 +170,80 @@ public class TodayFragment extends Fragment {
         setRecyclerView();
         showData();
 
+        db = FirebaseFirestore.getInstance();
 
+        Query query = db.collection("questions");
+
+        FirestoreRecyclerOptions<QuestionsResponse> response = new FirestoreRecyclerOptions.Builder<QuestionsResponse>()
+                .setQuery(query, QuestionsResponse.class)
+                .build();
+
+        Log.e("snap", response.getSnapshots().isEmpty() + "");
+
+        FirestoreRecyclerAdapter adapter = new FirestoreRecyclerAdapter<QuestionsResponse, QuestionsHolder>(response) {
+
+            @Override
+            public void onBindViewHolder(QuestionsHolder holder, int position, QuestionsResponse model) {
+//                progressBar.setVisibility(View.GONE);
+                holder.textTitle.setText(model.getText());
+
+                List<QuestionsResponse> responses = response.getSnapshots();
+
+                List<String> answers = model.getAnswers();
+                for (int i =0; i < answers.size(); i++){
+                    Button anAnswer = new Button(getActivity());
+                    anAnswer.setGravity(Gravity.CENTER);
+                    anAnswer.setAllCaps(false);
+                    anAnswer.setTextColor(getActivity().getResources().getColor(R.color.figmaBlue));
+                    anAnswer.setTextSize(20);
+
+
+                    anAnswer.setBackground(getActivity().getResources().getDrawable(R.drawable.button_bg));
+                    anAnswer.setText(answers.get(i));
+                    anAnswer.setId(i);
+                    holder.answersContainer.addView(anAnswer);
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)anAnswer.getLayoutParams();
+
+
+                    params.setMargins(10, 10, 10, 10); //substitute parameters for left, top, right, bottom
+                    anAnswer.setLayoutParams(params);
+
+                    anAnswer.setOnClickListener(v -> {
+
+//                        questions_view.removeViewAt(position);
+                        for (QuestionsResponse questionsResponse : responses){
+                            if (questionsResponse.getText().equals(model.getText())){
+                                Toast.makeText(getActivity().getThemedContext(), questionsResponse.getText(), Toast.LENGTH_SHORT).show();
+//                                adapter.getSnapshots().remove(position);
+                            }
+                        }
+                    });
+                }
+
+
+            }
+
+            @Override
+            public QuestionsHolder onCreateViewHolder(ViewGroup group, int i) {
+//                if (getItem(i).)
+                View view = LayoutInflater.from(group.getContext())
+                        .inflate(R.layout.question_firebase, group, false);
+
+                return new QuestionsHolder(view);
+            }
+
+            @Override
+            public int getItemCount() {
+                Log.e("aCount", "" + super.getItemCount());
+                return super.getItemCount();
+            }
+
+            @Override
+            public void onError(FirebaseFirestoreException e) {
+                Log.e("error", e.getMessage());
+            }
+
+        };
 
 // construct a new instance of SimpleLocation
         location = new SimpleLocation(getActivity());
