@@ -131,7 +131,7 @@ public class Home extends AppCompatActivity {
         });
 
         settings.setOnClickListener(v -> {
-
+            startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
 
