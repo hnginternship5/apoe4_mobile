@@ -26,6 +26,9 @@ public class SettingsActivity extends AppCompatActivity {
     @BindView(R.id.hiddenAbout)
     LinearLayout hiddenAbout;
 
+    @BindView(R.id.back)
+    ImageView back;
+
     @BindView(R.id.drop)
     ImageView drop;
 
@@ -51,6 +54,8 @@ public class SettingsActivity extends AppCompatActivity {
         dropUnit.setOnClickListener(v -> animateView(hiddenUnits, dropUnit));
         dropFeedback.setOnClickListener(v -> animateView(hiddenFeedback, dropFeedback));
         dropAbout.setOnClickListener(v -> animateView(hiddenAbout, dropAbout));
+
+        back.setOnClickListener(v -> super.onBackPressed());
 
     }
     
