@@ -30,13 +30,15 @@
 
                 <ImageView
                     android:id="@+id/circleImageView"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
                     android:padding="4dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:srcCompat="@drawable/ic_back" />
 
                 <TextView
@@ -44,6 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:text="Settings"
@@ -52,7 +55,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/circleImageView"
-                    app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -467,7 +470,10 @@
                 <Button
                     style="@android:style/Widget.Button.Small"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/button_grey_outline"
                     android:layout_gravity="end"
                     android:text="Submit" />
             </LinearLayout>
@@ -545,12 +551,15 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/deleteAccount"
             style="@android:style/Widget.Button.Small"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginTop="8dp"
-            android:text="Button"
+            android:background="@drawable/red_rounded_button_bg"
+            android:padding="4dp"
+            android:text="Delete Account"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="@+id/linearLayout4"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 

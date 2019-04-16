@@ -51,11 +51,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        Animation slide_down = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_down);
-
-        Animation slide_up = AnimationUtils.loadAnimation(getApplicationContext(),
-                R.anim.slide_up);
 
 
         drop.setOnClickListener(v -> animateView(toHide, drop));
@@ -76,6 +71,7 @@ public class SettingsActivity extends AppCompatActivity {
                     .translationY(10)
                     .alpha(1.0f)
                     .setListener(null);
+            button.setRotation(90.0f);
         }
         else {
             view.animate()
@@ -86,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity {
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
                             view.setVisibility(View.GONE);
+                            button.setRotation(-360.0f);
                         }
                     });
         }
