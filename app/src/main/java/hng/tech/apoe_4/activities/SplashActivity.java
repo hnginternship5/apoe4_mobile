@@ -15,23 +15,17 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme_Launcher);
         super.onCreate(savedInstanceState);
-        FacebookSdk.sdkInitialize(this.getApplicationContext());
 
         String accesToken = Prefs.getString("accessToken", "");
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
-                   if (accessToken !=null){
-                        startActivity(new Intent(SplashActivity.this, Home.class));
-                    }
-
-                    else if (accesToken.isEmpty()){
-                        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                    }
+                if (accesToken.isEmpty()){
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                }
                 else if (!Prefs.getBoolean("savedDOB", false)) {
                     startActivity(new Intent(SplashActivity.this, DOB_page.class));
                     finish();
