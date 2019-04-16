@@ -125,7 +125,8 @@ public class Home extends AppCompatActivity {
 //        logoutImageView.setOnClickListener(x -> {
 //
 //        });
-
+        Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
+        
         circleImageView.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.LEFT);
         });
@@ -142,10 +143,17 @@ public class Home extends AppCompatActivity {
 
         signout.setOnClickListener(v ->{
 
-            Prefs.putString("accessToken", "");
-            Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, LoginActivity.class));
-            finish();
+                    LoginManager.getInstance().logOut();
+                    Prefs.putString("accessToken", "");
+                    Prefs.putBoolean("que1", false);
+                    Prefs.putBoolean("answeredQuestions", false);
+                    Prefs.putString("firstName", " ");
+                    Prefs.putString("lastName", " ");
+                    Prefs.putBoolean("savedDOB", false);
+                    Prefs.getBoolean("selectedWHG", false);
+                    Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(Home.this, LoginActivity.class));
+                    finish();
 
             drawer.closeDrawer(GravityCompat.START);
         });
