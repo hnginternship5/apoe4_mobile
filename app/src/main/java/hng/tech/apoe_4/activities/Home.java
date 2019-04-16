@@ -1,12 +1,9 @@
 package hng.tech.apoe_4.activities;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,7 +16,6 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -35,8 +31,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -44,9 +38,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
-import hng.tech.apoe_4.adapters.AnswerAdapter;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
@@ -152,7 +144,9 @@ public class Home extends AppCompatActivity {
 //
 //        });
 
-        circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
+        circleImageView.setOnClickListener(v -> {
+            drawer.openDrawer(Gravity.LEFT);
+        });
 
         settings.setOnClickListener(v -> {
 
@@ -244,10 +238,10 @@ public class Home extends AppCompatActivity {
         try{
             if(mLocationPermissionsGranted){
 
-                final Task location = mFusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
+                final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
-                    public void onComplete(@NonNull Task task) {
+                    public void onComplete(@NonNull Task<Location> task) {
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
@@ -268,6 +262,7 @@ public class Home extends AppCompatActivity {
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(Home.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
             }

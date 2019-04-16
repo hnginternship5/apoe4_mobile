@@ -25,12 +25,12 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
 
     String weigh, height, gender;
     static ArrayList<String> listWHG = new ArrayList<>();
+public class WHGActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_whg);
-
         ButterKnife.bind(this);
 
 
@@ -122,6 +122,7 @@ public class WHGActivity extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+//           <!--This Page has been added TO DOB Page will be removed soon-->
 
     }
 }

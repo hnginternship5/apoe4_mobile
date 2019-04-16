@@ -77,8 +77,9 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this, Home.class));
                         finish();
                     }
-                    else
-                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
+//                    Commented this out because the logic is no longer needed since DOB and WHG Page has been joined together.
+//                    else
+//                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
                 }
                 else {
                     prog.setVisibility(View.INVISIBLE);
