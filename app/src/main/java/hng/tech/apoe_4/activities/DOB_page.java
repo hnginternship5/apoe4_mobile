@@ -2,7 +2,6 @@ package hng.tech.apoe_4.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,8 +11,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
-
-import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -83,11 +80,6 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
             String day = "Day = " + dateOfBirthPicker.getDayOfMonth();
             String month = "Month = " + (dateOfBirthPicker.getMonth() + 1);
             String year = "Year = " + dateOfBirthPicker.getYear();
-
-            //Inputing DOB in calendar instance
-            Calendar dob = Calendar.getInstance();
-            dob.set(dateOfBirthPicker.getYear(),dateOfBirthPicker.getMonth()+1,dateOfBirthPicker.getDayOfMonth());
-
             // display the values by using a toast
 //            Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
             Toast.makeText(this, "Thank You", Toast.LENGTH_SHORT).show();
@@ -96,9 +88,6 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
             Prefs.putBoolean("selectedWHG", true);
             Prefs.putBoolean("savedDOB", true);
-            saveDOB(dob);
-            Log.e("TAG","DOB SAVED");
-                startActivity(new Intent(DOB_page.this, WHGActivity.class));
 
                 startActivity(new Intent(DOB_page.this, QuestionsActivity.class));
                 finish();
@@ -107,12 +96,6 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
-    public void saveDOB(Calendar dob){
-        Prefs.putLong("DOB",dob.getTimeInMillis());
-    }
-
-    public static long getDOB(){
-        return Prefs.getLong("DOB", 0);
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
