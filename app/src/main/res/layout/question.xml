@@ -6,30 +6,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
-    <!--<ImageView-->
-        <!--android:id="@+id/imageView6"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent"-->
-        <!--app:srcCompat="@drawable/ic_app_icon_mini" />-->
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_app_icon_mini" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/question_title"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:textSize="24sp"-->
-        <!--android:textColor="#000"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="0dp"-->
-        <!--android:fontFamily="sans-serif-black"-->
-        <!--android:text="How are you today?"-->
-        <!--app:layout_constraintBottom_toBottomOf="@+id/imageView6"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toEndOf="@+id/imageView6" />-->
+    <TextView
+        android:id="@+id/question_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="24sp"
+        android:textColor="#000"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="0dp"
+        android:fontFamily="sans-serif-black"
+        android:text="How are you today?"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView6" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -40,7 +40,11 @@
             android:layout_marginTop="@dimen/activity_horizontal_margin"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="@dimen/fab_margin"
-            tools:listitem= "@layout/firebase_test"/>
+            tools:listitem= "@layout/answer"/>
+
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
