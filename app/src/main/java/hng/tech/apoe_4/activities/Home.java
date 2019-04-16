@@ -21,19 +21,20 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
-import hng.tech.apoe_4.adapters.AnswerAdapter;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
 import hng.tech.apoe_4.fragments.TodayFragment;
@@ -125,10 +126,12 @@ public class Home extends AppCompatActivity {
 //
 //        });
 
-        circleImageView.setOnClickListener(v -> drawer.openDrawer(Gravity.LEFT));
+        circleImageView.setOnClickListener(v -> {
+            drawer.openDrawer(Gravity.LEFT);
+        });
 
         settings.setOnClickListener(v -> {
-
+            startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
 
@@ -184,10 +187,10 @@ public class Home extends AppCompatActivity {
         try{
             if(mLocationPermissionsGranted){
 
-                final Task location = mFusedLocationProviderClient.getLastLocation();
-                location.addOnCompleteListener(new OnCompleteListener() {
+                final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
+                location.addOnCompleteListener(new OnCompleteListener<Location>() {
                     @Override
-                    public void onComplete(@NonNull Task task) {
+                    public void onComplete(@NonNull Task<Location> task) {
                         if(task.isSuccessful()){
                             Log.d(TAG, "onComplete: found location!");
                             Location currentLocation = (Location) task.getResult();
@@ -208,6 +211,7 @@ public class Home extends AppCompatActivity {
                             Log.d(TAG, "onComplete: current location is null");
                             Toast.makeText(Home.this, "unable to get current location", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
             }
