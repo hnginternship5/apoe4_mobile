@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 
 
@@ -52,6 +53,7 @@ import hng.tech.apoe_4.adapters.QuestionAdapter;
 import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
+import hng.tech.apoe_4.retrofit.responses.QuestionsResponse;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.DataUtil;
 import hng.tech.apoe_4.utils.ProgressAnim;
@@ -381,4 +383,24 @@ public class TodayFragment extends Fragment {
     public static TodayFragment newInstance() {
         return new TodayFragment();
     }
+
+    class QuestionsHolder extends RecyclerView.ViewHolder{
+
+        @BindView(R.id.question_title)
+        TextView textTitle;
+
+        @BindView(R.id.questionsLayout)
+        ConstraintLayout layout;
+
+        @BindView(R.id.answersContainer)
+        LinearLayout answersContainer;
+        public QuestionsHolder(@NonNull View itemView) {
+            super(itemView);
+
+            layout = (ConstraintLayout) itemView;
+
+            ButterKnife.bind(this, itemView);
+        }
+    }
+
 }
