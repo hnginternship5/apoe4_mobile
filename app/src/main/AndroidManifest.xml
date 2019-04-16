@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.QuestionsActivity"></activity>
+        <activity android:name=".activities.QuestionsActivity" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,12 +33,13 @@
         <activity android:name=".activities.ForumActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".activities.ProfileActivity" />
-        <activity android:name=".activities.splashScreen"></activity>
+        <activity android:name=".activities.splashScreen" />
         <activity android:name=".activities.LoginActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/home"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ForgotPassword"></activity>
     </application>
 
 </manifest>

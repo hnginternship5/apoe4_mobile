@@ -4,20 +4,17 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 
-import butterknife.BindView;
+import androidx.fragment.app.FragmentTransaction;
 import hng.tech.apoe_4.R;
 
 
 public class ResultsFragment extends Fragment {
-
-    @BindView(R.id.notes)
-    EditText notes;
 
     public ResultsFragment(){
 
@@ -26,8 +23,23 @@ public class ResultsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_results, container, false);
+        View v= inflater.inflate(R.layout.fragment_results, container, false);
 
+        Button button=v.findViewById(R.id.backbutton);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFragment(TodayFragment.newInstance(), "result");
+            }
+        });
+        return v;
+    }
+    private void openFragment(Fragment fragment, String tag){
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.container, fragment, tag);
+        transaction.addToBackStack(fragment.getTag());
+        Log.d("TAG","fragment tag: "+fragment.getTag());
+        transaction.commit();
     }
 
     public static ResultsFragment newInstance(){
