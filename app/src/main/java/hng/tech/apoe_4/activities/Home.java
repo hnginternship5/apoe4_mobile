@@ -125,6 +125,7 @@ public class Home extends AppCompatActivity {
 //        logoutImageView.setOnClickListener(x -> {
 //
 //        });
+        //load picture from facebook
         Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
         
         circleImageView.setOnClickListener(v -> {
