@@ -1,30 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:fillViewport="true"
-    android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    android:background="@color/figmaBlue"
+        android:fillViewport="true"
+        android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Today"
-            android:textColor="@color/figmaBlue"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/tempProgress"
@@ -37,8 +23,9 @@
             android:indeterminate="false"
             android:max="100"
             android:progress="10"
-            android:progressDrawable="@drawable/custom_progress"
             android:secondaryProgress="100"
+            app:mpb_progressTint="@color/figmaBlueDark"
+            app:mpb_secondaryProgressTint="@color/figmaBlueLight"
             app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
             app:layout_constraintEnd_toStartOf="@+id/stepsProgress"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,26 +41,26 @@
             app:layout_constraintEnd_toEndOf="@+id/tempProgress"
             app:layout_constraintStart_toStartOf="@+id/tempProgress"
             app:layout_constraintTop_toTopOf="@+id/tempProgress"
-            app:srcCompat="@drawable/ic_thermometer" />
+            app:srcCompat="@drawable/ic_white_exer" />
 
-        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            android:id="@+id/stepsProgress"
-            style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerInParent="true"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:indeterminate="false"
-            android:max="100"
-            android:progress="10"
-            android:progressDrawable="@drawable/custom_progress"
-            android:secondaryProgress="100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+    <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+        android:id="@+id/stepsProgress"
+        style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+        android:layout_width="120dp"
+        android:layout_height="115dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="10"
+        app:mpb_progressTint="@color/figmaBlueDark"
+        app:mpb_secondaryProgressTint="@color/figmaBlueLight"
+        android:secondaryProgress="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/stepsImage"
@@ -81,7 +68,7 @@
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:clickable="false"
-            app:srcCompat="@drawable/ic_steps"
+            app:srcCompat="@drawable/ic_steps_white"
             app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
             app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
             app:layout_constraintStart_toStartOf="@+id/stepsProgress"
@@ -98,7 +85,11 @@
             android:indeterminate="false"
             android:max="100"
             android:progress="10"
+            app:mpb_setBothDrawables="true"
             android:progressDrawable="@drawable/custom_progress"
+
+            app:mpb_progressTint="@color/figmaBlueDark"
+            app:mpb_secondaryProgressTint="@color/figmaBlueLight"
             android:secondaryProgress="100"
             app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,43 +108,40 @@
             app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
             app:layout_constraintStart_toStartOf="@+id/sleepProgress"
             app:layout_constraintTop_toTopOf="@+id/sleepProgress"
-            app:srcCompat="@drawable/ic_sleep" />
+            app:srcCompat="@drawable/ic_sleep_white" />
 
-        <TextView
-            android:id="@+id/temp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="28C"
-            android:textColor="@color/figmaBlue"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="@+id/tempProgress"
-            app:layout_constraintStart_toStartOf="@+id/tempProgress"
-            app:layout_constraintTop_toBottomOf="@+id/tempProgress" />
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="28C"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/tempProgress"
+        app:layout_constraintStart_toStartOf="@+id/tempProgress"
+        app:layout_constraintTop_toBottomOf="@+id/tempProgress" />
 
-        <TextView
-            android:id="@+id/steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="3,280"
-            android:textColor="@color/figmaBlue"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
-            app:layout_constraintStart_toStartOf="@+id/stepsProgress"
-            app:layout_constraintTop_toBottomOf="@+id/stepsProgress" />
+    <TextView
+        android:id="@+id/steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="3,280"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
+        app:layout_constraintStart_toStartOf="@+id/stepsProgress"
+        app:layout_constraintTop_toBottomOf="@+id/stepsProgress" />
 
-        <TextView
-            android:id="@+id/sleep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="6hrs"
-            android:textColor="@color/figmaBlue"
-            android:textSize="28sp"
-            app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
-            app:layout_constraintStart_toStartOf="@+id/sleepProgress"
-            app:layout_constraintTop_toBottomOf="@+id/sleepProgress" />
+    <TextView
+        android:id="@+id/sleep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6hrs"
+        android:textColor="@color/white"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
+        app:layout_constraintStart_toStartOf="@+id/sleepProgress"
+        app:layout_constraintTop_toBottomOf="@+id/sleepProgress" />
 
         <View
             android:id="@+id/view"
@@ -165,111 +153,47 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView12" />
 
-        <ImageView
-            android:id="@+id/imageView6"
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Steps"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/steps"
+        app:layout_constraintStart_toStartOf="@+id/steps"
+        app:layout_constraintTop_toBottomOf="@+id/steps" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sleep"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/sleep"
+        app:layout_constraintStart_toStartOf="@+id/sleep"
+        app:layout_constraintTop_toBottomOf="@+id/sleep" />
+
+
+
+
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view"
-            app:srcCompat="@drawable/ic_app_icon_mini" />
-
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:textSize="24sp"
-            android:textColor="#000"
-
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="sans-serif-black"
-            android:text="How are you today?"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView6" />
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/imageView6"
-            app:layout_constraintStart_toStartOf="@id/imageView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="16dp">
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:layout_margin="8dp"
-                android:text="Great"
-                android:textAllCaps="false"
-                android:background="@drawable/button_bg"
-                android:textColor="@color/figmaBlue"
-                android:textSize="20sp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:gravity="center"
-                android:layout_margin="8dp"
-                android:textAllCaps="false"
-                android:text="Good"
-                android:background="@drawable/button_bg"
-                android:textColor="@color/figmaBlue"
-                android:textSize="20sp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textAllCaps="false"
-                android:gravity="center"
-                android:layout_margin="8dp"
-                android:text="Ok"
-                android:background="@drawable/button_bg"
-                android:textColor="@color/figmaBlue"
-                android:textSize="20sp" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
-                android:textAllCaps="false"
-                android:gravity="center"
-                android:layout_margin="8dp"
-                android:text="Poor"
-                android:background="@drawable/button_bg"
-                android:textColor="@color/figmaBlue"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Steps"
+            android:id="@+id/submit_button"
+            android:text="SUBMIT"
+            app:layout_constraintTop_toBottomOf="@+id/questions_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/buttons"
+            android:onClick="SubmitQuestions"
             android:textSize="20sp"
-            android:textColor="@color/figmaBlue"
-            app:layout_constraintStart_toStartOf="@+id/steps"
-            app:layout_constraintEnd_toEndOf="@id/steps"
-            app:layout_constraintTop_toBottomOf="@+id/steps" />
+            android:layout_marginBottom="@dimen/fab_margin"
+            android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/textView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Sleep"
-            android:textColor="@color/figmaBlue"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="@+id/sleep"
-            app:layout_constraintStart_toStartOf="@+id/sleep"
-            app:layout_constraintTop_toBottomOf="@+id/sleep" />
 
 
         <!--<LinearLayout-->
@@ -426,5 +350,17 @@
         <!--</RelativeLayout>-->
         <!--</LinearLayout>-->
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/questions_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        tools:listitem="@layout/question">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

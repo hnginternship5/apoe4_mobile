@@ -30,12 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout prog;
     TextView text5;
     TextView forgotpass;
+
     
     LoginManager fbLoginManager;
     List<String> permissionNeeds;
     CallbackManager callbackManager;
     ImageView fbButton;
     String firstname;
+
 
     // todo: waiting on api to complete login task
 
@@ -103,8 +105,9 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this, Home.class));
                         finish();
                     }
-                    else
-                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
+//                    Commented this out because the logic is no longer needed since DOB and WHG Page has been joined together.
+//                    else
+//                        startActivity(new Intent(LoginActivity.this, WHGActivity.class));
                 }
                 else {
                     prog.setVisibility(View.INVISIBLE);
@@ -139,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ForgotPassword.class);
         startActivity(intent);
     }
+
     
     private void fblogin(){
         //fblogin finally
@@ -265,5 +269,5 @@ public class LoginActivity extends AppCompatActivity {
         finishAffinity();
     }
 
-    
+
 }

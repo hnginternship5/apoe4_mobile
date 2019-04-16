@@ -20,6 +20,7 @@
             tools:layout_editor_absoluteX="0dp" />
 
         <Button
+            android:id="@+id/backbutton"
             android:layout_width="53dp"
             android:layout_height="44dp"
             android:layout_marginStart="8dp"
@@ -106,12 +107,12 @@
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/textView11"
-            app:layout_constraintEnd_toStartOf="@+id/textView11"
-            app:layout_constraintTop_toTopOf="@+id/textView11" />
+            app:layout_constraintBottom_toBottomOf="@+id/question_title"
+            app:layout_constraintEnd_toStartOf="@+id/question_title"
+            app:layout_constraintTop_toTopOf="@+id/question_title" />
 
         <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/question_title"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"

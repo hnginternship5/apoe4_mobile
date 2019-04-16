@@ -36,16 +36,23 @@ public class ListQuestions extends Fragment {
         no3 = v.findViewById(R.id.neg5);
 
         yes1.setOnClickListener(view -> {
+            yes1.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
+            no1.setBackground(getResources().getDrawable(R.drawable.button_bg));
             storeYes("third");
         });
 
         yes2.setOnClickListener(view -> {
+            yes2.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
+            no2.setBackground(getResources().getDrawable(R.drawable.button_bg));
             storeYes("fourth");
 
         });
 
         yes3.setOnClickListener(view -> {
+
             if (!Prefs.getString("third", "").isEmpty() && !Prefs.getString("fourth", "").isEmpty()){
+                yes3.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
+                no3.setBackground(getResources().getDrawable(R.drawable.button_bg));
                 storeYes("fifth");
                 listener.nextScreen();
 
@@ -57,15 +64,21 @@ public class ListQuestions extends Fragment {
         });
 
         no1.setOnClickListener(view -> {
+            yes1.setBackground(getResources().getDrawable(R.drawable.button_bg));
+            no1.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
             storeNo("third");
         });
 
         no2.setOnClickListener(view -> {
+            yes2.setBackground(getResources().getDrawable(R.drawable.button_bg));
+            no2.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
             storeNo("fourth");
         });
 
         no3.setOnClickListener(view -> {
             if (!Prefs.getString("third", "").isEmpty() && !Prefs.getString("fourth", "").isEmpty()){
+                yes3.setBackground(getResources().getDrawable(R.drawable.button_bg));
+                no3.setBackground(getResources().getDrawable(R.drawable.button_selected_bg));
                 storeNo("fifth");
                listener.nextScreen();
 

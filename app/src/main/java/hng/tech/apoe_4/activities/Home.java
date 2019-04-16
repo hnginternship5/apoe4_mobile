@@ -105,20 +105,25 @@ public class Home extends AppCompatActivity {
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 
+
         if (Prefs.getBoolean("regFb", false)){
             patientName.setText(Prefs.getString("fullname", "John Doe"));
             //load picture from facebook
              Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
              userNameDrawer.setText(Prefs.getString("fullname", "John Doe"));
         }else{
-            patientName.setText(Prefs.getString("firstName", "John") + "\t"
+//             patientName.setText(Prefs.getString("firstName", "John") + "\t"
+                                
+        patientName.setText(Prefs.getString("firstName", "John") + "\t"
         + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
+
         }
         
         
+
         //get Location Permission
         getLocationPermission();
         //get device Location
@@ -134,8 +139,7 @@ public class Home extends AppCompatActivity {
 //        logoutImageView.setOnClickListener(x -> {
 //
 //        });
-        
-        
+
         circleImageView.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.LEFT);
         });
