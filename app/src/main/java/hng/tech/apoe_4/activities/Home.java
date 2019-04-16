@@ -76,8 +76,6 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.settings)
     RelativeLayout settings;
 
-    @BindView(R.id.schedule)
-    RelativeLayout schedule;
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
@@ -135,10 +133,10 @@ public class Home extends AppCompatActivity {
             drawer.closeDrawer(GravityCompat.START);
         });
 
-        schedule.setOnClickListener(v -> {
-
-            drawer.closeDrawer(GravityCompat.START);
-        });
+//        schedule.setOnClickListener(v -> {
+//
+//            drawer.closeDrawer(GravityCompat.START);
+//        });
 
         signout.setOnClickListener(v ->{
 
