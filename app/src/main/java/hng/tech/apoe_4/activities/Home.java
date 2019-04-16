@@ -22,10 +22,6 @@ import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
-import java.util.ArrayList;
-import java.util.Calendar;
-
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -77,26 +73,14 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.tv_username_drawer)
     TextView userNameDrawer;
 
-
-    @BindView(R.id.tv_phone_number_drawer)
-    TextView infoDrawer;
-
-    @BindView(R.id.height_drawer)
-    TextView heightDrawer;
-
-    @BindView(R.id.weight_drawer)
-    TextView weightDrawer;
-
     @BindView(R.id.settings)
     RelativeLayout settings;
 
-    @BindView(R.id.schedule)
-    RelativeLayout schedule;
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
 
-    static String gender;
+
 
     private static final String TAG = Home.class.getSimpleName();
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -119,15 +103,11 @@ public class Home extends AppCompatActivity {
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 
-        //PreferenceManager.getDefaultSharedPreferences(this).edit().clear().apply();
         patientName.setText(Prefs.getString("firstName", "John") + "\t"
         + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
-
-        setWHGValues();
-        calculateAge();
         //get Location Permission
         getLocationPermission();
         //get device Location
@@ -149,14 +129,14 @@ public class Home extends AppCompatActivity {
         });
 
         settings.setOnClickListener(v -> {
-
+            startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
 
-        schedule.setOnClickListener(v -> {
-
-            drawer.closeDrawer(GravityCompat.START);
-        });
+//        schedule.setOnClickListener(v -> {
+//
+//            drawer.closeDrawer(GravityCompat.START);
+//        });
 
         signout.setOnClickListener(v ->{
 
@@ -196,39 +176,6 @@ public class Home extends AppCompatActivity {
 
 
     }
-
-    private void setWHGValues(){
-        ArrayList<String> list = WHGActivity.loadWHGInfo();
-        for(String x:list){
-            Log.e(TAG,x);
-        }
-        if(list.isEmpty()){
-            weightDrawer.setText("Weight");
-            heightDrawer.setText("Height");
-            gender = "Gender";
-        }else{
-            weightDrawer.setText(list.get(0));
-            heightDrawer.setText(list.get(1));
-            gender = list.get(2);
-        }
-    }
-
-    private void calculateAge(){
-        Calendar today = Calendar.getInstance();
-        Calendar dob = Calendar.getInstance();
-        dob.setTimeInMillis(DOB_page.getDOB());
-
-        int currentAge = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-
-        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)){
-            currentAge--;
-        }
-
-        String info = gender+", "+currentAge+" years";
-
-        infoDrawer.setText(info);
-    }
-
 
     private void getDeviceLocation(){
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
