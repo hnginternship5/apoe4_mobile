@@ -79,6 +79,9 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
+    
+    @BindView(R.id.civ_user_drawer)
+    CircleImageView pic;
 
 
 
@@ -103,11 +106,21 @@ public class Home extends AppCompatActivity {
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 
-        patientName.setText(Prefs.getString("firstName", "John") + "\t"
-        + Prefs.getString("lastName", "Doe"));
+        if (!Prefs.getBoolean("fblog", false)){
+            patientName.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
 
-        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
+        }else{
+            patientName.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
+
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
+
+            Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
+        }
         //get Location Permission
         getLocationPermission();
         //get device Location
