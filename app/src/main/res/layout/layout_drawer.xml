@@ -58,7 +58,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:text="@string/edit"
-
                             android:layout_weight="1"
                             android:textSize="18sp"
                             android:gravity="center"
