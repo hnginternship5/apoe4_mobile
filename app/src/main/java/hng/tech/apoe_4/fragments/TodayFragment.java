@@ -103,8 +103,7 @@ public class TodayFragment extends Fragment {
 
         if (ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Toast.makeText(getActivity(), "You have already granted this permission!",
-                    Toast.LENGTH_SHORT).show();
+
         } else {
             requestStoragePermission();
         }
