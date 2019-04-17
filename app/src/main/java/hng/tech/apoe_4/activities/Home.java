@@ -162,8 +162,9 @@ public class Home extends AppCompatActivity {
             //clear all saved data
 
             Prefs.putString("accessToken", "");
-            Prefs.putBoolean("savedDOB", false);
-            Prefs.putBoolean("selectedWHG", false);
+            //I commented this lines of code because its should not request for my DOB whenever I log out and login again
+//            Prefs.putBoolean("savedDOB", false);
+//            Prefs.putBoolean("selectedWHG", false);
             Prefs.putBoolean("answeredQuestions", false);
             Prefs.putBoolean("que1", false);
             Prefs.putBoolean("fblog", false);
