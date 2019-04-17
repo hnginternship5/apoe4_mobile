@@ -101,4 +101,7 @@
     <string name="email"> Email</string>
     <string name="reset_password">Reset Password</string>
     <string name="edit">Edit</string>
+    <string name="hours_slept">6hrs</string>
+    <string name="apo_score">9</string>
+    <string name="exercise_calc">2Hrs</string>
 </resources>
