@@ -53,4 +53,4 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.github.delight-im:Android-SimpleLocation:v1.0.1'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
-}
+    implementation 'com.facebook.android:facebook-login:4.42.0'
