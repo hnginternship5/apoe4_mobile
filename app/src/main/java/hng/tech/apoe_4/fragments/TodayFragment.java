@@ -47,6 +47,7 @@ import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.DataUtil;
+import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
 import im.delight.android.location.SimpleLocation;
 import okhttp3.OkHttpClient;
@@ -94,45 +95,39 @@ public class TodayFragment extends Fragment {
     private String arrayName;
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
+    private int LOCATION_REQUEST_CODE = 1;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_CALENDAR)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.READ_CONTACTS},
-                    421);
-
+        if (ContextCompat.checkSelfPermission(getContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(getActivity(), "You have already granted this permission!",
+                    Toast.LENGTH_SHORT).show();
+        } else {
+            requestStoragePermission();
         }
 
+    }
+
+    private void requestStoragePermission() {
+        PermisionManager.requestPermision(getContext(), LOCATION_REQUEST_CODE,getActivity());
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
-            case 421:{
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
-                    location.beginUpdates();
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
-
-                    Toast.makeText(getContext(), "Permission denied", Toast.LENGTH_SHORT).show();
-                }
-                return;
-
+        if (requestCode == LOCATION_REQUEST_CODE)  {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(getContext(), "Permission GRANTED", Toast.LENGTH_SHORT).show();
+                location.beginUpdates();
+            } else {
+                Toast.makeText(getContext(), "Permission DENIED", Toast.LENGTH_SHORT).show();
             }
-
-            default:
-                return;
         }
     }
+
+
 
 
     @Nullable
@@ -205,30 +200,38 @@ public class TodayFragment extends Fragment {
 
         ApiInterface apiInterface = mRetrofit.create(ApiInterface.class);
 
-        apiInterface.getWeather(lng, lat).enqueue(new Callback<WeatherResponse>() {
-            @Override
-            public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
-                if (response.isSuccessful()) {
-                    double temp = lat == 0 ? 27.6 : response.body().getMain().getTemp();
-                    double tempMax = lat == 0 ? 36.5 : response.body().getMain().getTempMax();
-                    Log.d("TAG", "temp: " + temp);
-                    Log.d("TAG", "tempMax: " + tempMax);
+        if (lng == 0.0 && lat == 0.0) {
+            lng = location.getLongitude();
+            lat = location.getLatitude();
 
-                    progress = (temp / tempMax) * 100;
-                    Log.d("TAG", "progress: " + progress);
+        }else {
+            apiInterface.getWeather(lng, lat).enqueue(new Callback<WeatherResponse>() {
+                @Override
+                public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
+                    if (response.isSuccessful()) {
+                        double temp = lat == 0 ? 27.6 : response.body().getMain().getTemp();
+                        double tempMax = lat == 0 ? 36.5 : response.body().getMain().getTempMax();
+                        Log.d("TAG", "temp: " + temp);
+                        Log.d("TAG", "tempMax: " + tempMax);
+
+                        progress = (temp / tempMax) * 100;
+                        Log.d("TAG", "progress: " + progress);
 
 //                    tempProgress.setProgress((int) progress);
-                    setAnimation();
+                        setAnimation();
 
-                    tempText.setText(String.valueOf((int) temp) + degree +"C");
+                        tempText.setText(String.valueOf((int) temp) + degree +"C");
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<WeatherResponse> call, Throwable t) {
+                @Override
+                public void onFailure(Call<WeatherResponse> call, Throwable t) {
 
-            }
-        });
+                }
+            });
+        }
+
+
 
         getSleepTime();
         getStepNumber();
