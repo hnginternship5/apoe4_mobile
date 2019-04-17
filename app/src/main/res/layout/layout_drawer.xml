@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -30,18 +32,41 @@
                     android:background="@color/colorPrimaryDark"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/edit"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_marginStart="250dp"
-                        android:layout_marginTop="50dp"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/ic_edit"
+                    <!--Edit Layout-->
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintRight_toRightOf="@id/civ_user_drawer"
                         app:layout_constraintBottom_toTopOf="@id/civ_user_drawer"
-                        />
+                        android:layout_marginTop="50dp">
+
+                        <ImageView
+                            android:id="@+id/edit"
+                            android:layout_width="20dp"
+                            android:layout_weight="1"
+                            android:layout_height="20dp"
+
+
+                            android:layout_marginStart="200dp"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="fitCenter"
+                            app:srcCompat="@drawable/ic_edit" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:text="@string/edit"
+
+                            android:layout_weight="1"
+                            android:textSize="18sp"
+                            android:gravity="center"
+                            android:textColor="@color/gray"
+                            />
+
+                    </LinearLayout>
+
 
                     <ImageView
                         android:id="@+id/civ_user_drawer"
@@ -59,6 +84,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="8dp"
                         android:text="John Doe"
                         android:textColor="@color/white"
@@ -75,101 +101,104 @@
                         android:layout_marginEnd="3dp"
 
                         android:text="Male, 32 Years"
-                        android:textColor="@color/white"
+                        android:textColor="@color/gray"
                         android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="@+id/tv_username_drawer"
                         app:layout_constraintStart_toStartOf="@+id/tv_username_drawer"
                         app:layout_constraintTop_toBottomOf="@id/tv_username_drawer" />
 
-                    <View
-                        android:id="@+id/top"
-                        android:layout_width="0dp"
-                        android:layout_height="2dp"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:background="@color/figmaBlue"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tv_phone_number_drawer" />
+
+                   <LinearLayout
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:orientation="vertical"
 
 
-                     <LinearLayout
-                        android:id="@+id/texts"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/top"
-                        android:layout_marginTop="8dp">
+                       app:layout_constraintTop_toBottomOf="@id/tv_phone_number_drawer"
+
+                       android:background="@color/figmaBlue">
+
+                       <LinearLayout
+                           android:id="@+id/texts"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintTop_toBottomOf="@id/top"
+                           android:layout_marginTop="8dp">
 
 
-                        <TextView
-                            android:id="@+id/textView14"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:textSize="24sp"
-                            android:text="Height"
-                            android:textColor="@color/white"
-                            app:layout_constraintStart_toStartOf="@+id/top"
-                            app:layout_constraintTop_toBottomOf="@+id/top" />
+                           <TextView
+                               android:id="@+id/textView14"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:layout_height="wrap_content"
+                               android:layout_marginStart="5dp"
+                               android:textSize="24sp"
+                               android:text="Height"
+                               android:textColor="@color/gray"
+                               app:layout_constraintStart_toStartOf="@+id/top"
+                               app:layout_constraintTop_toBottomOf="@+id/top" />
 
-                        <TextView
-                            android:id="@+id/textView17"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textSize="24sp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:text="Weight"
-                            android:textColor="@color/white"
-                            app:layout_constraintEnd_toEndOf="@+id/top"
-                            app:layout_constraintTop_toTopOf="@+id/textView14" />
-                    </LinearLayout>
-                    <LinearLayout
-                        android:id="@+id/values"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/texts"
+                           <TextView
+                               android:id="@+id/textView17"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textSize="24sp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginEnd="5dp"
+                               android:text="Weight"
+                               android:textColor="@color/gray"
+                               app:layout_constraintEnd_toEndOf="@+id/top"
+                               app:layout_constraintTop_toTopOf="@+id/textView14" />
+                       </LinearLayout>
+                       <LinearLayout
+                           android:id="@+id/values"
+                           android:layout_width="match_parent"
+                           android:layout_height="wrap_content"
+                           app:layout_constraintStart_toStartOf="parent"
+                           app:layout_constraintEnd_toEndOf="parent"
+                           app:layout_constraintTop_toBottomOf="@id/texts"
+
+                           android:layout_marginTop="2dp">
 
 
-                        android:layout_marginTop="8dp">
+                           <TextView
+                               android:id="@+id/height_drawer"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:textColor="@color/gray"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="8dp"
+                               android:text="185 cm"
+                               android:textSize="24sp"
+                               app:layout_constraintEnd_toEndOf="@+id/textView14"
+                               app:layout_constraintStart_toStartOf="@+id/textView14"
+                               app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+                           <TextView
+                               android:id="@+id/weight_drawer"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:textColor="@color/gray"
+                               android:gravity="center"
+                               android:textSize="24sp"
+                               android:layout_height="wrap_content"
+                               android:layout_marginTop="8dp"
+                               android:text="145 kg"
+                               app:layout_constraintEnd_toEndOf="@+id/textView17"
+                               app:layout_constraintStart_toStartOf="@+id/textView17"
+                               app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                       </LinearLayout>
 
 
-                        <TextView
-                            android:id="@+id/height_drawer"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textColor="@color/white"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="185 cm"
-                            android:textSize="24sp"
-                            app:layout_constraintEnd_toEndOf="@+id/textView14"
-                            app:layout_constraintStart_toStartOf="@+id/textView14"
-                            app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
-                        <TextView
-                            android:id="@+id/textView21"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/white"
-                            android:gravity="center"
-                            android:textSize="24sp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="145 kg"
-                            app:layout_constraintEnd_toEndOf="@+id/textView17"
-                            app:layout_constraintStart_toStartOf="@+id/textView17"
-                            app:layout_constraintTop_toBottomOf="@+id/textView17" />
-                    </LinearLayout>
+
+
+                   </LinearLayout>
 
 
 
@@ -182,11 +211,11 @@
             </FrameLayout>
 
 
-            <RelativeLayout
-                android:id="@+id/schedule"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="?attr/selectableItemBackground">
+            <!--<RelativeLayout-->
+                <!--android:id="@+id/schedule"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:background="?attr/selectableItemBackground">-->
 
 
                 <!--<ImageView-->
@@ -208,7 +237,7 @@
                     <!--android:textColor="@color/figmaBlue"-->
                     <!--android:textSize="14sp"-->
                     <!--android:textStyle="bold" />-->
-            </RelativeLayout>
+            <!--</RelativeLayout>-->
 
 
             <!--<RelativeLayout-->

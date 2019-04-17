@@ -47,47 +47,50 @@ public class AnswerAdapter extends RecyclerView.Adapter<AnswerAdapter.AnswerView
     public void onBindViewHolder(@NonNull AnswerViewHolder holder, int position) {
 
 
-        AnswerData answerData = answerDataList.get(position);
-        TITLE = answerData.getAnswer();
+        AnswerData answeData = answerDataList.get(position);
+        TITLE = answeData.getAnswer();
         Log.d(TAG, "onBindViewHolder: " + TITLE);
-        holder.answerOPtion.setText(answerData.getAnswer());
+        holder.answerOPtion.setText(answeData.getAnswer());
         holder.answerOPtion.setOnClickListener(v -> {
             holder.answerOPtion.setBackgroundResource(R.drawable.buttons_clicked);
             TITLE = holder.answerOPtion.getText().toString();
             Log.d(TAG, "onClick: " + TITLE);
-            tit = answerData.getTitle();
+            tit = answeData.getTitle();
             Log.d(TAG, "onClick: " + tit);
-            if ("day".equals(tit)) {
-                day = answerData.getAnswer();
-                Log.d(TAG, "onBindViewHolder: " + "the answer is -> " + day);
-                answerList.add(day);
-                Prefs.putString("day_answer", day);
+            switch (tit) {
+                case "day":
+                    day = answeData.getAnswer();
+                    Log.d(TAG, "onBindViewHolder: "  + "the answer is -> "+ day  );
+                    answerList.add(day);
+                    Prefs.putString("day_answer", day);
+                    break;
+                case "night":
+                    night = answeData.getAnswer();
+                    Log.d(TAG, "onBindViewHolder: "  + "the answer is -> "+ night);
+                    answerList.add(night);
+                    Prefs.putString("night_answer", night);
+                    break;
+                case "planned activities":
+                    plannedActivities = answeData.getAnswer();
+                    Log.d(TAG, "onBindViewHolder: "  + "the answer is -> "+ plannedActivities);
+                    answerList.add(plannedActivities);
+                    Prefs.putString("plannedActivity_answer", plannedActivities);
+                    break;
+                case "reminder":
+                    reminders = answeData.getAnswer();
+                    Log.d(TAG, "onBindViewHolder: "  + "the answer is -> "+ reminders);
+                    answerList.add(reminders);
+                    if (answeData.getAnswer() == "yes"){
 
-            } else if ("night".equals(tit)) {
-                night = answerData.getAnswer();
-                Log.d(TAG, "onBindViewHolder: " + "the answer is -> " + night);
-                answerList.add(night);
-                Prefs.putString("night_answer", night);
-
-            } else if ("planned activities".equals(tit)) {
-                plannedActivities = answerData.getAnswer();
-                Log.d(TAG, "onBindViewHolder: " + "the answer is -> " + plannedActivities);
-                answerList.add(plannedActivities);
-                Prefs.putString("plannedActivity_answer", plannedActivities);
-
-            } else if ("reminder".equals(tit)) {
-                reminders = answerData.getAnswer();
-                Log.d(TAG, "onBindViewHolder: " + "the answer is -> " + reminders);
-                answerList.add(reminders);
-                if (answerData.getAnswer() == "yes") {
-
-                    Prefs.putBoolean("reminders_answer", true);
-                } else {
-                    Prefs.putBoolean("reminders_answer", false);
-                }
-
-            } else {
-                Log.d(TAG, "onBindViewHolder: " + "hello world");
+                        Prefs.putBoolean("reminders_answer", true);
+                    }
+                    else {
+                        Prefs.putBoolean("reminders_answer", false);
+                    }
+                    break;
+                default:
+                    Log.d(TAG, "onBindViewHolder: " + "hello world" );
+                    break;
 
             }
 
