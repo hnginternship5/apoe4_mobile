@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.SettingsActivity"></activity>
         <activity android:name=".activities.QuestionsActivity" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
@@ -39,9 +40,8 @@
             android:name=".activities.MainActivity"
             android:label="@string/home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".ForgotPassword" />
 
-        
         <activity android:name="com.facebook.FacebookActivity"
             android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
@@ -60,7 +60,6 @@
 
         <meta-data android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id"/>
-
     </application>
 
 </manifest>
