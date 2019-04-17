@@ -10,9 +10,6 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    
-    <string name="facebook_app_id">672348629886502</string>
-    <string name="fb_login_protocol_scheme">fb672348629886502</string>
 
     <string name="action_settings">Settings</string>
 
@@ -29,6 +26,8 @@
     <string name="quest4">Any history of High Blood Pressure?</string>
     <string name="quest5">Are you diabetic?</string>
 
+    <string name="facebook_app_id">672348629886502</string>
+    <string name="fb_login_protocol_scheme">fb672348629886502</string>
 
     <string-array name="height">
         <item>Height</item>
@@ -101,4 +100,5 @@
     <string name="forgotText">Please enter your email so we can help you reset your password</string>
     <string name="email"> Email</string>
     <string name="reset_password">Reset Password</string>
+    <string name="edit">Edit</string>
 </resources>
