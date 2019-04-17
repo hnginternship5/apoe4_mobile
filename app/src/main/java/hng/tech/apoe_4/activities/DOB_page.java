@@ -22,7 +22,7 @@ import hng.tech.apoe_4.R;
 public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
-    private static ArrayList<String> listWHG;
+    private static ArrayList<String> listWHG = new ArrayList<>();
     DatePicker dateOfBirthPicker;
     Button submitDateOfBirth;
 
@@ -34,7 +34,7 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
         ButterKnife.bind(this);
 
         //Initializing list
-        listWHG = new ArrayList<>();
+//        listWHG = new ArrayList<>();
 
 //         This is for Height Spinner
         Spinner height_spinner = findViewById(R.id.height_spinner);
