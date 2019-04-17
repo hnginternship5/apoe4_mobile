@@ -3,10 +3,6 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
-import android.location.Location;
-import android.os.Build;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,11 +17,8 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -33,10 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -44,10 +34,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
-
-
 import androidx.core.content.ContextCompat;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -117,13 +104,15 @@ public class TodayFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_CALENDAR)
+        if (ContextCompat.checkSelfPermission(view.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
             ActivityCompat.requestPermissions(getActivity(),
-                    new String[]{Manifest.permission.READ_CONTACTS},
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     421);
 
+        } else {
+            location.beginUpdates();
         }
 
     }
@@ -207,7 +196,7 @@ public class TodayFragment extends Fragment {
 //                        questions_view.removeViewAt(position);
                         for (QuestionsResponse questionsResponse : responses){
                             if (questionsResponse.getText().equals(model.getText())){
-                                Toast.makeText(getActivity().getThemedContext(), questionsResponse.getText(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity().getBaseContext(), questionsResponse.getText(), Toast.LENGTH_SHORT).show();
 //                                adapter.getSnapshots().remove(position);
                             }
                         }
@@ -379,21 +368,6 @@ public class TodayFragment extends Fragment {
         }
     }
 
-    private void showAnswers() {
-        List<List<AnswerData>> answerDataList1 = new ArrayList<>();
-
-        for (int j = 0; j < questionDataList.size(); j++) {
-            String qAnswer = questionDataList.get(j).getqAnswers();
-            Log.d("TAG", "showAnswers: " + qAnswer);
-
-            arrayName = "{ qAnswers: " + qAnswer + "}";
-            answerDataList = DataUtil.loadAnswers(arrayName);
-            Log.d("TAG", "showAnswers: " + arrayName);
-
-            answerDataList1.add(answerDataList);
-        }
-        //questionAdapter.setAnswerList(answerDataList1);
-    }
 
     public static TodayFragment newInstance() {
         return new TodayFragment();
