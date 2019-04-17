@@ -4,9 +4,6 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 
-import android.location.Location;
-import android.os.Build;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,20 +14,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 
 
 import androidx.core.content.ContextCompat;
@@ -64,10 +56,10 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 public class TodayFragment extends Fragment {
 
-    @BindView(R.id.tempProgress)
+    @BindView(R.id.exerciseProgress)
     ProgressBar tempProgress;
 
-    @BindView(R.id.stepsProgress)
+    @BindView(R.id.progress_APO)
     ProgressBar stepsProgress;
 
     @BindView(R.id.sleepProgress)
