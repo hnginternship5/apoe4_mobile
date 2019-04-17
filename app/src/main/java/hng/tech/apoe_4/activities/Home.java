@@ -76,8 +76,6 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.settings)
     RelativeLayout settings;
 
-    @BindView(R.id.schedule)
-    RelativeLayout schedule;
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
@@ -105,25 +103,11 @@ public class Home extends AppCompatActivity {
         locations = new SimpleLocation(this);
         ButterKnife.bind(this);
 
-
-        if (Prefs.getBoolean("regFb", false)){
-            patientName.setText(Prefs.getString("fullname", "John Doe"));
-            //load picture from facebook
-             Glide.with(this).load(Prefs.getString("url", " ")).placeholder(R.drawable.logo).into(circleImageView);
-             userNameDrawer.setText(Prefs.getString("fullname", "John Doe"));
-        }else{
-//             patientName.setText(Prefs.getString("firstName", "John") + "\t"
-                                
         patientName.setText(Prefs.getString("firstName", "John") + "\t"
         + Prefs.getString("lastName", "Doe"));
 
         userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
                 + Prefs.getString("lastName", "Doe"));
-
-        }
-        
-        
-
         //get Location Permission
         getLocationPermission();
         //get device Location
@@ -145,29 +129,29 @@ public class Home extends AppCompatActivity {
         });
 
         settings.setOnClickListener(v -> {
-
+            startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
 
-        schedule.setOnClickListener(v -> {
-
-            drawer.closeDrawer(GravityCompat.START);
-        });
+//        schedule.setOnClickListener(v -> {
+//
+//            drawer.closeDrawer(GravityCompat.START);
+//        });
 
         signout.setOnClickListener(v ->{
 
-                    LoginManager.getInstance().logOut();
-                    Prefs.putString("accessToken", "");
-                    Prefs.putBoolean("que1", false);
-                    Prefs.putBoolean("answeredQuestions", false);
-                    Prefs.putString("firstName", " ");
-                    Prefs.putString("lastName", " ");
-                    Prefs.putBoolean("regFB", false);
-                    Prefs.putBoolean("savedDOB", false);
-                    Prefs.getBoolean("selectedWHG", false);
-                    Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Home.this, LoginActivity.class));
-                    finish();
+            //clear all saved data
+
+            Prefs.putString("accessToken", "");
+            Prefs.putBoolean("savedDOB", false);
+            Prefs.putBoolean("selectedWHG", false);
+            Prefs.putBoolean("answeredQuestions", false);
+            Prefs.putBoolean("que1", false);
+            Prefs.putBoolean("fblog", false);
+            Prefs.putBoolean("loggedIn", false);
+            Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
 
             drawer.closeDrawer(GravityCompat.START);
         });
