@@ -2,6 +2,7 @@ package hng.tech.apoe_4.fragments;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+//import com.google.firebase.database.DatabaseReference;
+//import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -33,6 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.activities.firebaseTest;
+import hng.tech.apoe_4.activities.testingRTDB;
 import hng.tech.apoe_4.adapters.QuestionAdapter;
 import hng.tech.apoe_4.adapters.FirebaseTestAdapter;
 import hng.tech.apoe_4.models.AnswerData;
@@ -56,9 +58,9 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 public class TodayFragment extends Fragment {
 
-    // Firebase components
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+//    // Firebase components
+//    FirebaseDatabase firebaseDatabase;
+//    DatabaseReference databaseReference;
 
     @BindView(R.id.tempProgress)
     ProgressBar tempProgress;
@@ -146,6 +148,7 @@ public class TodayFragment extends Fragment {
         submit_button = view.findViewById(R.id.submit_button);
         questions_view = view.findViewById(R.id.questions_view);
 
+
 //        firebaseDatabase = FirebaseDatabase.getInstance();
 //        databaseReference = firebaseDatabase.getReference();
 
@@ -165,30 +168,6 @@ public class TodayFragment extends Fragment {
         });
 
         assetName = "Questions";
-
-        // TODO Tie up here
-
-
-
-//        firebaseTest[] firebaseTest = new firebaseTest[]{
-//
-//                // TODO GET QUESTION AND QUESTION FROM DATABASE
-//
-////                databaseReference.child()
-//
-//
-//
-//        new firebaseTest("QUESTION", "QUESTION", android.R.drawable.ic_dialog_email),
-//
-//        };
-
-
-
-
-
-
-
-
 
 //        setRecyclerView();
         setQuestions_view();
@@ -312,12 +291,10 @@ public class TodayFragment extends Fragment {
     private void setQuestions_view(){
 
         firebaseTest[] firebaseTest = new firebaseTest[]{
-                new firebaseTest("QUESTION", "QUESTION", android.R.drawable.ic_dialog_email),
-                new firebaseTest("QUESTION2", "QUESTION3", android.R.drawable.ic_dialog_email),
-                new firebaseTest("QUESTIO4", "QUESTIO5", android.R.drawable.ic_dialog_email),
+                new firebaseTest("Question", "Test", R.drawable.ic_app_icon_mini),
+                new firebaseTest("Question", "Test", R.drawable.ic_app_icon_mini),
+                new firebaseTest("Question", "Test", R.drawable.ic_app_icon_mini),
         };
-
-
         linearLayoutManager = new LinearLayoutManager(getContext());
         questions_view.setLayoutManager(linearLayoutManager);
         firebaseTestAdapter = new FirebaseTestAdapter((firebaseTest));

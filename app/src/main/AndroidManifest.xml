@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.SettingsActivity"></activity>
+        <activity android:name=".activities.testingRTDB"></activity>
+        <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.QuestionsActivity" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
