@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout prog;
     TextView text5;
     TextView forgotpass;
+
     LoginManager fbLoginManager;
     List<String> permissionNeeds;
     CallbackManager callbackManager;
@@ -56,19 +57,23 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog dialog;
     String firstname;
 
+
     // todo: waiting on api to complete login task
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //initialize facebook SDK
         FacebookSdk.sdkInitialize(this.getApplicationContext());
+
         setContentView(R.layout.activity_login);
 
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_password);
         text5 = findViewById(R.id.textView5);
         prog = findViewById(R.id.progress);
+
 
         //set up callbacks and fbloginmanager
 
@@ -86,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
         );
+
     }
 
      private void fblogin(){
@@ -196,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
     private void loaduserProfile(AccessToken token){
         GraphRequest request  = GraphRequest.newMeRequest(token, new GraphRequest.GraphJSONObjectCallback() {
             @Override
@@ -291,5 +298,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
+
 
 }

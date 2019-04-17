@@ -23,7 +23,9 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 // Do something after 5s = 5000ms
+
                 if (accesToken.isEmpty() && !Prefs.getBoolean("loggedIn", false)){
+                  
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 }
                 else if (!Prefs.getBoolean("savedDOB", false)) {

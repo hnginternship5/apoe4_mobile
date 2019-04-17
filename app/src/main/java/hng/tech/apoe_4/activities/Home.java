@@ -140,6 +140,7 @@ public class Home extends AppCompatActivity {
 
         signout.setOnClickListener(v ->{
 
+
             //clear all saved data
 
             Prefs.putString("accessToken", "");
@@ -149,6 +150,8 @@ public class Home extends AppCompatActivity {
             Prefs.putBoolean("que1", false);
             Prefs.putBoolean("fblog", false);
             Prefs.putBoolean("loggedIn", false);
+            Prefs.putString("accessToken", "");
+
             Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, LoginActivity.class));
             finish();
