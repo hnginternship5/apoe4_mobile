@@ -359,8 +359,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        tools:listitem="@layout/firebase_test"
-        >
+        tools:listitem="@layout/question">
 
     </androidx.recyclerview.widget.RecyclerView>
 

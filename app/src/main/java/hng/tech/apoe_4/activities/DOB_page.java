@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.pixplicity.easyprefs.library.Prefs;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
@@ -19,6 +22,7 @@ import hng.tech.apoe_4.R;
 public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
+    private static ArrayList<String> listWHG = new ArrayList<>();
     DatePicker dateOfBirthPicker;
     Button submitDateOfBirth;
 
@@ -29,6 +33,8 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
         ButterKnife.bind(this);
 
+        //Initializing list
+//        listWHG = new ArrayList<>();
 
 //         This is for Height Spinner
         Spinner height_spinner = findViewById(R.id.height_spinner);
@@ -82,12 +88,19 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
             String year = "Year = " + dateOfBirthPicker.getYear();
             // display the values by using a toast
 //            Toast.makeText(getApplicationContext(), day + "\n" + month + "\n" + year, Toast.LENGTH_LONG).show();
+
+            //Inputing DOB in calendar instance
+            Calendar dob = Calendar.getInstance();
+            dob.set(dateOfBirthPicker.getYear(),dateOfBirthPicker.getMonth()+1,dateOfBirthPicker.getDayOfMonth());
+
             Toast.makeText(this, "Thank You", Toast.LENGTH_SHORT).show();
 
 //            This is for WHG
 
             Prefs.putBoolean("selectedWHG", true);
             Prefs.putBoolean("savedDOB", true);
+
+            saveDOB(dob);
 
                 startActivity(new Intent(DOB_page.this, QuestionsActivity.class));
                 finish();
@@ -96,9 +109,59 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
         });
     }
 
+    public void saveDOB(Calendar dob){
+        Prefs.putLong("DOB",dob.getTimeInMillis());
+    }
+
+    public static long getDOB(){
+        return Prefs.getLong("DOB", 0);
+    }
+
+    public  void saveWHGInfo(ArrayList<String> list){
+
+        Prefs.putInt("list_size",list.size());
+
+        for(int i=0;i<list.size();i++){
+            Prefs.remove("list_size" + i);
+            Prefs.putString("list_size"+i,list.get(i));
+        }
+    }
+
+    public static ArrayList<String> loadWHGInfo(){
+        listWHG.clear();
+        int size = Prefs.getInt("list_size",0);
+
+        for(int i=0;i<size;i++){
+            listWHG.add(Prefs.getString("list_size" +i,null));
+        }
+
+        return listWHG;
+    }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch(parent.getId()){
+            case R.id.weight_spinner:
+                String weight = parent.getItemAtPosition(position).toString();
+                //Toast.makeText(this,"W : "+weight,Toast.LENGTH_LONG).show();
+                if(!weight.equals("Weight"))
+                    listWHG.add(weight);
+                break;
+            case R.id.height_spinner:
+                String height = parent.getItemAtPosition(position).toString();
+                //Toast.makeText(this,"H : "+height,Toast.LENGTH_LONG).show();
+                if(!height.equals("Height"))
+                    listWHG.add(height);
+                break;
+            case R.id.gender_spinner:
+                String gender = parent.getItemAtPosition(position).toString();
+                //Toast.makeText(this,"G : "+gender,Toast.LENGTH_LONG).show();
+                if(!gender.equals("Gender"))
+                    listWHG.add(gender);
+                break;
+        }
 
+        saveWHGInfo(listWHG);
     }
 
     @Override
