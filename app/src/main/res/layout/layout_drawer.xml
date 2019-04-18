@@ -62,6 +62,7 @@
                             app:srcCompat="@drawable/ic_edit" />
 
                         <TextView
+                            android:id="@+id/editProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:text="@string/edit"
