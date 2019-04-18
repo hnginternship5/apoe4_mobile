@@ -19,29 +19,28 @@ public class SplashActivity extends AppCompatActivity {
         String accesToken = Prefs.getString("accessToken", "");
 
         final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 5s = 5000ms
+        handler.postDelayed(() -> {
+            // Do something after 5s = 5000ms
 
-                if (accesToken.isEmpty() && !Prefs.getBoolean("loggedIn", false)){
-                  
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-                }
-                else if (!Prefs.getBoolean("savedDOB", false)) {
-                    startActivity(new Intent(SplashActivity.this, DOB_page.class));
-                    finish();
-                }
-                else if (Prefs.getBoolean("savedDOB", false) && !Prefs.getBoolean("selectedWHG", false)){
-                    startActivity(new Intent(SplashActivity.this, WHGActivity.class));
-                    finish();
-                }else if (Prefs.getBoolean("savedDOB", false) && Prefs.getBoolean("selectedWHG", false) && !Prefs.getBoolean("answeredQuestions", false)) {
-                    startActivity(new Intent(SplashActivity.this, QuestionsActivity.class));
-                    finish();
-                }
-                else {
-                    startActivity(new Intent(SplashActivity.this, Home.class));
-                }
+            if (accesToken.isEmpty() && !Prefs.getBoolean("loggedIn", false)){
+
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                SplashActivity.this.finish();
+            }
+            else if (!Prefs.getBoolean("savedDOB", false)) {
+                startActivity(new Intent(SplashActivity.this, DOB_page.class));
+                SplashActivity.this.finish();
+            }
+            else if (Prefs.getBoolean("savedDOB", false) && !Prefs.getBoolean("selectedWHG", false)){
+                startActivity(new Intent(SplashActivity.this, WHGActivity.class));
+                SplashActivity.this.finish();
+            }else if (Prefs.getBoolean("savedDOB", false) && Prefs.getBoolean("selectedWHG", false) && !Prefs.getBoolean("answeredQuestions", false)) {
+                startActivity(new Intent(SplashActivity.this, QuestionsActivity.class));
+                SplashActivity.this.finish();
+            }
+            else {
+                startActivity(new Intent(SplashActivity.this, Home.class));
+                SplashActivity.this.finish();
             }
         }, 2000);
 
