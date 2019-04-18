@@ -368,30 +368,22 @@
         <!--</RelativeLayout>-->
         <!--</LinearLayout>-->
 
-    <ScrollView
-        android:background="@color/white"
-        android:id="@+id/scrollView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
+
 
 
     <LinearLayout
         android:id="@+id/questions_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
+        android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView"
+        app:layout_constraintTop_toBottomOf="@+id/view"
         tools:listitem="@layout/question">
 
     </LinearLayout>
-    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

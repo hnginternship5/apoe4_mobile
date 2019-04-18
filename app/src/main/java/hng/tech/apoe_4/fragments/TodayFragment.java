@@ -6,6 +6,7 @@ import android.content.pm.PackageManager;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,18 @@ import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -27,8 +40,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,6 +73,7 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 
 public class TodayFragment extends Fragment {
+    FirebaseFirestore db;
 
     @BindView(R.id.exerciseProgress)
     ProgressBar tempProgress;
@@ -71,6 +86,8 @@ public class TodayFragment extends Fragment {
 
     @BindView(R.id.questions_view)
     LinearLayout questionsLayout;
+//    @BindView(R.id.loading)
+//    ProgressBar progressBar;
 
     @BindView(R.id.temp)
     TextView tempText;
@@ -107,6 +124,7 @@ public class TodayFragment extends Fragment {
     int a = 0;
 
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -116,6 +134,7 @@ public class TodayFragment extends Fragment {
 
         } else {
             requestStoragePermission();
+
         }
 
     }
@@ -152,7 +171,7 @@ public class TodayFragment extends Fragment {
         genInflater = inflater;
 
 
-        submit_button = view.findViewById(R.id.submit_button);
+//        submit_button = view.findViewById(R.id.submit_button);
 
 
 
@@ -161,7 +180,6 @@ public class TodayFragment extends Fragment {
 
 
         assetName = "Questions";
-
 
 
 // construct a new instance of SimpleLocation
@@ -302,7 +320,5 @@ public class TodayFragment extends Fragment {
 // this methods fetch the data from the json asset file and displays the data
 
 
-    public static TodayFragment newInstance() {
-        return new TodayFragment();
-    }
+
 }
