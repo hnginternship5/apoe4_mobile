@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -64,6 +65,9 @@ public class TodayFragment extends Fragment {
 
     @BindView(R.id.sleepProgress)
     ProgressBar sleepProgress;
+
+    @BindView(R.id.questions_view)
+    LinearLayout questionsLayout;
 
     @BindView(R.id.temp)
     TextView tempText;
@@ -251,21 +255,6 @@ public class TodayFragment extends Fragment {
         }
     }
 
-    private void showAnswers() {
-        List<List<AnswerData>> answerDataList1 = new ArrayList<>();
-
-        for (int j = 0; j < questionDataList.size(); j++) {
-            String qAnswer = questionDataList.get(j).getqAnswers();
-            Log.d("TAG", "showAnswers: " + qAnswer);
-
-            arrayName = "{ qAnswers: " + qAnswer + "}";
-            answerDataList = DataUtil.loadAnswers(arrayName);
-            Log.d("TAG", "showAnswers: " + arrayName);
-
-          answerDataList1.add(answerDataList);
-        }
-        //questionAdapter.setAnswerList(answerDataList1);
-    }
 
     public static TodayFragment newInstance() {
         return new TodayFragment();
