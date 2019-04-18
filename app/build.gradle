@@ -63,6 +63,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.42.0'
     //graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.jjoe64:graphview:4.2.2'
 }
 
     apply plugin: 'com.google.gms.google-services'

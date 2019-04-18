@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin">
 
         <FrameLayout
             android:id="@+id/container"
@@ -196,49 +197,354 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insight_title"
+            app:layout_constraintTop_toBottomOf="@+id/chart"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Survey Insight"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+        <HorizontalScrollView
+            android:id="@+id/insight_scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/insight_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/fab_margin"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+            <TextView
+                android:id="@+id/sleep_survey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sleep"
+                android:textSize="16dp"
+                android:textColor="@color/figmaBlue"
+                />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat= "@drawable/ic_sleep"
+                android:layout_margin="@dimen/fab_margin"
+                android:padding="20dp"
+                android:background="@drawable/image_bg_special_sleep"/>
+
+                <TextView
+                    android:id="@+id/sleep_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6hrs"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlue"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                <ImageView
+                    android:id="@+id/arrow_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                <TextView
+                    android:id="@+id/sleep_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10%"
+                    android:textColor="#219653"
+                    />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_step_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/stress_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stress Level"
+                    android:textSize="16dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat= "@drawable/stress_level"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special_step"/>
+
+                <TextView
+                    android:id="@+id/stres_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moderate"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_stress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                    <TextView
+                        android:id="@+id/stress_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#219653"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_temp_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/temp_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temperature"
+                    android:textSize="16dp"
+                    android:textColor="@color/tempColor"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat= "@drawable/ic_thermometer_pink"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special"/>
+
+                <TextView
+                    android:id="@+id/temp_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33`C"
+                    android:textSize="13dp"
+                    android:textColor="@color/tempColor"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_red_24dp"/>
+
+                    <TextView
+                        android:id="@+id/temp_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#EB5757"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_step_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/step_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Steps"
+                    android:textSize="16dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat= "@drawable/ic_steps"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special_step"/>
+
+                <TextView
+                    android:id="@+id/step_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="300"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_step"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                    <TextView
+                        android:id="@+id/step_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#219653"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/answer_title"
+            app:layout_constraintTop_toBottomOf="@+id/insight_scroll_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Answer"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/question_answer_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/answer_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/fab_margin"
+            android:padding="15dp"
+            android:background="@drawable/button_grey_bg">
+
+            <TextView
+                android:id="@+id/question_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How are you today?"
+                android:textColor="#000"
+                android:layout_marginBottom="30dp"
+                />
+
+            <TextView
+                android:id="@+id/answer_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_blue_bg_extra"
+                android:padding="@dimen/fab_margin"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_title"
+            app:layout_constraintTop_toBottomOf="@+id/question_answer_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Notes"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+
+
         <EditText
             android:id="@+id/note"
             android:layout_width="match_parent"
             android:layout_height="127dp"
             android:layout_margin="8dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/text_bg"
+            android:background="@drawable/button_lightgrey_bg"
             android:ems="10"
             android:padding="8dp"
+            android:hint="Any interesting event today?"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/login_emaillll"
-            app:layout_constraintStart_toStartOf="@+id/login_emaillll"
-            app:layout_constraintTop_toBottomOf="@+id/chart" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_title" />
 
         <Button
-            android:id="@+id/details_button"
+            android:id="@+id/save_note"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_grey_bg"
-            android:text="Details"
+            android:layout_marginBottom="20dp"
+            android:text="Save"
             android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/note"
             app:layout_constraintTop_toBottomOf="@+id/note" />
 
-        <EditText
-            android:id="@+id/login_emaillll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/text_bg_special"
-            android:ems="10"
-            android:hint="Notes"
-            android:padding="8dp"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_button" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
