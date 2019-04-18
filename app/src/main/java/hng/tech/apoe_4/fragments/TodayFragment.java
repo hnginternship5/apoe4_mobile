@@ -80,7 +80,6 @@ public class TodayFragment extends Fragment {
 
     SimpleLocation location;
     private QuestionAdapter questionAdapter;
-    private RecyclerView questions_view;
     private Button submit_button;
     private LinearLayoutManager linearLayoutManager;
     private String assetName;
@@ -127,25 +126,10 @@ public class TodayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
         submit_button = view.findViewById(R.id.submit_button);
-        questions_view = view.findViewById(R.id.questions_view);
 
-        //here we display the submit button whenever we scroll to the bottom of the page
-        questions_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
 
-                if (!recyclerView.canScrollVertically(1)){
-                    submit_button.setVisibility(View.VISIBLE);
-                }
-                else {
-                    submit_button.setVisibility(View.GONE);
-                }
-            }
-        });
 
         assetName = "Questions";
-        setRecyclerView();
         showData();
 
 
@@ -258,14 +242,6 @@ public class TodayFragment extends Fragment {
         stepsProgress.startAnimation(anim);
     }
 //this prepares the recycler view
-    private void setRecyclerView() {
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        questions_view.setLayoutManager(linearLayoutManager);
-        questionAdapter = new QuestionAdapter(getActivity());
-        questions_view.setHasFixedSize(true);
-        questions_view.setAdapter(questionAdapter);
-
-    }
 // this methods fetch the data from the json asset file and displays the data
     public void showData(){
         questionDataList = DataUtil.openTheData(getContext(),assetName);
