@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +38,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
@@ -82,6 +84,9 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
+    
+    @BindView(R.id.civ_user_drawer)
+    CircleImageView pic;
 
 
     @BindView(R.id.weight_drawer)
@@ -117,12 +122,22 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        patientName.setText(Prefs.getString("firstName", "John") + "\t"
-        + Prefs.getString("lastName", "Doe"));
+        if (!Prefs.getBoolean("fblog", false)){
+            patientName.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
 
-        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
+        }else{
+            patientName.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
 
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
+
+            Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
+        }
+      //set WHG
         setWHGValues();
         calculateAge();
 

@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -44,8 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
 
 
-    @BindView(R.id.progress2)
-    RelativeLayout prog2;
+    @BindView(R.id.progressBar)
+    ProgressBar prog2;
 
 
 
