@@ -2,7 +2,6 @@ package hng.tech.apoe_4.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -78,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
-        login_email = findViewById(R.id.login_email);
+        login_email = findViewById(R.id.note);
         login_password = findViewById(R.id.login_password);
         text5 = findViewById(R.id.textView5);
         prog = findViewById(R.id.progress);
