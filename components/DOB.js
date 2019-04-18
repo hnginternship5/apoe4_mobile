@@ -8,7 +8,7 @@ var dw = wS.width;
 function hh(h){return (dh*h)/670}
 function ww(w){return (dw*w)/375}
 
-export default class App extends React.Component {
+export default class DOB extends React.Component {
     constructor(props) {
     super(props);
     this.state = {chosenDate: new Date()};
@@ -25,7 +25,8 @@ export default class App extends React.Component {
       <StatusBar backgroundColor="#2a56c6" translucent barStyle="light-content" />
           <View style={{height:'100%',justifyContent: 'center',alignItems:'center',width:'100%' }}>
               <View style={{height:'80%', width:'80%'}}>
-              <Image source={require('./assets/logo.png')} style={{height:dw*0.2, width:dw*0.2, alignSelf:'center'}} resizeMode="contain"/> 
+              <Image source={require('../assets/logo.png')} style={{height:dw*0.2, width:dw*0.2, alignSelf:'center'}}
+               resizeMode="contain"/> 
                 <Text style={{fontSize:ww(25), fontWeight:400}}>Date of Birth</Text>
 
                         <View style={{width:'100%', marginVertical:hh(50)}}>
@@ -34,7 +35,9 @@ export default class App extends React.Component {
                                     onDateChange={this.setDate}
                                   />
                       </View>
-                  <TouchableOpacity style={{width:'100%',paddingVertical:hh(20),marginBottom:hh(20), backgroundColor:'#3380CC',
+                  <TouchableOpacity 
+                    onPress={()=>this.props.navigation.navigate('AppDrawer')}
+                    style={{width:'100%',paddingVertical:hh(20),marginBottom:hh(20), backgroundColor:'#3380CC',
                                   alignItems:'center', borderRadius:ww(5)}}>
                     <Text style={{fontSize:ww(19),color:'white'}}>Next</Text> 
                     </TouchableOpacity>
