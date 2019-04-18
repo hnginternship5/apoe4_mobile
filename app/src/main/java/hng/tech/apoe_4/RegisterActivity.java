@@ -23,6 +23,7 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.activities.DOB_page;
 import hng.tech.apoe_4.activities.Home;
+import hng.tech.apoe_4.activities.LoginActivity;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.utils.MainApplication;
 import retrofit2.Call;
@@ -135,5 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return hasError;
+    }
+
+    public void sign_in (View view){
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        RegisterActivity.this.finish();
     }
 }
