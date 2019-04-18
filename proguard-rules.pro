@@ -22,10 +22,6 @@
 
 -keep class com.squareup.** { *; }
 -keep interface com.squareup.** { *; }
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-
 -keepclasseswithmembers class * {
     @retrofit2.http.* <methods>;
 }
