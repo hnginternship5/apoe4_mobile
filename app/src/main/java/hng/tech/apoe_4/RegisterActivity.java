@@ -11,6 +11,7 @@ import android.util.Patterns;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.activities.DOB_page;
 import hng.tech.apoe_4.activities.Home;
+import hng.tech.apoe_4.activities.LoginActivity;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.utils.MainApplication;
 import retrofit2.Call;
@@ -44,8 +46,8 @@ public class RegisterActivity extends AppCompatActivity {
     Button registerButton;
 
 
-    @BindView(R.id.progress2)
-    RelativeLayout prog2;
+    @BindView(R.id.progressBar)
+    ProgressBar prog2;
 
 
 
@@ -134,5 +136,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return hasError;
+    }
+
+    public void sign_in (View view){
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        RegisterActivity.this.finish();
     }
 }
