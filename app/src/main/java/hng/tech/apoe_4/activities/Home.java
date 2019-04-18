@@ -82,6 +82,9 @@ public class Home extends AppCompatActivity {
     RelativeLayout settings;
 
 
+    @BindView(R.id.editProfile)
+    TextView editProfile;
+
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
     
@@ -165,6 +168,13 @@ public class Home extends AppCompatActivity {
             startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
+
+        // Launches edit profile activity
+        editProfile.setOnClickListener (v -> {
+                startActivity(new Intent(this, EditProfile.class));
+                drawer.closeDrawer(GravityCompat.START);
+        });
+
 
 //        schedule.setOnClickListener(v -> {
 //
