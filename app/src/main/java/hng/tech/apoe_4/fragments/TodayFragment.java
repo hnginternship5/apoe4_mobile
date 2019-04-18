@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +43,7 @@ import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import hng.tech.apoe_4.retrofit.responses.QuestionsResponse;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
+import hng.tech.apoe_4.utils.CONSTANTS;
 import hng.tech.apoe_4.utils.DataUtil;
 import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
@@ -140,6 +142,7 @@ public class TodayFragment extends Fragment {
 
     private View.OnClickListener buttonTap = v -> {
         showNextQuestion(genInflater);
+        CONSTANTS.getState();
         Toasty.info(getActivity().getBaseContext(), a + "").show();
     };
 
@@ -154,6 +157,7 @@ public class TodayFragment extends Fragment {
 
 //        submit_button = view.findViewById(R.id.submit_button);
 
+        Toasty.info(getActivity(), CONSTANTS.getState()).show();
 
 
         showNextQuestion(inflater);

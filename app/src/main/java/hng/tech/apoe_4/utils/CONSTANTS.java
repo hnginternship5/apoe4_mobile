@@ -1,5 +1,7 @@
 package hng.tech.apoe_4.utils;
 
+import android.util.Log;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,8 +10,6 @@ import java.util.Date;
 
 public class CONSTANTS {
     Calendar cal = Calendar.getInstance();
-    Date date = cal.getTime();
-    Date date2 = cal.getTime();
     static DateFormat dateFormat = new SimpleDateFormat("HH:mm");
     static Date noon;
 
@@ -36,20 +36,26 @@ public class CONSTANTS {
 
 
 
-    DateFormat dateFormat2 = new SimpleDateFormat("HH:mm");
 
     public CONSTANTS() {
     }
 
-    static String getState(Date currentDate){
-        if (currentDate.compareTo(noon) >= 0 && currentDate.compareTo(evening) <= 0){
+    public static String getState() {
+        int currentDateString = Calendar.getInstance().getTime().getHours();
+        if (currentDateString >= 12 && currentDateString <= 18){
+            Log.e("Date", "Noon");
             return "Noon";
         }
-        else if (currentDate.compareTo(morning) >= 0 && currentDate.compareTo(noon) <= 0){
+        else if (currentDateString >= 6 && currentDateString <= 12){
+            Log.e("Date", "Day");
             return "Day";
         }
-        else if (currentDate.compareTo(evening) >= 0 && currentDate.compareTo(midnight) <= 0){
+        else if (currentDateString >= 18 && currentDateString <= 23){
+            Log.e("Date", "Night");
             return "Night";
-        } else return "Midnight";
+        } else {
+            Log.e("Date", "MidNight");
+            return "Midnight";
+        }
     }
 }
