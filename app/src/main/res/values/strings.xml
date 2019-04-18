@@ -105,6 +105,7 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
     <string name="or">Or</string>
     <string name="register_sign_in">Sign In</string>
     <string name="register_email">Email</string>
