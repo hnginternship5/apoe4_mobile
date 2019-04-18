@@ -6,14 +6,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-    android:background="@color/figmaBlue"
+        android:background="@color/figmaBlue"
         android:fillViewport="true"
         android:layout_height="match_parent">
 
 
-
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-            android:id="@+id/tempProgress"
+            android:id="@+id/exerciseProgress"
             style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,27 +23,29 @@
             android:max="100"
             android:progress="10"
             android:secondaryProgress="100"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_APO"
+            app:layout_constraintEnd_toStartOf="@+id/progress_APO"
+            app:layout_constraintStart_toStartOf="parent"
             app:mpb_progressTint="@color/figmaBlueDark"
             app:mpb_secondaryProgressTint="@color/figmaBlueLight"
-            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
-            app:layout_constraintEnd_toStartOf="@+id/stepsProgress"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+            app:layout_constraintTop_toTopOf="@+id/progress_APO" />
 
-        <ImageView
-            android:id="@+id/tempImage"
-            android:layout_width="38dp"
-            android:layout_height="42dp"
-            android:layout_centerInParent="true"
-            android:clickable="false"
-            app:layout_constraintBottom_toBottomOf="@+id/tempProgress"
-            app:layout_constraintEnd_toEndOf="@+id/tempProgress"
-            app:layout_constraintStart_toStartOf="@+id/tempProgress"
-            app:layout_constraintTop_toTopOf="@+id/tempProgress"
-            app:srcCompat="@drawable/ic_white_exer" />
+    <ImageView
+        android:id="@+id/tempImage"
+        android:layout_width="38dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="false"
+        app:layout_constraintBottom_toBottomOf="@+id/exerciseProgress"
+        app:layout_constraintEnd_toEndOf="@+id/exerciseProgress"
+        app:layout_constraintStart_toStartOf="@+id/exerciseProgress"
+        app:layout_constraintTop_toTopOf="@+id/exerciseProgress"
+        app:srcCompat="@drawable/ic_white_exer" />
 
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
-        android:id="@+id/stepsProgress"
+        android:id="@+id/progress_APO"
         style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
         android:layout_width="120dp"
         android:layout_height="115dp"
@@ -62,17 +63,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <TextView
             android:id="@+id/stepsImage"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
             android:clickable="false"
-            app:srcCompat="@drawable/ic_steps_white"
-            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
-            app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
-            app:layout_constraintStart_toStartOf="@+id/stepsProgress"
-            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+            android:text="@string/apo_score"
+            android:textColor="#fff"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_APO"
+            app:layout_constraintEnd_toEndOf="@+id/progress_APO"
+            app:layout_constraintStart_toStartOf="@+id/progress_APO"
+            app:layout_constraintTop_toTopOf="@+id/progress_APO" />
 
         <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:id="@+id/sleepProgress"
@@ -87,14 +92,13 @@
             android:progress="10"
             app:mpb_setBothDrawables="true"
             android:progressDrawable="@drawable/custom_progress"
-
             app:mpb_progressTint="@color/figmaBlueDark"
             app:mpb_secondaryProgressTint="@color/figmaBlueLight"
             android:secondaryProgress="100"
-            app:layout_constraintBottom_toBottomOf="@+id/stepsProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_APO"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/stepsProgress"
-            app:layout_constraintTop_toTopOf="@+id/stepsProgress" />
+            app:layout_constraintStart_toEndOf="@+id/progress_APO"
+            app:layout_constraintTop_toTopOf="@+id/progress_APO" />
 
         <ImageView
             android:id="@+id/textView1"
@@ -114,31 +118,34 @@
         android:id="@+id/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="28C"
+        android:text="@string/exercise_calc"
         android:textColor="@color/white"
-        android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/tempProgress"
-        app:layout_constraintStart_toStartOf="@+id/tempProgress"
-        app:layout_constraintTop_toBottomOf="@+id/tempProgress" />
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/exerciseProgress"
+        app:layout_constraintStart_toStartOf="@+id/exerciseProgress"
+        app:layout_constraintTop_toBottomOf="@+id/exerciseProgress" />
 
     <TextView
         android:id="@+id/steps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3,280"
+        android:text="APO"
         android:textColor="@color/white"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="@+id/stepsProgress"
-        app:layout_constraintStart_toStartOf="@+id/stepsProgress"
-        app:layout_constraintTop_toBottomOf="@+id/stepsProgress" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/progress_APO"
+        app:layout_constraintStart_toStartOf="@+id/progress_APO"
+        app:layout_constraintTop_toBottomOf="@+id/progress_APO" />
 
     <TextView
         android:id="@+id/sleep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="6hrs"
+        android:text="@string/hours_slept"
         android:textColor="@color/white"
-        android:textSize="28sp"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/sleepProgress"
         app:layout_constraintStart_toStartOf="@+id/sleepProgress"
         app:layout_constraintTop_toBottomOf="@+id/sleepProgress" />
@@ -150,15 +157,26 @@
             android:layout_marginTop="8dp"
             android:background="@color/figmaBlue"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView12" />
+                                                       app:layout_constraintTop_toBottomOf="@id/textView12" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Exercise"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/temp"
+        app:layout_constraintStart_toStartOf="@+id/temp"
+        app:layout_constraintTop_toBottomOf="@+id/temp" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Steps"
+        android:text="Score"
         android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@id/steps"
@@ -179,20 +197,20 @@
 
 
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit_button"
-            android:text="SUBMIT"
-            app:layout_constraintTop_toBottomOf="@+id/questions_view"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/buttons"
-            android:onClick="SubmitQuestions"
-            android:textSize="20sp"
-            android:layout_marginBottom="@dimen/fab_margin"
-            android:visibility="gone"/>
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:id="@+id/submit_button"-->
+            <!--android:text="SUBMIT"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/questions_view"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--android:background="@drawable/buttons"-->
+            <!--android:onClick="SubmitQuestions"-->
+            <!--android:textSize="20sp"-->
+            <!--android:layout_marginBottom="@dimen/fab_margin"-->
+            <!--android:visibility="gone"/>-->
 
 
 
@@ -350,10 +368,14 @@
         <!--</RelativeLayout>-->
         <!--</LinearLayout>-->
 
-    <androidx.recyclerview.widget.RecyclerView
+
+
+
+    <LinearLayout
         android:id="@+id/questions_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:background="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -361,6 +383,7 @@
         app:layout_constraintTop_toBottomOf="@+id/view"
         tools:listitem="@layout/question">
 
-    </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

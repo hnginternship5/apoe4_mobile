@@ -13,10 +13,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.location.FusedLocationProviderClient;
+//import com.google.android.gms.location.LocationServices;
+//import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -29,14 +33,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
@@ -80,8 +83,14 @@ public class Home extends AppCompatActivity {
     RelativeLayout settings;
 
 
+    @BindView(R.id.editProfile)
+    TextView editProfile;
+
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
+    
+    @BindView(R.id.civ_user_drawer)
+    CircleImageView pic;
 
 
     @BindView(R.id.weight_drawer)
@@ -101,7 +110,7 @@ public class Home extends AppCompatActivity {
 
 
 
-    private FusedLocationProviderClient mFusedLocationProviderClient;
+//    private FusedLocationProviderClient mFusedLocationProviderClient;
     Location current;
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
@@ -117,17 +126,27 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        patientName.setText(Prefs.getString("firstName", "John") + "\t"
-        + Prefs.getString("lastName", "Doe"));
+        if (!Prefs.getBoolean("fblog", false)){
+            patientName.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
 
-        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
+        }else{
+            patientName.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
 
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
+
+            Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
+        }
+      //set WHG
         setWHGValues();
         calculateAge();
 
         //get Location Permission
-        getLocationPermission();
+//        getLocationPermission();
         //get device Location
 
 
@@ -150,6 +169,13 @@ public class Home extends AppCompatActivity {
             startActivity(new Intent(Home.this, SettingsActivity.class));
             drawer.closeDrawer(GravityCompat.START);
         });
+
+        // Launches edit profile activity
+        editProfile.setOnClickListener (v -> {
+                startActivity(new Intent(this, EditProfile.class));
+                drawer.closeDrawer(GravityCompat.START);
+        });
+
 
 //        schedule.setOnClickListener(v -> {
 //
@@ -303,6 +329,69 @@ public class Home extends AppCompatActivity {
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
+//    private void getDeviceLocation(){
+//        Log.d(TAG, "getDeviceLocation: getting the devices current location");
+//
+//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+//
+//        try{
+//            if(mLocationPermissionsGranted){
+//
+//                final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
+//                location.addOnCompleteListener(new OnCompleteListener<Location>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Location> task) {
+//                        if(task.isSuccessful()){
+//                            Log.d(TAG, "onComplete: found location!");
+//                            Location currentLocation = (Location) task.getResult();
+//                            if (locations.hasLocationEnabled()){
+//                                lat = currentLocation.getLatitude();
+//                                lng= currentLocation.getLongitude();
+//                                Log.d(TAG, "onComplete: found location!");
+//                            }else {
+//                                // ask the user to enable location access
+//                                Toast.makeText(Home.this, "Please enable location", Toast.LENGTH_SHORT).show();
+//                                SimpleLocation.openSettings(getApplicationContext());
+//                            }
+//
+//
+//
+//
+//                        }else{
+//                            Log.d(TAG, "onComplete: current location is null");
+//                            Toast.makeText(Home.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
+//            }
+//        }catch (SecurityException e){
+//            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
+//        }
+//    }
+
+//    private void getLocationPermission(){
+//        Log.d(TAG, "getLocationPermission: getting location permissions");
+//        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+//                Manifest.permission.ACCESS_COARSE_LOCATION};
+//
+//        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+//            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+//                mLocationPermissionsGranted = true;
+//                getDeviceLocation();
+//            }else{
+//                ActivityCompat.requestPermissions(this,
+//                        permissions,
+//                        LOCATION_PERMISSION_REQUEST_CODE);
+//            }
+//        }else{
+//            ActivityCompat.requestPermissions(this,
+//                    permissions,
+//                    LOCATION_PERMISSION_REQUEST_CODE);
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -321,7 +410,7 @@ public class Home extends AppCompatActivity {
                     }
                     Log.d(TAG, "onRequestPermissionsResult: permission granted");
                     mLocationPermissionsGranted = true;
-                    getDeviceLocation();
+//                    getDeviceLocation();
                     //initialize our map
                 }
             }

@@ -14,4 +14,9 @@
     <color name="figmaGrey">#FBFBFB</color>
     <color name="figmaDarkGrey">#FBFBFB</color>
     <color name="gray">#D3D3D3</color>
+    <color name="tempColor">#F25B1C</color>
+    <color name="tempImageBg">#D1BFB7</color>
+    <color name="figmaBlueBg">#8D9EAF</color>
+    <color name="figmaBlueDarkBg">#AECFEE</color>
+    <color name="lightgray">#CCD4F7</color>
 </resources>
