@@ -113,7 +113,7 @@ public class Home extends AppCompatActivity {
 
 
 
-    private FusedLocationProviderClient mFusedLocationProviderClient;
+//    private FusedLocationProviderClient mFusedLocationProviderClient;
     Location current;
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;

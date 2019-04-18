@@ -62,6 +62,7 @@
                             app:srcCompat="@drawable/ic_edit" />
 
                         <TextView
+                            android:id="@+id/editProfile"
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:text="@string/edit"
@@ -144,8 +145,8 @@
                            app:layout_constraintStart_toStartOf="parent"
                            app:layout_constraintEnd_toEndOf="parent"
                            app:layout_constraintTop_toBottomOf="@id/texts"
-
-                           android:layout_marginTop="2dp">
+                           android:layout_marginTop="2dp"
+                           >
 
 
                            <TextView
@@ -155,7 +156,6 @@
                                android:gravity="center"
                                android:textColor="@color/gray"
                                android:layout_height="wrap_content"
-                               android:layout_marginTop="8dp"
                                android:text="185 cm"
                                android:textSize="18sp"
                                app:layout_constraintEnd_toEndOf="@+id/textView14"
@@ -170,7 +170,6 @@
                                android:gravity="center"
                                android:textSize="18sp"
                                android:layout_height="wrap_content"
-                               android:layout_marginTop="8dp"
                                android:text="145 kg"
                                app:layout_constraintEnd_toEndOf="@+id/textView17"
                                app:layout_constraintStart_toStartOf="@+id/textView17"
@@ -343,7 +342,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="25dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_setings" />
+                    app:srcCompat="@drawable/ic_settings" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -398,7 +397,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginStart="25dp"
                     android:scaleType="fitCenter"
-                    app:srcCompat="@drawable/ic_logout" />
+                    app:srcCompat="@drawable/ic_logout_grey" />
 
                 <TextView
                     android:layout_width="wrap_content"
