@@ -82,6 +82,9 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
+    
+    @BindView(R.id.civ_user_drawer)
+    CircleImageView pic;
 
 
     @BindView(R.id.weight_drawer)
@@ -117,12 +120,22 @@ public class Home extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        patientName.setText(Prefs.getString("firstName", "John") + "\t"
-        + Prefs.getString("lastName", "Doe"));
+        if (!Prefs.getBoolean("fblog", false)){
+            patientName.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
 
-        userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe"));
+        }else{
+            patientName.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
 
+            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe"));
+
+            Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
+        }
+      //set WHG
         setWHGValues();
         calculateAge();
 
