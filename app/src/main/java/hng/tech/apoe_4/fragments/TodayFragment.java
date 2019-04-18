@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -33,11 +34,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.adapters.QuestionAdapter;
 import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
+import hng.tech.apoe_4.retrofit.responses.QuestionsResponse;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.DataUtil;
 import hng.tech.apoe_4.utils.PermisionManager;
@@ -72,6 +75,16 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.temp)
     TextView tempText;
 
+    LayoutInflater genInflater;
+
+
+    List<QuestionsResponse> questions = new ArrayList<>(Arrays.asList(
+            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad")),
+            new QuestionsResponse("How was your night?", Arrays.asList("Great", "Good", "Ok", "Bad")),
+            new QuestionsResponse("What do ypu think of this App?", Arrays.asList("Awesome", "Awesome", "Awesome", "Awesome")),
+            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad"))
+    ));
+
 
 
     private float from = (float)10;
@@ -91,6 +104,8 @@ public class TodayFragment extends Fragment {
     private List<QuestionData> questionDataList;
     private List<AnswerData> answerDataList;
     private int LOCATION_REQUEST_CODE = 1;
+    int a = 0;
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -123,18 +138,29 @@ public class TodayFragment extends Fragment {
 
 
 
+    private View.OnClickListener buttonTap = v -> {
+        showNextQuestion(genInflater);
+        Toasty.info(getActivity().getBaseContext(), a + "").show();
+    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_today, container, false);
+        ButterKnife.bind(this, view);
+
+        genInflater = inflater;
+
 
         submit_button = view.findViewById(R.id.submit_button);
 
 
 
+        showNextQuestion(inflater);
+//        questionsLayout.addView(questionView);
+
+
         assetName = "Questions";
-        showData();
 
 
 
@@ -157,7 +183,6 @@ public class TodayFragment extends Fragment {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
 
         Context context = inflater.getContext();
-        ButterKnife.bind(this, view);
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
@@ -219,6 +244,34 @@ public class TodayFragment extends Fragment {
         return view;
     }
 
+    private void showNextQuestion(@NonNull LayoutInflater inflater) {
+       if (a < 4){
+           questionsLayout.removeAllViews();
+           View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
+           TextView title = questionView.findViewById(R.id.question_title);
+           Button one = questionView.findViewById(R.id.answer1);
+           Button two = questionView.findViewById(R.id.answer2);
+           Button thre = questionView.findViewById(R.id.answer3);
+           Button four = questionView.findViewById(R.id.answer4);
+
+           one.setOnClickListener(buttonTap);
+           two.setOnClickListener(buttonTap);
+           thre.setOnClickListener(buttonTap);
+           four.setOnClickListener(buttonTap);
+
+           title.setText(questions.get(a).getText());
+           one.setText(questions.get(a).getAnswers().get(0));
+           two.setText(questions.get(a).getAnswers().get(1));
+           thre.setText(questions.get(a).getAnswers().get(2));
+           four.setText(questions.get(a).getAnswers().get(3));
+           a++;
+       }
+
+       else {
+           questionsLayout.removeAllViews();
+           View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
+       }
+    }
 
 
     //this method helps with animating progress bar
@@ -247,13 +300,6 @@ public class TodayFragment extends Fragment {
     }
 //this prepares the recycler view
 // this methods fetch the data from the json asset file and displays the data
-    public void showData(){
-        questionDataList = DataUtil.openTheData(getContext(),assetName);
-        if (questionDataList.size() != 0) {
-            questionAdapter.setQuestionDataList(questionDataList);
-
-        }
-    }
 
 
     public static TodayFragment newInstance() {
