@@ -171,7 +171,7 @@ public class TodayFragment extends Fragment {
         genInflater = inflater;
 
 
-        submit_button = view.findViewById(R.id.submit_button);
+//        submit_button = view.findViewById(R.id.submit_button);
 
 
 
