@@ -4,6 +4,8 @@ package hng.tech.apoe_4;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 
 import android.util.Patterns;
@@ -23,6 +25,7 @@ import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.activities.DOB_page;
 import hng.tech.apoe_4.activities.Home;
+import hng.tech.apoe_4.activities.LoginActivity;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.utils.MainApplication;
 import retrofit2.Call;
@@ -107,6 +110,19 @@ public class RegisterActivity extends AppCompatActivity {
                     });
 
         });
+
+        CheckBox show_password = findViewById(R.id.reg_show_password);
+        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // show password
+                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                // hide password
+                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
+        });
     }
 
     public boolean validateForm(String firstName,
@@ -135,5 +151,10 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         return hasError;
+    }
+
+    public void sign_in (View view){
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        RegisterActivity.this.finish();
     }
 }

@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_vertical_margin">
 
         <FrameLayout
             android:id="@+id/container"
@@ -26,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:background="@drawable/ic_navigate_before_black_24dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toStartOf="@+id/goodButton"
+            app:layout_constraintEnd_toStartOf="@+id/good_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView9" />
 
@@ -49,39 +50,73 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginTop="16dp"
-            android:text="You are currently feeling"
+            android:text="Your APO score is:"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/goodButton"
-            app:layout_constraintStart_toStartOf="@+id/goodButton"
+            app:layout_constraintEnd_toEndOf="@+id/good_text"
+            app:layout_constraintStart_toStartOf="@+id/good_text"
             app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-        <Button
-            android:id="@+id/goodButton"
+        <me.zhanghai.android.materialprogressbar.MaterialProgressBar
+            android:id="@+id/progress_APO"
+            style="@style/Widget.MaterialProgressBar.ProgressBar.Large"
+            android:layout_width="120dp"
+            android:layout_height="115dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="10"
+            app:mpb_progressTint="@color/figmaBlueDark"
+            app:mpb_secondaryProgressTint="@color/figmaBlueLight"
+            android:secondaryProgress="100"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+        <TextView
+            android:id="@+id/apo_number"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            android:text="30"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_APO"
+            app:layout_constraintEnd_toEndOf="@+id/progress_APO"
+            app:layout_constraintStart_toStartOf="@+id/progress_APO"
+            app:layout_constraintTop_toTopOf="@+id/progress_APO" />
+
+        <TextView
+            android:id="@+id/good_text"
             android:layout_width="287dp"
             android:layout_height="45dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/buttons_on_click"
             android:gravity="center"
             android:text="Good"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            app:layout_constraintEnd_toEndOf="@+id/button2"
-            app:layout_constraintStart_toStartOf="@+id/button2"
-            app:layout_constraintTop_toBottomOf="@+id/textView85" />
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="@+id/tip_text"
+            app:layout_constraintStart_toStartOf="@+id/tip_text"
+            app:layout_constraintTop_toBottomOf="@+id/progress_APO" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginStart="8dp"
-            android:text="Answered:"
-            android:textColor="@color/colorAccent"
+            android:text="Answered: "
+            android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView9eee"
-            app:layout_constraintStart_toStartOf="@+id/goodButton"
+            app:layout_constraintStart_toStartOf="@+id/good_text"
             app:layout_constraintTop_toTopOf="@+id/textView9eee" />
 
         <TextView
@@ -91,20 +126,20 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:text="12/10/2009"
-            android:textColor="@color/colorAccent"
+            android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/textView10"
             app:layout_constraintHorizontal_bias="0.111"
             app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/goodButton" />
+            app:layout_constraintTop_toBottomOf="@+id/good_text" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:text="Time:"
-            android:textColor="@color/colorAccent"
+            android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/question_title"
@@ -117,73 +152,399 @@
             android:layout_height="20dp"
             android:layout_marginEnd="8dp"
             android:text="2.00pm"
-            android:textColor="@color/colorAccent"
+            android:textColor="#000"
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/textView9eee"
-            app:layout_constraintEnd_toEndOf="@+id/goodButton"
+            app:layout_constraintEnd_toEndOf="@+id/good_text"
             app:layout_constraintTop_toTopOf="@+id/textView9eee" />
 
-        <Button
-            android:id="@+id/button2"
+        <TextView
+            android:id="@+id/tip_text"
             android:layout_width="match_parent"
             android:layout_height="129dp"
             android:layout_margin="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:gravity="center"
             android:background="@drawable/button_grey_bg"
             android:text="TIP\n Eat a little more fish today and be sure to feel extra good"
             android:textAllCaps="false"
             android:textColor="@color/colorAccent"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/login_email"
+            app:layout_constraintEnd_toEndOf="@+id/note"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/login_email"
+            app:layout_constraintStart_toStartOf="@+id/note"
             app:layout_constraintTop_toBottomOf="@+id/textView9eee" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/apo_chart_title"
+            app:layout_constraintTop_toBottomOf="@+id/tip_text"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="APO Score Chart"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/chart"
+            android:layout_width="match_parent"
+            android:layout_margin="8dp"
+            android:layout_height="250dp"
+            app:layout_constraintTop_toBottomOf="@+id/apo_chart_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/insight_title"
+            app:layout_constraintTop_toBottomOf="@+id/chart"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Survey Insight"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+        <HorizontalScrollView
+            android:id="@+id/insight_scroll_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/insight_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/fab_margin"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+            <TextView
+                android:id="@+id/sleep_survey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sleep"
+                android:textSize="16dp"
+                android:textColor="@color/figmaBlue"
+                />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:srcCompat= "@drawable/ic_sleep"
+                android:layout_margin="@dimen/fab_margin"
+                android:padding="20dp"
+                android:background="@drawable/image_bg_special_sleep"/>
+
+                <TextView
+                    android:id="@+id/sleep_hours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6hrs"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlue"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                <ImageView
+                    android:id="@+id/arrow_sleep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                <TextView
+                    android:id="@+id/sleep_percent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="10%"
+                    android:textColor="#219653"
+                    />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_step_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/stress_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stress Level"
+                    android:textSize="16dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:srcCompat= "@drawable/stress_level"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special_step"/>
+
+                <TextView
+                    android:id="@+id/stres_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Moderate"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_stress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                    <TextView
+                        android:id="@+id/stress_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#219653"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_temp_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/temp_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temperature"
+                    android:textSize="16dp"
+                    android:textColor="@color/tempColor"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat= "@drawable/ic_thermometer_pink"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special"/>
+
+                <TextView
+                    android:id="@+id/temp_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="33`C"
+                    android:textSize="13dp"
+                    android:textColor="@color/tempColor"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_red_24dp"/>
+
+                    <TextView
+                        android:id="@+id/temp_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#EB5757"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp"
+                android:gravity="center"
+                android:background="@drawable/survey_step_bg"
+                android:layout_margin="@dimen/fab_margin">
+
+                <TextView
+                    android:id="@+id/step_survey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Steps"
+                    android:textSize="16dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    app:srcCompat= "@drawable/ic_steps"
+                    android:layout_margin="@dimen/fab_margin"
+                    android:padding="20dp"
+                    android:background="@drawable/image_bg_special_step"/>
+
+                <TextView
+                    android:id="@+id/step_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="300"
+                    android:textSize="13dp"
+                    android:textColor="@color/figmaBlueDark"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+                    <ImageView
+                        android:id="@+id/arrow_step"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_arrow_drop_down_green_24dp"/>
+
+                    <TextView
+                        android:id="@+id/step_percent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10%"
+                        android:textColor="#219653"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/answer_title"
+            app:layout_constraintTop_toBottomOf="@+id/insight_scroll_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Answer"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/question_answer_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/answer_title"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/fab_margin"
+            android:padding="15dp"
+            android:background="@drawable/button_grey_bg">
+
+            <TextView
+                android:id="@+id/question_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How are you today?"
+                android:textColor="#000"
+                android:layout_marginBottom="30dp"
+                />
+
+            <TextView
+                android:id="@+id/answer_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good"
+                android:textColor="#FFFFFF"
+                android:background="@drawable/button_blue_bg_extra"
+                android:padding="@dimen/fab_margin"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_title"
+            app:layout_constraintTop_toBottomOf="@+id/question_answer_view"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Notes"
+            android:layout_margin="@dimen/fab_margin"
+            android:textColor="#000"
+            android:textSize="16dp"/>
+
+
+
         <EditText
-            android:id="@+id/login_email"
+            android:id="@+id/note"
             android:layout_width="match_parent"
             android:layout_height="127dp"
             android:layout_margin="8dp"
             android:layout_marginTop="24dp"
-            android:background="@drawable/text_bg"
+            android:background="@drawable/button_lightgrey_bg"
             android:ems="10"
             android:padding="8dp"
+            android:hint="Any interesting event today?"
             android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="@+id/login_emaillll"
-            app:layout_constraintStart_toStartOf="@+id/login_emaillll"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/note_title" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/save_note"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_grey_bg"
-            android:text="Details"
+            android:layout_marginBottom="20dp"
+            android:text="Save"
             android:textAllCaps="false"
-            app:layout_constraintEnd_toEndOf="@+id/login_email"
-            app:layout_constraintTop_toBottomOf="@+id/login_email" />
+            app:layout_constraintEnd_toEndOf="@+id/note"
+            app:layout_constraintTop_toBottomOf="@+id/note" />
 
-        <EditText
-            android:id="@+id/login_emaillll"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/text_bg_special"
-            android:ems="10"
-            android:hint="Notes"
-            android:padding="8dp"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

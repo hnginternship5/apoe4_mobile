@@ -105,6 +105,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passRegInput" />
 
+        <CheckBox
+            android:id="@+id/reg_show_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Show password"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/accept_terms_and_conditions"
@@ -121,12 +133,12 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="84dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/accept_terms_and_conditions"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />
 
@@ -151,20 +163,41 @@
             app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
 
-        <TextView
-            android:id="@+id/progress2"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:text="@string/already_have_an_account_sign_in"
-            android:textAlignment="center"
-            android:textSize="16sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="44dp"
+            android:onClick="sign_in"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/reg_btn"
             app:layout_constraintStart_toStartOf="@+id/reg_btn"
-            app:layout_constraintTop_toBottomOf="@+id/reg_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/reg_btn">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:text="@string/already_have_an_account"
+                android:textColor="#000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_weight="1"
+                android:text="@string/sign_in"
+                android:textColor="@color/figmaBlue"
+                android:textSize="16sp" />
+        </LinearLayout>
 
 
         <ProgressBar
