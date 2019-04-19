@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.EditProfile"></activity>
+        <activity android:name=".activities.EditProfile" />
         <activity android:name=".activities.testingRTDB" />
         <activity android:name=".activities.SettingsActivity" />
         <activity android:name=".activities.QuestionsActivity" />
@@ -66,6 +66,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
