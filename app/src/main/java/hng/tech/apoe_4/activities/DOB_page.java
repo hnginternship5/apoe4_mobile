@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import hng.tech.apoe_4.R;
 
@@ -35,6 +36,8 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
         //Initializing list
 //        listWHG = new ArrayList<>();
+
+        listWHG.add("a");listWHG.add("a");listWHG.add("a");
 
 //         This is for Height Spinner
         Spinner height_spinner = findViewById(R.id.height_spinner);
@@ -145,19 +148,19 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
                 String weight = parent.getItemAtPosition(position).toString();
                 //Toast.makeText(this,"W : "+weight,Toast.LENGTH_LONG).show();
                 if(!weight.equals("Weight"))
-                    listWHG.add(weight);
+                    listWHG.set(0,weight);
                 break;
             case R.id.height_spinner:
                 String height = parent.getItemAtPosition(position).toString();
                 //Toast.makeText(this,"H : "+height,Toast.LENGTH_LONG).show();
                 if(!height.equals("Height"))
-                    listWHG.add(height);
+                    listWHG.set(1,height);
                 break;
             case R.id.gender_spinner:
                 String gender = parent.getItemAtPosition(position).toString();
                 //Toast.makeText(this,"G : "+gender,Toast.LENGTH_LONG).show();
                 if(!gender.equals("Gender"))
-                    listWHG.add(gender);
+                    listWHG.set(2,gender);
                 break;
         }
 

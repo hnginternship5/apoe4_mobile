@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -98,7 +99,7 @@ public class Home extends AppCompatActivity {
     @BindView(R.id.tv_phone_number_drawer)
     TextView infoDrawer;
 
-    static String gender;
+    static String gender,height;
 
     private static final String TAG = Home.class.getSimpleName();
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
@@ -162,7 +163,9 @@ public class Home extends AppCompatActivity {
         });
 
         settings.setOnClickListener(v -> {
-            startActivity(new Intent(Home.this, SettingsActivity.class));
+            Intent mine = new Intent(Home.this, SettingsActivity.class);
+            //startActivity(mine);
+            startActivityForResult(mine,101);
             drawer.closeDrawer(GravityCompat.START);
         });
 
@@ -222,6 +225,7 @@ public class Home extends AppCompatActivity {
 
     }
 
+
     //SETS WHG VALUES
     private void setWHGValues(){
         ArrayList<String> list = DOB_page.loadWHGInfo();
@@ -234,6 +238,23 @@ public class Home extends AppCompatActivity {
             weightDrawer.setText(list.get(0));
             heightDrawer.setText(list.get(1));
             gender = list.get(2);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==101){
+            if(resultCode==RESULT_OK){
+                String replaceHeight = data.getStringExtra("Height");
+                heightDrawer.setText(replaceHeight);
+                Prefs.putString("list_size1",replaceHeight);
+            }
+            if(resultCode==2){
+                String replaceWeight = data.getStringExtra("Weight");
+                weightDrawer.setText(replaceWeight);
+                Prefs.putString("list_size0",replaceWeight);
+            }
         }
     }
 
@@ -416,4 +437,6 @@ public class Home extends AppCompatActivity {
                 });
 
     }
+
+
 }

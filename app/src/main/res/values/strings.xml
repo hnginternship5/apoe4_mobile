@@ -104,7 +104,6 @@
     <string name="remember_me">Remember Me</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="don_t_have_an_account">Don\'t have an account?</string>
-    <string name="sign_up">Sign Up</string>
     <string name="or">Or</string>
     <string name="register_sign_in">Sign In</string>
     <string name="register_email">Email</string>
@@ -113,5 +112,15 @@
     <string name="hours_slept">6hrs</string>
     <string name="apo_score">9</string>
     <string name="exercise_calc">2Hrs</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
+    <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="email_address">Email Address</string>
+    <string name="full_name">Full Name</string>
+    <string name="change_preferred_language">Change preferred language</string>
+    <string name="language">Language</string>
+    <string name="units">Units</string>
+    <string name="choose_unit_of_measurement">Choose unit of measurement</string>
 
 </resources>
