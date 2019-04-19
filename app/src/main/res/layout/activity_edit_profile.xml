@@ -136,7 +136,6 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText6"
         app:layout_constraintStart_toStartOf="@+id/editText6"
         app:layout_constraintTop_toTopOf="@+id/saveButton_EditProfilePage"
         app:layout_constraintVertical_bias="1.0" />
@@ -151,8 +150,7 @@
         android:textAllCaps="false"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText7"
-        app:layout_constraintStart_toStartOf="@+id/editText7" />
+        app:layout_constraintEnd_toEndOf="@+id/editText7" />
 
     <EditText
         android:id="@+id/editText8"
