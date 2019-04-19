@@ -1,6 +1,5 @@
 package hng.tech.apoe_4.utils;
 
-import android.app.Application;
 import android.content.ContextWrapper;
 
 import com.google.gson.Gson;
@@ -9,13 +8,14 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.concurrent.TimeUnit;
 
+import androidx.multidex.MultiDexApplication;
 import hng.tech.apoe_4.retrofit.ApiInterface;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainApplication extends Application {
+public class MainApplication extends MultiDexApplication {
 
     private static MainApplication instance;
     private static ApiInterface apiInterface;
