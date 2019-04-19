@@ -319,6 +319,13 @@ public class TodayFragment extends Fragment {
 //this prepares the recycler view
 // this methods fetch the data from the json asset file and displays the data
 
-
+    public static TodayFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TodayFragment fragment = new TodayFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 }
