@@ -18,6 +18,9 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.location.FusedLocationProviderClient;
+//import com.google.android.gms.location.LocationServices;
+//import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.pixplicity.easyprefs.library.Prefs;
@@ -30,10 +33,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
@@ -126,17 +127,17 @@ public class Home extends AppCompatActivity {
 
 
         if (!Prefs.getBoolean("fblog", false)){
-            patientName.setText(Prefs.getString("firstName", "John") + "\t"
-                    + Prefs.getString("lastName", "Doe"));
+            patientName.setText((Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe")));
 
-            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                    + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText((Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe")));
         }else{
-            patientName.setText(Prefs.getString("firstName", "John") + " "
-                    + Prefs.getString("lastName", "Doe"));
+            patientName.setText((Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe")));
 
-            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
-                    + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText((Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe")));
 
             Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
         }
@@ -145,7 +146,7 @@ public class Home extends AppCompatActivity {
         calculateAge();
 
         //get Location Permission
-        getLocationPermission();
+//        getLocationPermission();
         //get device Location
 
 
@@ -328,6 +329,69 @@ public class Home extends AppCompatActivity {
                     LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
+//    private void getDeviceLocation(){
+//        Log.d(TAG, "getDeviceLocation: getting the devices current location");
+//
+//        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+//
+//        try{
+//            if(mLocationPermissionsGranted){
+//
+//                final Task<Location> location = mFusedLocationProviderClient.getLastLocation();
+//                location.addOnCompleteListener(new OnCompleteListener<Location>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Location> task) {
+//                        if(task.isSuccessful()){
+//                            Log.d(TAG, "onComplete: found location!");
+//                            Location currentLocation = (Location) task.getResult();
+//                            if (locations.hasLocationEnabled()){
+//                                lat = currentLocation.getLatitude();
+//                                lng= currentLocation.getLongitude();
+//                                Log.d(TAG, "onComplete: found location!");
+//                            }else {
+//                                // ask the user to enable location access
+//                                Toast.makeText(Home.this, "Please enable location", Toast.LENGTH_SHORT).show();
+//                                SimpleLocation.openSettings(getApplicationContext());
+//                            }
+//
+//
+//
+//
+//                        }else{
+//                            Log.d(TAG, "onComplete: current location is null");
+//                            Toast.makeText(Home.this, "unable to get current location", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                    }
+//                });
+//            }
+//        }catch (SecurityException e){
+//            Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage() );
+//        }
+//    }
+
+//    private void getLocationPermission(){
+//        Log.d(TAG, "getLocationPermission: getting location permissions");
+//        String[] permissions = {Manifest.permission.ACCESS_FINE_LOCATION,
+//                Manifest.permission.ACCESS_COARSE_LOCATION};
+//
+//        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//                FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+//            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),
+//                    COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+//                mLocationPermissionsGranted = true;
+//                getDeviceLocation();
+//            }else{
+//                ActivityCompat.requestPermissions(this,
+//                        permissions,
+//                        LOCATION_PERMISSION_REQUEST_CODE);
+//            }
+//        }else{
+//            ActivityCompat.requestPermissions(this,
+//                    permissions,
+//                    LOCATION_PERMISSION_REQUEST_CODE);
+//        }
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -346,7 +410,7 @@ public class Home extends AppCompatActivity {
                     }
                     Log.d(TAG, "onRequestPermissionsResult: permission granted");
                     mLocationPermissionsGranted = true;
-                    getDeviceLocation();
+//                    getDeviceLocation();
                     //initialize our map
                 }
             }

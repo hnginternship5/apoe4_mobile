@@ -3,7 +3,6 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,10 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-
 import androidx.core.content.ContextCompat;
-
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
@@ -71,6 +67,8 @@ public class TodayFragment extends Fragment {
 
     @BindView(R.id.questions_view)
     LinearLayout questionsLayout;
+//    @BindView(R.id.loading)
+//    ProgressBar progressBar;
 
     @BindView(R.id.temp)
     TextView tempText;
@@ -105,6 +103,7 @@ public class TodayFragment extends Fragment {
     int a = 0;
 
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -114,6 +113,7 @@ public class TodayFragment extends Fragment {
 
         } else {
             requestStoragePermission();
+
         }
 
     }
@@ -182,7 +182,6 @@ public class TodayFragment extends Fragment {
 
 
         assetName = "Questions";
-
 
 
 // construct a new instance of SimpleLocation
@@ -348,8 +347,13 @@ public class TodayFragment extends Fragment {
 //this prepares the recycler view
 // this methods fetch the data from the json asset file and displays the data
 
-
     public static TodayFragment newInstance() {
-        return new TodayFragment();
+        
+        Bundle args = new Bundle();
+        
+        TodayFragment fragment = new TodayFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
+
 }

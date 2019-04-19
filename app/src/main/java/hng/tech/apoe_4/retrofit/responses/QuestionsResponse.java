@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 public class QuestionsResponse implements Serializable {
+
     private String text;
     private List<String> answers;
 
