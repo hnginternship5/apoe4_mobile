@@ -250,6 +250,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+
         MainApplication.getApiInterface().login(new User(email, password)).enqueue(new Callback<AuthResponse>() {
             @Override
             public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
@@ -454,6 +455,5 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 }

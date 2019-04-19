@@ -257,14 +257,14 @@ public class Home extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==101){
             if(resultCode==RESULT_OK){
-                String replaceHeight = data.getStringExtra("Height");
-                heightDrawer.setText(replaceHeight);
-                Prefs.putString("list_size1",replaceHeight);
-            }
-            if(resultCode==2){
-                String replaceWeight = data.getStringExtra("Weight");
-                weightDrawer.setText(replaceWeight);
-                Prefs.putString("list_size0",replaceWeight);
+                //String replaceHeight = data.getStringExtra("Height");
+                ArrayList<String> replaceInfo = data.getStringArrayListExtra("USER_SELECT");
+
+                heightDrawer.setText(replaceInfo.get(1));
+                weightDrawer.setText(replaceInfo.get(0));
+
+                Prefs.putString("list_size1",replaceInfo.get(1));
+                Prefs.putString("list_size0",replaceInfo.get(0));
             }
         }
     }
