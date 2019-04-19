@@ -18,9 +18,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +29,6 @@ import androidx.core.content.ContextCompat;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
@@ -42,12 +38,10 @@ import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.Question;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
-import hng.tech.apoe_4.retrofit.responses.Main;
+import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
 import hng.tech.apoe_4.retrofit.responses.QuestionServed;
-import hng.tech.apoe_4.retrofit.responses.QuestionsResponse;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.CONSTANTS;
-import hng.tech.apoe_4.utils.DataUtil;
 import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
@@ -81,17 +75,13 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.temp)
     TextView tempText;
 
-    boolean questionAvailable = false;
+    private boolean questionAvailable = false;
+    String questionId;
 
-    LayoutInflater genInflater;
+    private LayoutInflater genInflater;
 
 
-    List<QuestionsResponse> questions = new ArrayList<>(Arrays.asList(
-            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad")),
-            new QuestionsResponse("How was your night?", Arrays.asList("Great", "Good", "Ok", "Bad")),
-            new QuestionsResponse("What do ypu think of this App?", Arrays.asList("Awesome", "Awesome", "Awesome", "Awesome")),
-            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad"))
-    ));
+
 
 
 
@@ -147,9 +137,28 @@ public class TodayFragment extends Fragment {
 
 
     private View.OnClickListener buttonTap = v -> {
-        String questionType = CONSTANTS.getState();
-        getQuestion(questionType);
+        Button selected = (Button) v;
+       sendAnswer(selected.getText().toString());
     };
+
+    private void sendAnswer(String answer){
+        MainApplication.getApiInterface().sendAnswer(questionId, answer).enqueue(new Callback<AnswerResponse>() {
+            @Override
+            public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
+                if (response.isSuccessful());
+                assert  response.body() != null;
+                AnswerResponse answerResponse = response.body();
+
+                String questionType = CONSTANTS.getTimeOfDay();
+                getQuestion(questionType);
+            }
+
+            @Override
+            public void onFailure(Call<AnswerResponse> call, Throwable t) {
+
+            }
+        });
+    }
 
     @Nullable
     @Override
@@ -162,13 +171,13 @@ public class TodayFragment extends Fragment {
 
 //        submit_button = view.findViewById(R.id.submit_button);
 
-        Toasty.info(getActivity(), CONSTANTS.getState()).show();
+        Toasty.info(getActivity(), CONSTANTS.getTimeOfDay()).show();
 
 
         questionsLayout.removeAllViews();
         View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
 
-        getQuestion(CONSTANTS.getState());
+        getQuestion(CONSTANTS.getTimeOfDay());
 //        questionsLayout.addView(questionView);
 
 
@@ -256,26 +265,27 @@ public class TodayFragment extends Fragment {
         return view;
     }
 
-    private void showNextQuestion(@NonNull LayoutInflater inflater, QuestionsResponse questionsResponse) {
+    private void showNextQuestion(@NonNull LayoutInflater inflater, Question question) {
        if (questionAvailable){
+           questionId = question.getId();
            questionsLayout.removeAllViews();
            View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
            TextView title = questionView.findViewById(R.id.question_title);
            Button one = questionView.findViewById(R.id.answer1);
            Button two = questionView.findViewById(R.id.answer2);
-           Button thre = questionView.findViewById(R.id.answer3);
+           Button three = questionView.findViewById(R.id.answer3);
            Button four = questionView.findViewById(R.id.answer4);
 
            one.setOnClickListener(buttonTap);
            two.setOnClickListener(buttonTap);
-           thre.setOnClickListener(buttonTap);
+           three.setOnClickListener(buttonTap);
            four.setOnClickListener(buttonTap);
 
-           title.setText(questionsResponse.getText());
-           one.setText(questionsResponse.getAnswers().get(0));
-           two.setText(questionsResponse.getAnswers().get(1));
-           thre.setText(questionsResponse.getAnswers().get(2));
-           four.setText(questionsResponse.getAnswers().get(3));
+           title.setText(question.getText());
+           one.setText(question.getOptions().get(0));
+           two.setText(question.getOptions().get(1));
+           three.setText(question.getOptions().get(2));
+           four.setText(question.getOptions().get(3));
            a++;
        }
 
@@ -295,10 +305,7 @@ public class TodayFragment extends Fragment {
                     QuestionServed questionServed = response.body();
                     if (!questionServed.getError()){
                         questionAvailable = true;
-                        QuestionsResponse questionsResponse =  new QuestionsResponse();
-                        questionsResponse.setText(questionServed.getQuestion().getText());
-                        questionsResponse.setAnswers(questionServed.getQuestion().getOptions());
-                        showNextQuestion(genInflater, questionsResponse);
+                        showNextQuestion(genInflater, questionServed.getQuestion());
                     }
                     else {
                         questionAvailable = false;
