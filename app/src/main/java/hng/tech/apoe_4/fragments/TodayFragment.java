@@ -137,6 +137,10 @@ public class TodayFragment extends Fragment {
 
 
     private View.OnClickListener buttonTap = v -> {
+        questionsLayout.animate()
+                .translationX(70)
+                .alpha(1.0f)
+                .setListener(null);
         Button selected = (Button) v;
        sendAnswer(selected.getText().toString());
     };
@@ -148,6 +152,7 @@ public class TodayFragment extends Fragment {
                 if (response.isSuccessful());
                 assert  response.body() != null;
                 AnswerResponse answerResponse = response.body();
+
 
                 String questionType = CONSTANTS.getTimeOfDay();
                 getQuestion(questionType);
@@ -301,6 +306,9 @@ public class TodayFragment extends Fragment {
                 if (response.isSuccessful()){
                     assert  response.body() != null;
 
+                    questionsLayout.animate()
+                            .translationX(0)
+                            .alpha(1.0f).setListener(null);
                     QuestionServed questionServed = response.body();
                     if (!questionServed.getError()){
                         questionAvailable = true;
