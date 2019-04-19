@@ -69,6 +69,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.42.0'
 
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 
     //Google
     implementation 'com.google.android.gms:play-services-location:16.0.0'
