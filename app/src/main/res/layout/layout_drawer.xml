@@ -56,7 +56,7 @@
                             android:id="@+id/edit"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="2dp"
                             android:scaleType="fitCenter"
                             android:layout_marginLeft="100dp"
                             app:srcCompat="@drawable/ic_edit" />
@@ -66,10 +66,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:text="@string/edit"
-                            android:layout_marginLeft="3dp"
+                            android:layout_marginLeft="1dp"
                             android:layout_weight="1"
                             android:textSize="18sp"
-                            android:gravity="center"
+                            android:gravity="start"
                             android:textColor="@color/gray"
                             />
 
