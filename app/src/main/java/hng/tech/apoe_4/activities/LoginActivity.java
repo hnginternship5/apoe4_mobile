@@ -4,9 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -115,6 +119,17 @@ public class LoginActivity extends AppCompatActivity {
             prog.setVisibility(View.VISIBLE);
             Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, RC_SIGN_IN);
+        });
+
+        CheckBox show_password = findViewById(R.id.log_show_password);
+        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                // show password
+                login_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else {
+                // hide password
+                login_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            }
         });
     }
 
