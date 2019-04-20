@@ -113,7 +113,7 @@ public class Home extends AppCompatActivity {
 
 
 
-//    private FusedLocationProviderClient mFusedLocationProviderClient;
+    private FusedLocationProviderClient mFusedLocationProviderClient;
     Location current;
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
@@ -130,17 +130,17 @@ public class Home extends AppCompatActivity {
 
 
         if (!Prefs.getBoolean("fblog", false)){
-            patientName.setText(Prefs.getString("firstName", "John") + "\t"
-                    + Prefs.getString("lastName", "Doe"));
+            patientName.setText((Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe")));
 
-            userNameDrawer.setText(Prefs.getString("firstName", "John") + "\t"
-                    + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText((Prefs.getString("firstName", "John") + "\t"
+                    + Prefs.getString("lastName", "Doe")));
         }else{
-            patientName.setText(Prefs.getString("firstName", "John") + " "
-                    + Prefs.getString("lastName", "Doe"));
+            patientName.setText((Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe")));
 
-            userNameDrawer.setText(Prefs.getString("firstName", "John") + " "
-                    + Prefs.getString("lastName", "Doe"));
+            userNameDrawer.setText((Prefs.getString("firstName", "John") + " "
+                    + Prefs.getString("lastName", "Doe")));
 
             Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
         }

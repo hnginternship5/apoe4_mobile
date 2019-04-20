@@ -3,10 +3,8 @@ package hng.tech.apoe_4.fragments;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
-
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,30 +33,29 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.adapters.QuestionAdapter;
 import hng.tech.apoe_4.models.AnswerData;
+import hng.tech.apoe_4.models.Question;
 import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.retrofit.ApiInterface;
-import hng.tech.apoe_4.retrofit.responses.QuestionsResponse;
+import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
+import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
-import hng.tech.apoe_4.utils.DataUtil;
+import hng.tech.apoe_4.utils.CONSTANTS;
+import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
 import im.delight.android.location.SimpleLocation;
@@ -75,7 +73,9 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 public class TodayFragment extends Fragment {
 
+
     FirebaseFirestore db;
+
 
 
     @BindView(R.id.exerciseProgress)
@@ -95,15 +95,13 @@ public class TodayFragment extends Fragment {
     @BindView(R.id.temp)
     TextView tempText;
 
-    LayoutInflater genInflater;
+    private boolean questionAvailable = false;
+    String questionId;
+
+    private LayoutInflater genInflater;
 
 
-    List<QuestionsResponse> questions = new ArrayList<>(Arrays.asList(
-            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad")),
-            new QuestionsResponse("How was your night?", Arrays.asList("Great", "Good", "Ok", "Bad")),
-            new QuestionsResponse("What do ypu think of this App?", Arrays.asList("Awesome", "Awesome", "Awesome", "Awesome")),
-            new QuestionsResponse("How are you today?", Arrays.asList("Great", "Good", "Ok", "Bad"))
-    ));
+
 
 
 
@@ -161,9 +159,33 @@ public class TodayFragment extends Fragment {
 
 
     private View.OnClickListener buttonTap = v -> {
-        showNextQuestion(genInflater);
-        Toasty.info(getActivity().getBaseContext(), a + "").show();
+        questionsLayout.animate()
+                .translationX(70)
+                .alpha(1.0f)
+                .setListener(null);
+        Button selected = (Button) v;
+       sendAnswer(selected.getText().toString());
     };
+
+    private void sendAnswer(String answer){
+        MainApplication.getApiInterface().sendAnswer(questionId, answer).enqueue(new Callback<AnswerResponse>() {
+            @Override
+            public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
+                if (response.isSuccessful());
+                assert  response.body() != null;
+                AnswerResponse answerResponse = response.body();
+
+
+                String questionType = CONSTANTS.getTimeOfDay();
+                getQuestion(questionType);
+            }
+
+            @Override
+            public void onFailure(Call<AnswerResponse> call, Throwable t) {
+
+            }
+        });
+    }
 
     @Nullable
     @Override
@@ -176,9 +198,13 @@ public class TodayFragment extends Fragment {
 
 //        submit_button = view.findViewById(R.id.submit_button);
 
+        Toasty.info(getActivity(), CONSTANTS.getTimeOfDay()).show();
 
 
-        showNextQuestion(inflater);
+        questionsLayout.removeAllViews();
+        View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
+
+        getQuestion(CONSTANTS.getTimeOfDay());
 //        questionsLayout.addView(questionView);
 
 
@@ -265,26 +291,27 @@ public class TodayFragment extends Fragment {
         return view;
     }
 
-    private void showNextQuestion(@NonNull LayoutInflater inflater) {
-       if (a < 4){
+    private void showNextQuestion(@NonNull LayoutInflater inflater, Question question) {
+       if (questionAvailable){
+           questionId = question.getId();
            questionsLayout.removeAllViews();
            View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
            TextView title = questionView.findViewById(R.id.question_title);
            Button one = questionView.findViewById(R.id.answer1);
            Button two = questionView.findViewById(R.id.answer2);
-           Button thre = questionView.findViewById(R.id.answer3);
+           Button three = questionView.findViewById(R.id.answer3);
            Button four = questionView.findViewById(R.id.answer4);
 
            one.setOnClickListener(buttonTap);
            two.setOnClickListener(buttonTap);
-           thre.setOnClickListener(buttonTap);
+           three.setOnClickListener(buttonTap);
            four.setOnClickListener(buttonTap);
 
-           title.setText(questions.get(a).getText());
-           one.setText(questions.get(a).getAnswers().get(0));
-           two.setText(questions.get(a).getAnswers().get(1));
-           thre.setText(questions.get(a).getAnswers().get(2));
-           four.setText(questions.get(a).getAnswers().get(3));
+           title.setText(question.getText());
+           one.setText(question.getOptions().get(0));
+           two.setText(question.getOptions().get(1));
+           three.setText(question.getOptions().get(2));
+           four.setText(question.getOptions().get(3));
            a++;
        }
 
@@ -292,6 +319,34 @@ public class TodayFragment extends Fragment {
            questionsLayout.removeAllViews();
            View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
        }
+    }
+
+    private void getQuestion(String timeOfDay){
+        MainApplication.getApiInterface().getQuestion(timeOfDay).enqueue(new Callback<QuestionServed>() {
+            @Override
+            public void onResponse(Call<QuestionServed> call, Response<QuestionServed> response) {
+                if (response.isSuccessful()){
+                    assert  response.body() != null;
+
+                    questionsLayout.animate()
+                            .translationX(0)
+                            .alpha(1.0f).setListener(null);
+                    QuestionServed questionServed = response.body();
+                    if (!questionServed.getError()){
+                        questionAvailable = true;
+                        showNextQuestion(genInflater, questionServed.getQuestion());
+                    }
+                    else {
+                        questionAvailable = false;
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<QuestionServed> call, Throwable t) {
+
+            }
+        });
     }
 
 
@@ -322,9 +377,18 @@ public class TodayFragment extends Fragment {
 //this prepares the recycler view
 // this methods fetch the data from the json asset file and displays the data
 
-public static TodayFragment newInstance(){
-    return new TodayFragment();
+
+
+
+
+    public static TodayFragment newInstance() {
+        
+        Bundle args = new Bundle();
+        
+        TodayFragment fragment = new TodayFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 
-}
 
+}
