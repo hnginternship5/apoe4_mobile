@@ -88,7 +88,7 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.drawer_signOut)
     RelativeLayout signout;
-    
+
     @BindView(R.id.civ_user_drawer)
     CircleImageView pic;
 
@@ -101,6 +101,9 @@ public class Home extends AppCompatActivity {
 
     @BindView(R.id.tv_phone_number_drawer)
     TextView infoDrawer;
+
+    @BindView(R.id.imageView5)
+    RelativeLayout notif;
 
     static String gender;
 
@@ -195,6 +198,7 @@ public class Home extends AppCompatActivity {
             Prefs.putBoolean("que1", false);
             Prefs.putBoolean("fblog", false);
             Prefs.putBoolean("loggedIn", false);
+            Prefs.putString("url", "");
             Prefs.putString("accessToken", "");
 
             Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();

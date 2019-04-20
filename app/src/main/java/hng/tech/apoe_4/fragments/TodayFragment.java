@@ -17,6 +17,23 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -55,6 +72,11 @@ import static hng.tech.apoe_4.activities.Home.lng;
 
 
 public class TodayFragment extends Fragment {
+
+
+    FirebaseFirestore db;
+
+
 
     @BindView(R.id.exerciseProgress)
     ProgressBar tempProgress;
@@ -355,6 +377,10 @@ public class TodayFragment extends Fragment {
 //this prepares the recycler view
 // this methods fetch the data from the json asset file and displays the data
 
+
+
+
+
     public static TodayFragment newInstance() {
         
         Bundle args = new Bundle();
@@ -363,5 +389,6 @@ public class TodayFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
 }
