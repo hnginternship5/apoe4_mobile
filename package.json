@@ -1,0 +1,19 @@
+{
+  "name": "hng5_apoe4-ios-app",
+  "version": "0.0.0",
+  "description": "No description",
+  "author": null,
+  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
+  "dependencies": {
+    "expo": "^32.0.0",
+    "react": "16.5.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
+    "react-dom": "^16.0.0",
+    "react-native-elements": "1.1.0",
+    "react-native-fab-pie": "1.0.0",
+    "react-native-svg-charts": "5.2.0",
+    "react-navigation": "3.0.0-rc.5",
+    "react-svg-donut-chart": "1.1.0"
+  }
+}
