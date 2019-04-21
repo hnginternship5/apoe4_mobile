@@ -14,6 +14,7 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -23,6 +24,7 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
 
     private static ArrayList<String> listWHG = new ArrayList<>();
+
     DatePicker dateOfBirthPicker;
     Button submitDateOfBirth;
 
@@ -102,9 +104,12 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
             saveDOB(dob);
 
-                startActivity(new Intent(DOB_page.this, QuestionsActivity.class));
-                finish();
-
+            // Ensure all fields are selected
+            if (listWHG.size() < 3){
+                return;
+            }
+            startActivity(new Intent(DOB_page.this, QuestionsActivity.class));
+            finish();
 
         });
     }
@@ -138,6 +143,7 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
         return listWHG;
     }
 
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         switch(parent.getId()){
@@ -162,6 +168,7 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
         }
 
         saveWHGInfo(listWHG);
+
     }
 
     @Override

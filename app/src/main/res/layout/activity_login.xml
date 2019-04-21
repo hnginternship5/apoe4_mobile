@@ -57,35 +57,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <EditText
-            android:id="@+id/login_password"
-            android:layout_width="0dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
-            android:background="@drawable/text_bg"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="8dp"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_email" />
+            app:layout_constraintTop_toBottomOf="@+id/login_email">
 
-        <CheckBox
-            android:id="@+id/log_show_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="Show password"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/login_password"
-            app:layout_constraintStart_toEndOf="@+id/rememberMe"
-            app:layout_constraintTop_toBottomOf="@+id/login_password" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password"
+                android:padding="8dp"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_bg"
+                android:hint="@string/password" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
         <CheckBox
@@ -93,25 +84,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@string/remember_me"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/log_show_password"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/log_show_password"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
         <TextView
             android:id="@+id/fpassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:onClick="passwordforgot"
             android:text="@string/forgot_password"
             android:textColor="#CC3333"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/login_password"
-            app:layout_constraintTop_toBottomOf="@+id/rememberMe" />
+            app:layout_constraintBottom_toBottomOf="@+id/rememberMe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rememberMe" />
 
         <Button
 
@@ -121,6 +111,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/button_blue_bg"
             android:onClick="login"
             android:text="@string/register_sign_in"
@@ -251,6 +242,8 @@
                 android:layout_centerInParent="true" />
 
         </RelativeLayout>
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
