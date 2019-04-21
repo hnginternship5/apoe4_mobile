@@ -70,8 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameRegInput" />
-
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/passRegInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -83,12 +82,24 @@
             android:inputType="textPassword"
             android:padding="8dp"
             android:textSize="16sp"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailRegInput" />
+            app:layout_constraintTop_toBottomOf="@+id/emailRegInput" >
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_bg"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/confirmPassRegInput"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -100,23 +111,35 @@
             android:inputType="textPassword"
             android:padding="8dp"
             android:textSize="16sp"
+            app:passwordToggleEnabled="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passRegInput" />
+            app:layout_constraintTop_toBottomOf="@+id/passRegInput"  >
 
-        <CheckBox
-            android:id="@+id/reg_show_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="Show password"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView15"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/confirmPassReg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/text_bg"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/reg_show_password"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:text="Show password"-->
+            <!--android:textSize="16sp"-->
+            <!--app:layout_constraintBottom_toTopOf="@+id/textView15"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />-->
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/accept_terms_and_conditions"

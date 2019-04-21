@@ -3,7 +3,7 @@ package hng.tech.apoe_4.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import butterknife.BindView;
-import hng.tech.apoe_4.R;
+import hng.tech.apoe_4.*;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -87,7 +87,7 @@ public class EditProfile extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         //Detects request codes
-        if(requestCode==GET_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
+        if (requestCode == GET_FROM_GALLERY && resultCode == Activity.RESULT_OK) {
             Uri selectedImage = data.getData();
             Bitmap bitmap = null;
             try {
