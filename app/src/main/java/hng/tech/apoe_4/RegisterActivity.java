@@ -85,6 +85,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
                 return;
             }
 
+            registerPresenter.beginRegistration(firstName, lastName, regEmail, regPassword);
+
 
         });
 
