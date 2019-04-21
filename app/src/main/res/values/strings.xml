@@ -114,5 +114,6 @@
     <string name="hours_slept">6hrs</string>
     <string name="apo_score">9</string>
     <string name="exercise_calc">2Hrs</string>
+    <string name="no_more_questions_for_now_check_back_at_noon">No more Questions for now, check back at noon? ^_^</string>
 
 </resources>
