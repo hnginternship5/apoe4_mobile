@@ -44,6 +44,9 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+
     // FirebaseUI for Cloud Firestore
     implementation 'com.firebaseui:firebase-ui-firestore:4.3.2'
 
@@ -69,6 +72,7 @@ dependencies {
     implementation 'com.facebook.android:facebook-login:4.42.0'
 
     implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-fitness:16.0.1'
 
     //Google
     implementation 'com.google.android.gms:play-services-location:16.0.0'
