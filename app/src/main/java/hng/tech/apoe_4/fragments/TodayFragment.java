@@ -14,33 +14,29 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
-import hng.tech.apoe_4.adapters.QuestionAdapter;
-import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.Question;
-import hng.tech.apoe_4.models.QuestionData;
+import hng.tech.apoe_4.presenters.TodayPresenter;
 import hng.tech.apoe_4.retrofit.ApiInterface;
-import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
-import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.CONSTANTS;
-import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
+import hng.tech.apoe_4.views.TodayView;
 import im.delight.android.location.SimpleLocation;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -54,7 +50,7 @@ import static hng.tech.apoe_4.activities.Home.lat;
 import static hng.tech.apoe_4.activities.Home.lng;
 
 
-public class TodayFragment extends Fragment {
+public class TodayFragment extends Fragment implements TodayView {
 
     @BindView(R.id.exerciseProgress)
     ProgressBar tempProgress;
@@ -67,16 +63,21 @@ public class TodayFragment extends Fragment {
 
     @BindView(R.id.questions_view)
     LinearLayout questionsLayout;
+
+//    @BindView(R.id.loadingQuestions)
+private ProgressBar loadingQuestions;
+    private TextView noMoreQuestions;
 //    @BindView(R.id.loading)
 //    ProgressBar progressBar;
 
     @BindView(R.id.temp)
     TextView tempText;
 
-    private boolean questionAvailable = false;
-    String questionId;
+    private String questionId;
 
     private LayoutInflater genInflater;
+
+    private TodayPresenter todayPresenter;
 
 
 
@@ -85,22 +86,12 @@ public class TodayFragment extends Fragment {
 
     private float from = (float)10;
     private float to;
-    private String temp;
-    double progress;
+    private double progress;
 
-    Context mContext = getActivity();
-    char degree = '\u00B0';
+    private char degree = '\u00B0';
 
-    SimpleLocation location;
-    private QuestionAdapter questionAdapter;
-    private Button submit_button;
-    private LinearLayoutManager linearLayoutManager;
-    private String assetName;
-    private String arrayName;
-    private List<QuestionData> questionDataList;
-    private List<AnswerData> answerDataList;
+    private SimpleLocation location;
     private int LOCATION_REQUEST_CODE = 1;
-    int a = 0;
 
 
 
@@ -137,32 +128,18 @@ public class TodayFragment extends Fragment {
 
 
     private View.OnClickListener buttonTap = v -> {
-        questionsLayout.animate()
-                .translationX(70)
-                .alpha(1.0f)
-                .setListener(null);
+        YoYo.with(Techniques.SlideOutRight)
+                .duration(700)
+//                .repeat(5)
+                .playOn(questionsLayout);
+
         Button selected = (Button) v;
        sendAnswer(selected.getText().toString());
     };
 
     private void sendAnswer(String answer){
-        MainApplication.getApiInterface().sendAnswer(questionId, answer).enqueue(new Callback<AnswerResponse>() {
-            @Override
-            public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
-                if (response.isSuccessful());
-                assert  response.body() != null;
-                AnswerResponse answerResponse = response.body();
 
-
-                String questionType = CONSTANTS.getTimeOfDay();
-                getQuestion(questionType);
-            }
-
-            @Override
-            public void onFailure(Call<AnswerResponse> call, Throwable t) {
-
-            }
-        });
+        todayPresenter.sendAnswer(questionId, answer);
     }
 
     @Nullable
@@ -176,17 +153,20 @@ public class TodayFragment extends Fragment {
 
 //        submit_button = view.findViewById(R.id.submit_button);
 
-        Toasty.info(getActivity(), CONSTANTS.getTimeOfDay()).show();
+        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
+
+        todayPresenter = new TodayPresenter(getContext(), this);
 
 
         questionsLayout.removeAllViews();
         View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
+        loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
+        noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
 
-        getQuestion(CONSTANTS.getTimeOfDay());
+        todayPresenter.fetchQuestion();
 //        questionsLayout.addView(questionView);
 
 
-        assetName = "Questions";
 
 
 // construct a new instance of SimpleLocation
@@ -270,62 +250,29 @@ public class TodayFragment extends Fragment {
     }
 
     private void showNextQuestion(@NonNull LayoutInflater inflater, Question question) {
-       if (questionAvailable){
-           questionId = question.getId();
-           questionsLayout.removeAllViews();
-           View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
-           TextView title = questionView.findViewById(R.id.question_title);
-           Button one = questionView.findViewById(R.id.answer1);
-           Button two = questionView.findViewById(R.id.answer2);
-           Button three = questionView.findViewById(R.id.answer3);
-           Button four = questionView.findViewById(R.id.answer4);
+        questionId = question.getId();
+        questionsLayout.removeAllViews();
+        View questionView = inflater.inflate(R.layout.daily_questions_layout, questionsLayout);
+        TextView title = questionView.findViewById(R.id.question_title);
+        Button one = questionView.findViewById(R.id.answer1);
+        Button two = questionView.findViewById(R.id.answer2);
+        Button three = questionView.findViewById(R.id.answer3);
+        Button four = questionView.findViewById(R.id.answer4);
 
-           one.setOnClickListener(buttonTap);
-           two.setOnClickListener(buttonTap);
-           three.setOnClickListener(buttonTap);
-           four.setOnClickListener(buttonTap);
+        one.setOnClickListener(buttonTap);
+        two.setOnClickListener(buttonTap);
+        three.setOnClickListener(buttonTap);
+        four.setOnClickListener(buttonTap);
 
-           title.setText(question.getText());
-           one.setText(question.getOptions().get(0));
-           two.setText(question.getOptions().get(1));
-           three.setText(question.getOptions().get(2));
-           four.setText(question.getOptions().get(3));
-           a++;
-       }
+        title.setText(question.getText());
+        one.setText(question.getOptions().get(0));
+        two.setText(question.getOptions().get(1));
+        three.setText(question.getOptions().get(2));
+        if (question.getOptions().size() > 3)
+            four.setText(question.getOptions().get(3));
 
-       else {
-           questionsLayout.removeAllViews();
-           View questionView = inflater.inflate(R.layout.no_more_questions, questionsLayout);
-       }
     }
 
-    private void getQuestion(String timeOfDay){
-        MainApplication.getApiInterface().getQuestion(timeOfDay).enqueue(new Callback<QuestionServed>() {
-            @Override
-            public void onResponse(Call<QuestionServed> call, Response<QuestionServed> response) {
-                if (response.isSuccessful()){
-                    assert  response.body() != null;
-
-                    questionsLayout.animate()
-                            .translationX(0)
-                            .alpha(1.0f).setListener(null);
-                    QuestionServed questionServed = response.body();
-                    if (!questionServed.getError()){
-                        questionAvailable = true;
-                        showNextQuestion(genInflater, questionServed.getQuestion());
-                    }
-                    else {
-                        questionAvailable = false;
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<QuestionServed> call, Throwable t) {
-
-            }
-        });
-    }
 
 
     //this method helps with animating progress bar
@@ -364,4 +311,50 @@ public class TodayFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void beginQuestionFetch() {
+        loadingQuestions.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onFetchQuestion(Question question) {
+        loadingQuestions.setVisibility(View.GONE);
+        YoYo.with(Techniques.SlideInLeft)
+                .duration(700)
+                .playOn(questionsLayout);
+        showNextQuestion(genInflater, question);
+
+//        showNextQuestion(genInflater, question);
+
+    }
+
+    @Override
+    public void noMoreQuestions(String msg) {
+        questionsLayout.removeAllViews();
+        View view  = genInflater.inflate(R.layout.no_more_questions, questionsLayout);
+
+        loadingQuestions.setVisibility(View.GONE);
+        YoYo.with(Techniques.SlideInLeft)
+                .duration(700)
+                .playOn(questionsLayout);
+
+        noMoreQuestions = view.findViewById(R.id.no_more_questions_tv) ;
+        noMoreQuestions.setText(msg);
+
+    }
+
+    @Override
+    public void questionFetchFailed() {
+        loadingQuestions.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void toastSuccess(String msg) {
+
+    }
+
+    @Override
+    public void toastError(String msg) {
+
+    }
 }

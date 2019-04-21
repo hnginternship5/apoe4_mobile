@@ -12,6 +12,7 @@ import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -38,17 +39,13 @@ public interface ApiInterface {
     @POST("questions/daily-question")
     Call<DailyResponse> dailyQ(@Body dailyQuestions questions);
 
-    @POST("https://api.apoe4.app/api/v1/questions/getQuestion")
-//    @POST("https://demo-apoe4.herokuapp.com/api/v1/questions/getQuestion")
+    @POST("questions/getQuestion")
 
-@Headers("Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYWNkMWI4YTZkMWJlNWQ0MTUxOWFhNiIsImlhdCI6MTU1NTYxMTI5NCwiZXhwIjoxNTU1Nzg0MDk0fQ.FFrRsSzU93-Dk301hRF5kpYd3Arv5o96sB1u4MFetJg")
     @FormUrlEncoded
-    Call<QuestionServed> getQuestion(@Field("type") String type);
+    Call<QuestionServed> getQuestion(@Header ("Authorization") String header,@Field("type") String type);
 
-    @POST("https://api.apoe4.app/api/v1/answers/")
-//        @POST("https://demo-apoe4.herokuapp.com/api/v1/answers/")
+    @POST("answers/")
 
-    @Headers("Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYWNkMWI4YTZkMWJlNWQ0MTUxOWFhNiIsImlhdCI6MTU1NTYxMTI5NCwiZXhwIjoxNTU1Nzg0MDk0fQ.FFrRsSzU93-Dk301hRF5kpYd3Arv5o96sB1u4MFetJg")
     @FormUrlEncoded
-    Call<AnswerResponse> sendAnswer(@Field("question") String questionId, @Field("text") String answerSelected);
+    Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Field("question") String questionId, @Field("text") String answerSelected);
 }
