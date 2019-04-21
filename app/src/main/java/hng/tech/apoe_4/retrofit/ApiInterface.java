@@ -40,12 +40,10 @@ public interface ApiInterface {
     Call<DailyResponse> dailyQ(@Body dailyQuestions questions);
 
     @POST("questions/getQuestion")
-
     @FormUrlEncoded
     Call<QuestionServed> getQuestion(@Header ("Authorization") String header,@Field("type") String type);
 
     @POST("answers/")
-
     @FormUrlEncoded
     Call<AnswerResponse> sendAnswer(@Header ("Authorization") String header, @Field("question") String questionId, @Field("text") String answerSelected);
 }
