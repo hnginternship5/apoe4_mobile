@@ -32,6 +32,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -55,7 +56,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText login_email, login_password;
+    private EditText login_email;
+    private TextInputEditText  login_password;
     RelativeLayout prog;
     TextView text5;
     TextView forgotpass;
@@ -82,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         login_email = findViewById(R.id.login_email);
-        login_password = findViewById(R.id.login_password);
+        login_password = findViewById(R.id.login_pass);
         text5 = findViewById(R.id.textView5);
         prog = findViewById(R.id.progress);
 
@@ -121,16 +123,16 @@ public class LoginActivity extends AppCompatActivity {
             startActivityForResult(signInIntent, RC_SIGN_IN);
         });
 
-        CheckBox show_password = findViewById(R.id.log_show_password);
-        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                // show password
-                login_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            } else {
-                // hide password
-                login_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            }
-        });
+//        CheckBox show_password = findViewById(R.id.log_show_password);
+//        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            if (isChecked) {
+//                // show password
+//                login_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//            } else {
+//                // hide password
+//                login_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//            }
+//        });
     }
 
     @Override
