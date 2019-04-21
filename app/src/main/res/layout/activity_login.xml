@@ -57,10 +57,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLayout"
-            app:passwordToggleEnabled="true"
-            android:layout_width="match_parent"
+        <!--<com.google.android.material.textfield.TextInputLayout-->
+            <!--android:id="@+id/textInputLayout"-->
+            <!--app:passwordToggleEnabled="true"-->
+            <!--android:layout_width="match_parent"-->
 
 
 <!--         <com.google.android.material.textfield.TextInputLayout
@@ -85,12 +85,19 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_bg"
                 android:hint="@string/password" /> -->
-      
-        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             app:passwordToggleEnabled="true"
+            android:layout_width="0dp"
+            android:id="@+id/textInputLayout"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_email" >
+            app:layout_constraintTop_toBottomOf="@+id/login_email">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/login_pass"
@@ -116,8 +123,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
-            app:layout_constraintStart_toStartOf="@+id/login_password"
-            app:layout_constraintTop_toBottomOf="@+id/login_password" />
+            <!--app:layout_constraintStart_toStartOf="@+id/login_password"-->
+            <!--app:layout_constraintTop_toBottomOf="@+id/login_password" />-->
 
 
         <TextView
