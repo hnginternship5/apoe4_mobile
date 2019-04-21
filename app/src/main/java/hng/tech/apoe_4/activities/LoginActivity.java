@@ -30,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.pixplicity.easyprefs.library.Prefs;
 
 
@@ -51,7 +52,8 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText login_email, login_password;
+    private EditText login_email;
+    private TextInputEditText  login_password;
     RelativeLayout prog;
     TextView text5;
     TextView forgotpass;
@@ -77,8 +79,11 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+
         login_email = findViewById(R.id.note);
         login_password = findViewById(R.id.log_show_password);
+        login_email = findViewById(R.id.login_email);
+        login_password = findViewById(R.id.login_pass);
         text5 = findViewById(R.id.textView5);
         prog = findViewById(R.id.progress);
 

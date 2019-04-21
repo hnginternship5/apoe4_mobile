@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,10 +42,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     EditText fullName;
     @BindView(R.id.emailRegInput)
     EditText email;
-    @BindView(R.id.passRegInput)
-    EditText password;
-    @BindView(R.id.confirmPassRegInput)
-    EditText confirmPassword;
+    @BindView(R.id.passReg)
+    TextInputEditText password;
+    @BindView(R.id.confirmPassReg)
+    TextInputEditText confirmPassword;
 
     @BindView(R.id.reg_btn)
     Button registerButton;
@@ -90,18 +91,18 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
         });
 
-        CheckBox show_password = findViewById(R.id.reg_show_password);
-        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                // show password
-                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            } else {
-                // hide password
-                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
-            }
-        });
+//        CheckBox show_password = findViewById(R.id.reg_show_password);
+//        show_password.setOnCheckedChangeListener((buttonView, isChecked) -> {
+//            if (isChecked) {
+//                // show password
+//                password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//                confirmPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+//            } else {
+//                // hide password
+//                password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//                confirmPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+//            }
+//        });
     }
 
     public boolean validateForm(String firstName,

@@ -61,10 +61,17 @@
             android:id="@+id/textInputLayout"
             app:passwordToggleEnabled="true"
             android:layout_width="match_parent"
+
+
+<!--         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password"
+            android:layout_width="0dp"
+
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_email">
@@ -77,9 +84,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/text_bg"
-                android:hint="@string/password" />
+                android:hint="@string/password" /> -->
+      
         </com.google.android.material.textfield.TextInputLayout>
+            app:passwordToggleEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_email" >
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:background="@drawable/text_bg"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="8dp"
+                android:textSize="16sp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <CheckBox
             android:id="@+id/rememberMe"
@@ -89,8 +112,13 @@
             android:layout_marginTop="8dp"
             android:text="@string/remember_me"
             android:textSize="16sp"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+            app:layout_constraintStart_toStartOf="@+id/login_password"
+            app:layout_constraintTop_toBottomOf="@+id/login_password" />
+
 
         <TextView
             android:id="@+id/fpassword"
