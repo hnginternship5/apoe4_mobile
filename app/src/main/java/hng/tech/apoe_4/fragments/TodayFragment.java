@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -146,7 +147,7 @@ public class TodayFragment extends Fragment {
     };
 
     private void sendAnswer(String answer){
-        MainApplication.getApiInterface().sendAnswer(questionId, answer).enqueue(new Callback<AnswerResponse>() {
+        MainApplication.getApiInterface().sendAnswer(Prefs.getString("accessToken", ""),questionId, answer).enqueue(new Callback<AnswerResponse>() {
             @Override
             public void onResponse(Call<AnswerResponse> call, Response<AnswerResponse> response) {
                 if (response.isSuccessful());
@@ -289,7 +290,9 @@ public class TodayFragment extends Fragment {
            one.setText(question.getOptions().get(0));
            two.setText(question.getOptions().get(1));
            three.setText(question.getOptions().get(2));
-           four.setText(question.getOptions().get(3));
+           if (question.getOptions().size() > 3)
+               four.setText(question.getOptions().get(3));
+
            a++;
        }
 
@@ -300,7 +303,7 @@ public class TodayFragment extends Fragment {
     }
 
     private void getQuestion(String timeOfDay){
-        MainApplication.getApiInterface().getQuestion(timeOfDay).enqueue(new Callback<QuestionServed>() {
+        MainApplication.getApiInterface().getQuestion(Prefs.getString("accessToken", ""),timeOfDay).enqueue(new Callback<QuestionServed>() {
             @Override
             public void onResponse(Call<QuestionServed> call, Response<QuestionServed> response) {
                 if (response.isSuccessful()){
@@ -316,13 +319,17 @@ public class TodayFragment extends Fragment {
                     }
                     else {
                         questionAvailable = false;
+                        genInflater.inflate(R.layout.no_more_questions, questionsLayout);
                     }
                 }
             }
 
             @Override
             public void onFailure(Call<QuestionServed> call, Throwable t) {
-
+                questionsLayout.animate()
+                        .translationX(0)
+                        .alpha(1.0f).setListener(null);
+//                QuestionServed questionServed = response.body();
             }
         });
     }
