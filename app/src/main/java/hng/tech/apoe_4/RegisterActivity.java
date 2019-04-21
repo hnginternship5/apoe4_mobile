@@ -144,7 +144,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
     @Override
     public void toastError(String msg) {
-
+        Toasty.error(this, msg).show();
     }
 
     @Override
@@ -159,11 +159,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
 
     @Override
     public void registrationSuccessful() {
-
+        startActivity(new Intent(RegisterActivity.this, Home.class));
     }
 
     @Override
     public void registrationFail() {
-
+        prog2.setVisibility(View.GONE);
     }
 }
