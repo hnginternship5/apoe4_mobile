@@ -95,7 +95,7 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
             Calendar dob = Calendar.getInstance();
             dob.set(dateOfBirthPicker.getYear(),dateOfBirthPicker.getMonth()+1,dateOfBirthPicker.getDayOfMonth());
 
-            Toast.makeText(this, "Thank You", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Thank You", Toast.LENGTH_SHORT).show();
 
 //            This is for WHG
 
@@ -106,6 +106,8 @@ public class DOB_page extends AppCompatActivity implements AdapterView.OnItemSel
 
             // Ensure all fields are selected
             if (listWHG.size() < 3){
+                            Toast.makeText(this, "Please select all fields", Toast.LENGTH_SHORT).show();
+
                 return;
             }
             startActivity(new Intent(DOB_page.this, QuestionsActivity.class));

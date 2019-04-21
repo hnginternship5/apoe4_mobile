@@ -59,6 +59,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
+            app:passwordToggleEnabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -69,7 +70,8 @@
             app:layout_constraintTop_toBottomOf="@+id/login_email">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password"
+                android:id="@+id/log_show_password"
+                android:inputType="textPassword"
                 android:padding="8dp"
                 android:textSize="16sp"
                 android:layout_width="match_parent"
