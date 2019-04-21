@@ -18,31 +18,22 @@ import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.pixplicity.easyprefs.library.Prefs;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
-import hng.tech.apoe_4.adapters.QuestionAdapter;
-import hng.tech.apoe_4.models.AnswerData;
 import hng.tech.apoe_4.models.Question;
-import hng.tech.apoe_4.models.QuestionData;
 import hng.tech.apoe_4.presenters.TodayPresenter;
 import hng.tech.apoe_4.retrofit.ApiInterface;
-import hng.tech.apoe_4.retrofit.responses.AnswerResponse;
-import hng.tech.apoe_4.retrofit.responses.QuestionServed;
 import hng.tech.apoe_4.retrofit.responses.WeatherResponse;
 import hng.tech.apoe_4.utils.CONSTANTS;
-import hng.tech.apoe_4.utils.MainApplication;
 import hng.tech.apoe_4.utils.PermisionManager;
 import hng.tech.apoe_4.utils.ProgressAnim;
 import hng.tech.apoe_4.views.TodayView;
@@ -103,13 +94,6 @@ public class TodayFragment extends Fragment implements TodayView {
     char degree = '\u00B0';
 
     SimpleLocation location;
-    private QuestionAdapter questionAdapter;
-    private Button submit_button;
-    private LinearLayoutManager linearLayoutManager;
-    private String assetName;
-    private String arrayName;
-    private List<QuestionData> questionDataList;
-    private List<AnswerData> answerDataList;
     private int LOCATION_REQUEST_CODE = 1;
     int a = 0;
 
@@ -187,7 +171,6 @@ public class TodayFragment extends Fragment implements TodayView {
 //        questionsLayout.addView(questionView);
 
 
-        assetName = "Questions";
 
 
 // construct a new instance of SimpleLocation
