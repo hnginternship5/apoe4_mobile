@@ -196,7 +196,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         userUnitSelection(replaceWeight,list.get(1));
     }
-    
+
     private void userUnitSelection(String w, String h){
         ArrayList<String> userSelect = new ArrayList<>();
         userSelect.add(w);
