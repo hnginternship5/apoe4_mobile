@@ -114,6 +114,7 @@
     <string name="hours_slept">6hrs</string>
     <string name="apo_score">9</string>
     <string name="exercise_calc">2Hrs</string>
+
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account">Already have an account?</string>
     <string name="accept_terms_and_conditions">Accept Terms and Conditions</string>
@@ -124,5 +125,8 @@
     <string name="language">Language</string>
     <string name="units">Units</string>
     <string name="choose_unit_of_measurement">Choose unit of measurement</string>
+
+    <string name="no_more_questions_for_now_check_back_at_noon">No more Questions for now, check back at noon? ^_^</string>
+
 
 </resources>
