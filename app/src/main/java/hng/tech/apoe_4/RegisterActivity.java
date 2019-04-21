@@ -26,13 +26,15 @@ import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.activities.DOB_page;
 import hng.tech.apoe_4.activities.Home;
 import hng.tech.apoe_4.activities.LoginActivity;
+import hng.tech.apoe_4.presenters.RegisterPresenter;
 import hng.tech.apoe_4.retrofit.responses.AuthResponse;
 import hng.tech.apoe_4.utils.MainApplication;
+import hng.tech.apoe_4.views.RegisterView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity implements RegisterView {
 
     //DECLARING AND INITIALIZING VIEWS WITH BUTTERKNIFE
     @BindView(R.id.nameRegInput)
@@ -51,6 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.progressBar)
     ProgressBar prog2;
 
+    RegisterPresenter registerPresenter;
+
 
 
     @BindView(R.id.accept_terms_and_conditions)
@@ -65,6 +69,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         ButterKnife.bind(this);
+
+        registerPresenter = new RegisterPresenter(this, this);
+
         registerButton.setOnClickListener(v -> {
             //make progress bar visible
             prog2.setVisibility(View.VISIBLE);
@@ -77,37 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
                 prog2.setVisibility(View.GONE);
                 return;
             }
-            MainApplication.getApiInterface().register(
-                    firstName,
-                    lastName,
-                    regEmail,
-                    regPassword)
-                    .enqueue(new Callback<AuthResponse>() {
-                        @Override
-                        public void onResponse(Call<AuthResponse> call, Response<AuthResponse> response) {
-                            prog2.setVisibility(View.GONE);
-                            if (response.isSuccessful()){
-                                if (response.body() != null) {
-                                    prog2.setVisibility(View.GONE);
-                                    Toast.makeText(RegisterActivity.this, "Registration Success",
-                                            Toast.LENGTH_SHORT).show();
 
-                                    Prefs.putString("accessToken", response.body().getAccessToken());
-                                    Prefs.putString("firstName", firstName);
-                                    Prefs.putString("lastName", lastName);
-                                    startActivity(new Intent(RegisterActivity.this, DOB_page.class));
-                                }
-                            }
-//                        Toast.makeText(RegisterActivity.this,"",
-//                                Toast.LENGTH_SHORT).show();
-                        }
-
-                        @Override
-                        public void onFailure(Call<AuthResponse> call, Throwable t) {
-                            prog2.setVisibility(View.GONE);
-                            //Todo Logic to handle failure
-                        }
-                    });
 
         });
 
@@ -156,5 +133,35 @@ public class RegisterActivity extends AppCompatActivity {
     public void sign_in (View view){
         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
         RegisterActivity.this.finish();
+    }
+
+    @Override
+    public void toastSuccess(String msg) {
+
+    }
+
+    @Override
+    public void toastError(String msg) {
+
+    }
+
+    @Override
+    public void beginRegistration() {
+
+    }
+
+    @Override
+    public void registrationEnd() {
+
+    }
+
+    @Override
+    public void registrationSuccessful() {
+
+    }
+
+    @Override
+    public void registrationFail() {
+
     }
 }
