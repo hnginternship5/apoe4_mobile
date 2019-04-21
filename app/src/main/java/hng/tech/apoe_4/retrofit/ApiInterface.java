@@ -39,11 +39,15 @@ public interface ApiInterface {
     Call<DailyResponse> dailyQ(@Body dailyQuestions questions);
 
     @POST("https://api.apoe4.app/api/v1/questions/getQuestion")
-    @Headers("Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYWNkMWI4YTZkMWJlNWQ0MTUxOWFhNiIsImlhdCI6MTU1NTYxMTI5NCwiZXhwIjoxNTU1Nzg0MDk0fQ.FFrRsSzU93-Dk301hRF5kpYd3Arv5o96sB1u4MFetJg")
+//    @POST("https://demo-apoe4.herokuapp.com/api/v1/questions/getQuestion")
+
+@Headers("Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYWNkMWI4YTZkMWJlNWQ0MTUxOWFhNiIsImlhdCI6MTU1NTYxMTI5NCwiZXhwIjoxNTU1Nzg0MDk0fQ.FFrRsSzU93-Dk301hRF5kpYd3Arv5o96sB1u4MFetJg")
     @FormUrlEncoded
     Call<QuestionServed> getQuestion(@Field("type") String type);
 
     @POST("https://api.apoe4.app/api/v1/answers/")
+//        @POST("https://demo-apoe4.herokuapp.com/api/v1/answers/")
+
     @Headers("Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjYWNkMWI4YTZkMWJlNWQ0MTUxOWFhNiIsImlhdCI6MTU1NTYxMTI5NCwiZXhwIjoxNTU1Nzg0MDk0fQ.FFrRsSzU93-Dk301hRF5kpYd3Arv5o96sB1u4MFetJg")
     @FormUrlEncoded
     Call<AnswerResponse> sendAnswer(@Field("question") String questionId, @Field("text") String answerSelected);
