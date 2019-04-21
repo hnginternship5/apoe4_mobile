@@ -13,6 +13,12 @@ public class QuestionServed {
     @SerializedName("error")
     @Expose
     private Boolean error;
+    @SerializedName("status")
+    @Expose
+    private Integer status;
+    @SerializedName("msg")
+    @Expose
+    private String msg;
 
     public Question getQuestion() {
         return question;
@@ -28,6 +34,22 @@ public class QuestionServed {
 
     public void setError(Boolean error) {
         this.error = error;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
 }
