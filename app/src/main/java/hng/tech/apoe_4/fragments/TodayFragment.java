@@ -65,16 +65,15 @@ public class TodayFragment extends Fragment implements TodayView {
     LinearLayout questionsLayout;
 
 //    @BindView(R.id.loadingQuestions)
-    ProgressBar loadingQuestions;
-    TextView noMoreQuestions;
+private ProgressBar loadingQuestions;
+    private TextView noMoreQuestions;
 //    @BindView(R.id.loading)
 //    ProgressBar progressBar;
 
     @BindView(R.id.temp)
     TextView tempText;
 
-    private boolean questionAvailable = false;
-    String questionId;
+    private String questionId;
 
     private LayoutInflater genInflater;
 
@@ -87,15 +86,12 @@ public class TodayFragment extends Fragment implements TodayView {
 
     private float from = (float)10;
     private float to;
-    private String temp;
-    double progress;
+    private double progress;
 
-    Context mContext = getActivity();
-    char degree = '\u00B0';
+    private char degree = '\u00B0';
 
-    SimpleLocation location;
+    private SimpleLocation location;
     private int LOCATION_REQUEST_CODE = 1;
-    int a = 0;
 
 
 
@@ -167,7 +163,7 @@ public class TodayFragment extends Fragment implements TodayView {
         loadingQuestions = questionView.findViewById(R.id.loadingQuestions);
         noMoreQuestions = questionView.findViewById(R.id.no_more_questions_tv);
 
-        getQuestion();
+        todayPresenter.fetchQuestion();
 //        questionsLayout.addView(questionView);
 
 
@@ -275,13 +271,8 @@ public class TodayFragment extends Fragment implements TodayView {
         if (question.getOptions().size() > 3)
             four.setText(question.getOptions().get(3));
 
-        a++;
     }
 
-    private void getQuestion(){
-
-        todayPresenter.fetchQuestion();
-    }
 
 
     //this method helps with animating progress bar
