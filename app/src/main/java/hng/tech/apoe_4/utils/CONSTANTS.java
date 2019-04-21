@@ -11,11 +11,11 @@ public class CONSTANTS {
 
     public static String getTimeOfDay() {
         int currentDateString = Calendar.getInstance().getTime().getHours();
-        if (currentDateString >= 12 && currentDateString <= 18){
+        if (currentDateString >= 12 && currentDateString < 18){
             Log.e("Date", "Noon");
             return "Noon";
         }
-        else if (currentDateString >= 6 && currentDateString <= 12){
+        else if (currentDateString >= 6 && currentDateString < 12){
             Log.e("Date", "Day");
             return "Morning";
         }
