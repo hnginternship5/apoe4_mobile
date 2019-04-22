@@ -43,9 +43,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
     EditText fullName;
     @BindView(R.id.emailRegInput)
     EditText email;
-    @BindView(R.id.passRegInput)
+    @BindView(R.id.passReg)
     TextInputEditText password;
-    @BindView(R.id.confirmPassRegInput)
+    @BindView(R.id.confirmPassReg)
     TextInputEditText confirmPassword;
 
     @BindView(R.id.reg_btn)
