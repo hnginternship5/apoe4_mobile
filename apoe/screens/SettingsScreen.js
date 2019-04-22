@@ -10,7 +10,7 @@ import {
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    title: "app.json"
+    title: "settings"
   };
   _signOutAsync = async () => {
     await AsyncStorage.clear();
