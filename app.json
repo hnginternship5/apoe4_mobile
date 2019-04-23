@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "APOE4",
-    "slug": "APOE4",
+    "name": "APOE",
+    "slug": "apoe",
     "privacy": "public",
     "sdkVersion": "32.0.0",
     "platforms": [
@@ -10,11 +10,11 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets",
+    "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/images/splush.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "image": "./assets/Splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#032476"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
