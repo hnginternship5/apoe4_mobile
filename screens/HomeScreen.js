@@ -21,11 +21,48 @@ export default class HomeScreen extends React.Component {
           style={styles.container}
           contentContainerStyle={styles.contentContainer}
         >
-          <View style={styles.welcomeContainer} />
+          <View style={{flexDirection:'row',alignSelf:'flex-start'}}>
+             <TouchableOpacity
+                onPress={()=>this.props.navigation.openDrawer()}
+                activeOpacity={0.7}>
+              <Image source={require('../assets/profile.png')} style={{height:ww(40), width:ww(40), marginRight:ww(10)}} />
+             </TouchableOpacity>
+              <View>
+                <Text style={{fontSize:ww(17), fontWeight:'400', color:'#3380CC'}}>Hello,</Text>
+                <Text style={{fontSize:ww(17), fontWeight:'400', color:'#3380CC'}}>John Doe</Text>
+              </View>
+            </View>
 
-          <View style={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>Home Page</Text>
-          </View>
+            <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={()=> this.props.navigation.navigate('Notifications')}>
+              <FontAwesome name='bell' size={ww(30)} />
+              <View style={{height:ww(20),width:ww(20),borderRadius:ww(40), backgroundColor:'#EB5757',
+              justifyContent:'center',alignItems:'center' ,position:'absolute', top:0,right:0}}>
+                <Text style={{fontSize:ww(13),color:'white'}}>3</Text>
+              </View>
+            </TouchableOpacity>
+      </View>
+       <View style={{flex:1}}>
+        {this.renderTabs()}
+       </View>
+       <View style={{width:'100%',justifyContent:'space-between', paddingHorizontal:ww(15), alignItems:'center', height:hh(80), borderTopColor:'#ddd', flexDirection:'row',
+       borderTopWidth:0.5, backgroundColor:'white'}}>
+        <TouchableOpacity onPress={()=>this.setState({currentTab:'ResultsTab'})} style={{alignItems:'center'}}>
+          <Image source={this.state.currentTab==='ResultsTab'?require('../assets/resultsActive.png'):require('../assets/results.png')}
+          resizeMode="contain" style={styles.tabBtn} />
+          <Text style={{fontSize:ww(15), color:this.state.currentTab==='ResultsTab'?'#3380CC':'#C4C4C4'}}>Results</Text>
+        </TouchableOpacity>
+
+         <TouchableOpacity onPress={()=>this.setState({currentTab:'TodayTab'})} style={{alignItems:'center'}}>
+          <Image source={this.state.currentTab==='TodayTab'?require('../assets/todayActive.png'):require('../assets/today.png')}
+          resizeMode="contain" style={styles.tabBtn} />
+          <Text style={{fontSize:ww(15), color:this.state.currentTab==='TodayTab'?'#3380CC':'#C4C4C4'}}>Today</Text>
+        </TouchableOpacity>
+
+         <TouchableOpacity onPress={()=>this.setState({currentTab:'ForumsTab'})} style={{alignItems:'center'}}>
+          <Image source={this.state.currentTab==='ForumsTab'?require('../assets/forumsActive.png'):require('../assets/forums.png')}
+          resizeMode="contain" style={styles.tabBtn} />
+          <Text style={{fontSize:ww(15), color:this.state.currentTab==='ForumsTab'?'#3380CC':'#C4C4C4'}}>Forums</Text>
+        </TouchableOpacity>
         </ScrollView>
       </View>
     );
