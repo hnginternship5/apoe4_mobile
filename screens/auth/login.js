@@ -1,10 +1,9 @@
 import React from "react";
-import { View, AsyncStorage, Image, StyleSheet, ScrollView, TouchableOpacity, Text, TextInput, Dimensions } from "react-native";
+import { View, AsyncStorage, StyleSheet, ScrollView, TouchableOpacity, Text, TextInput, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { Input, Image } from "react-native-elements";
+import { Input, Image, CheckBox } from "react-native-elements";
 
 import Logo from '../../assets/logo.png';
-
 
 const { width } = Dimensions.get('window')
 
@@ -66,10 +65,17 @@ const styles = StyleSheet.create({
     height:50,
     width:'100%',
     borderRadius:5,
-    borderWidth:2,
+    borderWidth:1,
     borderColor:'#3380CC',
     marginBottom:20
   },
+  formBox: {
+    flex:1,
+    width:'100%',
+    marginTop:20, 
+    borderRadius:15, 
+    padding:10
+  }
 })
 
 export default class SignInScreen extends React.Component {
@@ -79,15 +85,34 @@ export default class SignInScreen extends React.Component {
 
   state = {
     view: 'signIn',
+    checked: false,
+    terms: false,
+    showPassword: false,
+    showNewPassword: false,
+    showConfirmPassword: false,
+  }
+
+  toggleSwitch = () => {
+    const { showPassword } = this.state
+    this.setState({ showPassword: !showPassword })
+  }
+
+  toggleNewPasswordSwitch = () => {
+    const { showNewPassword } = this.state
+    this.setState({ showNewPassword: !showNewPassword })
+  }
+
+  toggleConfirmPasswordSwitch = () => {
+    const { showConfirmPassword } = this.state
+    this.setState({ showConfirmPassword: !showConfirmPassword })
   }
 
   render() {
-    const { view } = this.state;
+    const { view, checked, showPassword, showNewPassword, showConfirmPassword } = this.state;
     return (
       <View style={styles.container}>
         <ScrollView>
           <View>
-            { /* <Button title="Sign in!" onPress={this._signInAsync} /> */ }
             <Image style={styles.logo} source={ Logo } />
           </View>
           <View style={styles.authContainer}>
@@ -105,33 +130,41 @@ export default class SignInScreen extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.signInContainer}>
-          {view === 'signIn' ? <View>
-          <Text style={{fontSize: 25, fontWeight:'700'}}>Sign In</Text>
-          <View style={{width:'100%', marginVertical:20}}>
-              <TextInput 
-              placeholder="Email Address"
-              style={[styles.input]} />
-              <TextInput 
-              placeholder="Password"
-              style={styles.input} />
+            {view === 'signIn' ? <View style={styles.formBox}>
+            <Text style={{fontSize: 25, fontWeight:'700', color: '#484848', marginLeft: 10}}>Sign In</Text>
+            <View style={{width:'100%', marginVertical:20}}>
+              <Input 
+                placeholder=" Email Address"
+                inputContainerStyle={styles.input}
+              />
+              <Input 
+                placeholder="Password"
+                secureTextEntry={!showPassword}
+                rightIcon={<Icon
+                  name='eye'
+                  onPress={() => this.toggleSwitch()}
+                />}
+                component={TouchableOpacity}
+                inputContainerStyle={styles.input} 
+              />
                    
               <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom: 10,}}>
-                <View style={{flexDirection:'row',alignItems:'center'}}>
-                <View style={{height:15,width:15, borderWidth:1.5,borderColor:'#3380CC',
-                backgroundColor:'white',marginRight:10}}></View>
-                <Text>Remember Me</Text>
+                <View style={{flexDirection:'row', alignItems:'center'}}>
+                  <CheckBox uncheckedColor={'#3380CC'} checked={checked} onPress={() => this.setState({checked: !checked})} />
+                  <Text>Remember Me</Text>
+                </View>
+                <View style={{flexDirection:'row', alignItems:'center'}}>
+                  <Text style={{color:'#CC3333'}}>Forgot Password?</Text>
+                </View>
               </View>
+            </View>
 
-              <Text style={{color:'#CC3333'}}>Forgot Password?</Text>
-                 </View>
-               </View>
-
-               <View style={{alignItems:'center'}}>
-                <TouchableOpacity onPress={()=> this._signInAsync}
-                style={{width:'50%',paddingVertical:20,marginBottom:20, backgroundColor:'#3380CC',
-                alignItems:'center', borderRadius:5}}>
-                  <Text style={{fontSize:17, fontWeight: '700', borderRadius: 10, color:'#FFF'}}>Sign in</Text>
-                </TouchableOpacity>
+            <View style={{alignItems:'center'}}>
+              <TouchableOpacity onPress={()=> this._signInAsync}
+              style={{width:'50%',paddingVertical:20,marginBottom:20, backgroundColor:'#3380CC',
+              alignItems:'center', borderRadius:5}}>
+                <Text style={{fontSize:17, fontWeight: '700', borderRadius: 10, color:'#FFF'}}>Sign in</Text>
+              </TouchableOpacity>
             </View>
             <Text style={{alignSelf:'center'}}>or</Text>
             <View style={{flexDirection:'row', justifyContent:'space-around'}}>
@@ -141,39 +174,47 @@ export default class SignInScreen extends React.Component {
               <TouchableOpacity style={styles.btn}>
                 <Image source={require('../../assets/fb.png')} style={{height: 30, width: 30}} />
               </TouchableOpacity>
-              </View>
-            
-        </View> : <View style={{flex:1,width:'100%',marginTop:20, borderRadius:15, padding:10,}}>
-        <Text style={{fontSize:25, fontWeight:'400'}}>Create New</Text>
+            </View>
+          </View> : <View style={styles.formBox}>
+            <Text style={{fontSize:25, fontWeight:'700', color: '#484848'}}>Create New</Text>
             <View style={{width:'100%', marginVertical:20}}>
-                 <TextInput 
-                 placeholder="Full Name"
-                 style={styles.input} /> 
-                 <TextInput 
-                 placeholder="Email Address"
-                 style={styles.input} />
-                 <TextInput 
-                 placeholder="Password"
-                 style={[styles.input]} />
-                 <TextInput 
-                 placeholder="Confirm Password"
-                 style={styles.input} />
-           <View style={{flexDirection:'row',alignItems:'center', width:'100%'}}>
-                 <View style={{height:20,width:20, borderWidth:1,borderColor:'blue',
-                 backgroundColor:'white',marginRight:10}}></View>
-                   <Text>Accept Terms and Conditions?</Text>
-                 </View>
-             </View>
- 
-         <TouchableOpacity onPress={()=>this.props.navigation.navigate('DOB')}
-         style={{paddingVertical:20,backgroundColor:'#3380CC',width:'40%',alignSelf:'center',
-                                 alignItems:'center', borderRadius:5}}>
-           <Text style={{fontSize:18,color:'white'}}
-           >Sign Up</Text>
-         </TouchableOpacity>
-       </View> }
-          </View>
-        </ScrollView>
+              <Input 
+                placeholder="Full Name"
+                inputContainerStyle={styles.input}
+              />
+              <Input 
+              placeholder="Email Address"
+              inputContainerStyle={styles.input} />
+              <Input 
+                placeholder="Password"
+                secureTextEntry={!showNewPassword}
+                rightIcon={<Icon
+                  name='eye'
+                  onPress={() => this.toggleNewPasswordSwitch()}
+                />}
+                component={TouchableOpacity}
+                inputContainerStyle={styles.input} 
+              />
+              <Input 
+                placeholder="Confirm Password"
+                secureTextEntry={!showConfirmPassword}
+                rightIcon={<Icon
+                  name='eye'
+                  onPress={() => this.toggleConfirmPasswordSwitch()}
+                />}
+                component={TouchableOpacity}
+                inputContainerStyle={styles.input} />
+              <View style={{flexDirection:'row',alignItems:'center', width:'100%'}}>
+                <CheckBox uncheckedColor={'#3380CC'} checked={checked} onPress={() => this.setState({checked: !checked})} />
+                <Text>Accept Terms and Conditions?</Text>
+              </View>
+              </View>
+              <TouchableOpacity onPress={()=>this.props.navigation.navigate('DOB')} style={{paddingVertical:20,backgroundColor:'#3380CC',width:'40%',alignSelf:'center', alignItems:'center', borderRadius:5}}>
+                <Text style={{fontSize:18,color:'white'}}>Sign Up</Text>
+              </TouchableOpacity>
+            </View> }
+        </View>
+      </ScrollView>
       </View>
     );
   }
