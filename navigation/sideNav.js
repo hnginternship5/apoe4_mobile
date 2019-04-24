@@ -3,7 +3,7 @@ import Icon from "@expo/vector-icons/Ionicons";
 
 import { createDrawerNavigator, createStackNavigator } from "react-navigation";
 
-import sideMenu from "../screens/sidemenu";
+import sideNav from "../screens/sidemenu";
 import DashboardTabNavigator from "./MainTabNavigator";
 
 const DashboardStackNavigator = createStackNavigator(
@@ -26,8 +26,13 @@ const DashboardStackNavigator = createStackNavigator(
   }
 );
 
-export default createDrawerNavigator({
-  Dashboard: {
-    screen: DashboardStackNavigator
+export default createDrawerNavigator(
+  {
+    Dashboard: {
+      screen: DashboardStackNavigator
+    }
+  },
+  {
+    contentComponent: sideNav
   }
-});
+);

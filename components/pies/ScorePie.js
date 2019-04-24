@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet,View, StatusBar,Dimensions,Image,Text,ScrollView,
         TouchableOpacity,} from 'react-native';
 import Pie from 'react-native-fab-pie';
-import { FontAwesome } from '@expo/vector-icons';
 var wS = Dimensions.get('window');
 var dh = wS.height;
 var dw = wS.width;
@@ -69,7 +68,3 @@ export default class ScorePie extends React.Component {
     );
   }
 }
-
-
-
-
