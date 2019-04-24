@@ -31,7 +31,7 @@ export default class HomeScreen extends React.Component {
                 <Text style={{fontSize:ww(17), fontWeight:'400', color:'#3380CC'}}>Hello,</Text>
                 <Text style={{fontSize:ww(17), fontWeight:'400', color:'#3380CC'}}>John Doe</Text>
               </View>
-            </View>
+          </View>
 
             <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={()=> this.props.navigation.navigate('Notifications')}>
               <FontAwesome name='bell' size={ww(30)} />
@@ -40,13 +40,12 @@ export default class HomeScreen extends React.Component {
                 <Text style={{fontSize:ww(13),color:'white'}}>3</Text>
               </View>
             </TouchableOpacity>
-      </View>
        <View style={{flex:1}}>
         {this.renderTabs()}
        </View>
        <View style={{width:'100%',justifyContent:'space-between', paddingHorizontal:ww(15), alignItems:'center', height:hh(80), borderTopColor:'#ddd', flexDirection:'row',
        borderTopWidth:0.5, backgroundColor:'white'}}>
-        <TouchableOpacity onPress={()=>this.setState({currentTab:'ResultsTab'})} style={{alignItems:'center'}}>
+        {/* <TouchableOpacity onPress={()=>this.setState({currentTab:'ResultsTab'})} style={{alignItems:'center'}}>
           <Image source={this.state.currentTab==='ResultsTab'?require('../assets/resultsActive.png'):require('../assets/results.png')}
           resizeMode="contain" style={styles.tabBtn} />
           <Text style={{fontSize:ww(15), color:this.state.currentTab==='ResultsTab'?'#3380CC':'#C4C4C4'}}>Results</Text>
@@ -62,7 +61,8 @@ export default class HomeScreen extends React.Component {
           <Image source={this.state.currentTab==='ForumsTab'?require('../assets/forumsActive.png'):require('../assets/forums.png')}
           resizeMode="contain" style={styles.tabBtn} />
           <Text style={{fontSize:ww(15), color:this.state.currentTab==='ForumsTab'?'#3380CC':'#C4C4C4'}}>Forums</Text>
-        </TouchableOpacity>
+    </TouchableOpacity> */ }
+        </View>
         </ScrollView>
       </View>
     );
