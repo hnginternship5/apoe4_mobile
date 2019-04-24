@@ -1,32 +1,28 @@
 import React from "react";
 import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
   Text,
-  TouchableOpacity,
-  View
+  View,
+  StyleSheet,
+  AsyncStorage,
+  Button,
+  Platform
 } from "react-native";
 
-export default class HomeScreen extends React.Component {
+export default class SettingsScreen extends React.Component {
   static navigationOptions = {
-    header: null
+    title: "settings"
+  };
+  _signOutAsync = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate("auth");
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.welcomeContainer} />
+        <Text>SettingsScreen</Text>
 
-          <View style={styles.getStartedContainer}>
-            <Text style={styles.getStartedText}>Home Page</Text>
-          </View>
-        </ScrollView>
+        <Button title="Actually, sign me out :)" onPress={this._signOutAsync} />
       </View>
     );
   }

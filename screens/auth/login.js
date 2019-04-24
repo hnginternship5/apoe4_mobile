@@ -1,7 +1,10 @@
 import React from "react";
-import { Button, View, AsyncStorage, Image, StyleSheet, ScrollView, TouchableOpacity, Text, SafeAreaView, TextInput, Dimensions } from "react-native";
+import { View, AsyncStorage, Image, StyleSheet, ScrollView, TouchableOpacity, Text, TextInput, Dimensions } from "react-native";
+import Icon from "react-native-vector-icons/FontAwesome";
+import { Input, Image } from "react-native-elements";
 
 import Logo from '../../assets/logo.png';
+
 
 const { width } = Dimensions.get('window')
 
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
 
 export default class SignInScreen extends React.Component {
   static navigationOptions = {
-    title: "Please sign in"
+    header: null
   };
 
   state = {

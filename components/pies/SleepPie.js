@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet,View, StatusBar,Dimensions,Image,Text,ScrollView,
         TouchableOpacity,} from 'react-native';
 import Pie from 'react-native-fab-pie';
-import { FontAwesome } from '@expo/vector-icons';
 var wS = Dimensions.get('window');
 var dh = wS.height;
 var dw = wS.width;
@@ -12,7 +11,7 @@ function ww(w){return (dw*w)/375}
 export default class SleepPie extends React.Component {
    constructor(props) {
     super(props);
-    const data = [8,2];
+    const data = [6,2];
     const colors = ['132F4B','77AADD'];
 
     const pieData = data
