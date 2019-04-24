@@ -16,6 +16,9 @@
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-elements": "1.1.0",
+    "react-native-fab-pie": "1.0.0",
+    "react-native-svg-charts": "5.2.0",
+    "react-svg-donut-chart": "1.1.0",
     "react-native-responsive-screen": "1.2.2",
     "react-navigation": "^3.0.9"
   },
