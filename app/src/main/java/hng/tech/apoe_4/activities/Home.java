@@ -577,4 +577,23 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
     }
 
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onDataPoint(DataPoint dataPoint) {
+
+    }
 }
