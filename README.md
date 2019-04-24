@@ -6,7 +6,6 @@ Install the dependencies and devDependencies and start the server.
 
 ```sh
 $ git clone -b iosBranch https://github.com/hnginternship5/apoe4_mobile.git apoe
-$ cd apoe
 $ yarn install
 $ yarn start
 ```
