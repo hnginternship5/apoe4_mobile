@@ -122,7 +122,7 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
     @BindView(R.id.tv_phone_number_drawer)
     TextView infoDrawer;
 
-    static String gender;
+    static String gender,height;
 
     private static final int REQUEST_OAUTH = 1001;
 
@@ -220,7 +220,9 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
         });
 
         settings.setOnClickListener(v -> {
-            startActivity(new Intent(Home.this, SettingsActivity.class));
+            Intent mine = new Intent(Home.this, SettingsActivity.class);
+            //startActivity(mine);
+            startActivityForResult(mine,101);
             drawer.closeDrawer(GravityCompat.START);
         });
 
@@ -298,6 +300,7 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
 
     }
 
+
     //SETS WHG VALUES
     private void setWHGValues(){
         ArrayList<String> list = DOB_page.loadWHGInfo();
@@ -310,6 +313,23 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
             weightDrawer.setText(list.get(0));
             heightDrawer.setText(list.get(1));
             gender = list.get(2);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==101){
+            if(resultCode==RESULT_OK){
+                //String replaceHeight = data.getStringExtra("Height");
+                ArrayList<String> replaceInfo = data.getStringArrayListExtra("USER_SELECT");
+
+                heightDrawer.setText(replaceInfo.get(1));
+                weightDrawer.setText(replaceInfo.get(0));
+
+                Prefs.putString("list_size1",replaceInfo.get(1));
+                Prefs.putString("list_size0",replaceInfo.get(0));
+            }
         }
     }
 
@@ -556,46 +576,5 @@ GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
 
     }
 
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
-//        Fitness.SensorsApi.add(
-//                googleApiClient,
-//                new SensorRequest.Builder()
-//                        .setDataType(DataType.TYPE_STEP_COUNT_DELTA)
-//                        .build(),
-//                this);
 
-        Toasty.info(this, "Google Connected").show();
-    }
-
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        Toasty.info(this, "Google Connect Failed").show();
-
-        if (connectionResult.getErrorCode() == FitnessStatusCodes.NEEDS_OAUTH_PERMISSIONS) {
-            try {
-                connectionResult.startResolutionForResult(this, REQUEST_OAUTH);
-            } catch (IntentSender.SendIntentException e) {
-                Toasty.info(this, e.getMessage()).show();
-            }
-        }
-    }
-
-    @Override
-    public void onDataPoint(DataPoint dataPoint) {
-        Toasty.info(this, dataPoint.toString(), Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_OAUTH && resultCode == RESULT_OK) {
-            googleApiClient.connect();
-        }
-    }
 }
