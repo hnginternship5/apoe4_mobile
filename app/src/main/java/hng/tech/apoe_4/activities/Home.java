@@ -2,6 +2,7 @@ package hng.tech.apoe_4.activities;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -14,7 +15,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.fitness.Fitness;
+import com.google.android.gms.fitness.FitnessStatusCodes;
+import com.google.android.gms.fitness.data.DataPoint;
+import com.google.android.gms.fitness.data.DataType;
+import com.google.android.gms.fitness.request.OnDataPointListener;
+import com.google.android.gms.fitness.request.SensorRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,6 +58,7 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 import hng.tech.apoe_4.R;
 import hng.tech.apoe_4.fragments.ForumFragment;
 import hng.tech.apoe_4.fragments.ResultsFragment;
@@ -55,7 +72,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
+GoogleApiClient.OnConnectionFailedListener, OnDataPointListener {
 
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 111;
@@ -106,17 +124,38 @@ public class Home extends AppCompatActivity {
 
     static String gender,height;
 
+    private static final int REQUEST_OAUTH = 1001;
+
     private static final String TAG = Home.class.getSimpleName();
     private static final String FINE_LOCATION = Manifest.permission.ACCESS_FINE_LOCATION;
     private static final String COARSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
 
 
 
+    private GoogleApiClient googleApiClient;
     private FusedLocationProviderClient mFusedLocationProviderClient;
     Location current;
     public  static double lat,lng;
     private boolean mLocationPermissionsGranted;
     SimpleLocation locations;
+
+    @Override
+    protected void onStart() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .addApi(Fitness.SENSORS_API)  // Required for SensorsApi calls
+                // Optional: specify more APIs used with additional calls to addApi
+//                .useDefaultAccount()
+//                .addScope(new Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .build();
+        googleApiClient.connect();
+        super.onStart();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,6 +182,19 @@ public class Home extends AppCompatActivity {
 
             Glide.with(this).load(Prefs.getString("url", "")).placeholder(R.drawable.ic_app_icon).into(pic);
         }
+
+
+//        googleApiClient = new GoogleApiClient.Builder(this)
+//                .addApi(Fitness.SENSORS_API)  // Required for SensorsApi calls
+//                // Optional: specify more APIs used with additional calls to addApi
+//                .useDefaultAccount()
+//                .addScope(new Scope(Scopes.FITNESS_ACTIVITY_READ_WRITE))
+//                .addConnectionCallbacks(this)
+//                .addOnConnectionFailedListener(this)
+//                .build();
+//
+//        googleApiClient.connect();
+
       //set WHG
         setWHGValues();
         calculateAge();
@@ -189,6 +241,16 @@ public class Home extends AppCompatActivity {
         signout.setOnClickListener(v ->{
 
 
+            if (GoogleSignIn.getLastSignedInAccount(this) != null){
+                Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+//                        Toast.makeText(Home.this, "You are logged out", Toast.LENGTH_SHORT).show();
+
+                        startActivity(new Intent(Home.this, LoginActivity.class));
+                    }
+                });
+            }
             //clear all saved data
 
             Prefs.putString("accessToken", "");
@@ -202,6 +264,7 @@ public class Home extends AppCompatActivity {
             Prefs.putString("accessToken", "");
 
             Toast.makeText(this, "You are logged out", Toast.LENGTH_SHORT).show();
+
             startActivity(new Intent(this, LoginActivity.class));
             finish();
 
