@@ -81,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         login_email = findViewById(R.id.note);
-        login_password = findViewById(R.id.log_show_password);
+//        login_password = findViewById(R.id.log_show_password);
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_pass);
         text5 = findViewById(R.id.textView5);
