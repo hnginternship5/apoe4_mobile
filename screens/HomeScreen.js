@@ -6,8 +6,18 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
-} from "react-native";
+  View,
+  Dimensions
+} from "react-native"; 
+import Icon from "react-native-vector-icons/FontAwesome";
+import ScorePie from '../components/pies/ScorePie'
+import GymPie from '../components/pies/GymPie'
+import SleepPie from '../components/pies/SleepPie'
+var wS = Dimensions.get('window');
+var dh = wS.height;
+var dw = wS.width;
+function hh(h){return (dh*h)/670}
+function ww(w){return (dw*w)/375}
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -34,34 +44,15 @@ export default class HomeScreen extends React.Component {
           </View>
 
             <TouchableOpacity style={{alignSelf:'flex-end'}} onPress={()=> this.props.navigation.navigate('Notifications')}>
-              <FontAwesome name='bell' size={ww(30)} />
+              <Icon name='bell' size={ww(30)} />
               <View style={{height:ww(20),width:ww(20),borderRadius:ww(40), backgroundColor:'#EB5757',
               justifyContent:'center',alignItems:'center' ,position:'absolute', top:0,right:0}}>
                 <Text style={{fontSize:ww(13),color:'white'}}>3</Text>
               </View>
             </TouchableOpacity>
-       <View style={{flex:1}}>
-        {this.renderTabs()}
-       </View>
        <View style={{width:'100%',justifyContent:'space-between', paddingHorizontal:ww(15), alignItems:'center', height:hh(80), borderTopColor:'#ddd', flexDirection:'row',
        borderTopWidth:0.5, backgroundColor:'white'}}>
-        {/* <TouchableOpacity onPress={()=>this.setState({currentTab:'ResultsTab'})} style={{alignItems:'center'}}>
-          <Image source={this.state.currentTab==='ResultsTab'?require('../assets/resultsActive.png'):require('../assets/results.png')}
-          resizeMode="contain" style={styles.tabBtn} />
-          <Text style={{fontSize:ww(15), color:this.state.currentTab==='ResultsTab'?'#3380CC':'#C4C4C4'}}>Results</Text>
-        </TouchableOpacity>
 
-         <TouchableOpacity onPress={()=>this.setState({currentTab:'TodayTab'})} style={{alignItems:'center'}}>
-          <Image source={this.state.currentTab==='TodayTab'?require('../assets/todayActive.png'):require('../assets/today.png')}
-          resizeMode="contain" style={styles.tabBtn} />
-          <Text style={{fontSize:ww(15), color:this.state.currentTab==='TodayTab'?'#3380CC':'#C4C4C4'}}>Today</Text>
-        </TouchableOpacity>
-
-         <TouchableOpacity onPress={()=>this.setState({currentTab:'ForumsTab'})} style={{alignItems:'center'}}>
-          <Image source={this.state.currentTab==='ForumsTab'?require('../assets/forumsActive.png'):require('../assets/forums.png')}
-          resizeMode="contain" style={styles.tabBtn} />
-          <Text style={{fontSize:ww(15), color:this.state.currentTab==='ForumsTab'?'#3380CC':'#C4C4C4'}}>Forums</Text>
-    </TouchableOpacity> */ }
         </View>
         </ScrollView>
       </View>
