@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.pixplicity.easyprefs.library.Prefs;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,6 +70,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+
+
+
         ButterKnife.bind(this);
 
         registerPresenter = new RegisterPresenter(this, this);
@@ -89,6 +94,34 @@ public class RegisterActivity extends AppCompatActivity implements RegisterView 
             registerPresenter.beginRegistration(firstName, lastName, regEmail, regPassword);
 
 
+        });
+
+        //dont show hint onfocus
+        final TextInputLayout textInputLayout = (TextInputLayout) findViewById(R.id.passRegInput);
+
+        password.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //Below code will check if editext has focus then show hint
+
+                //else if it dosen't have focus and user has entered some value only then hide hint.
+                if (hasFocus){
+                    textInputLayout.setHint(" ");
+                }
+            }
+        });
+
+        final TextInputLayout textInputLayout1 = (TextInputLayout) findViewById(R.id.confirmPassRegInput);
+        confirmPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                //Below code will check if editext has focus then show hint
+
+                //else if it dosen't have focus and user has entered some value only then hide hint.
+                if (hasFocus){
+                    textInputLayout1.setHint(" ");
+                }
+            }
         });
 
 //        CheckBox show_password = findViewById(R.id.reg_show_password);

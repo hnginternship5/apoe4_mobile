@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    tools:context=".activities.Home">
+    tools:context=".activities.SettingsActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appbarLayout"
@@ -205,14 +205,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Language"
+                            android:text="@string/language"
                             android:textColor="@android:color/black"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Change preferred language"
+                            android:text="@string/change_preferred_language"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -239,6 +239,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="English (United Kingdom)"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="German,Germany"
                         android:textColor="@android:color/black"
                         android:textSize="18sp" />
                     <!--<TextView
@@ -279,14 +286,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Units"
+                            android:text="@string/units"
                             android:textColor="@android:color/black"
                             android:textSize="18sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Choose unit of measurement"
+                            android:text="@string/choose_unit_of_measurement"
                             android:textColor="@android:color/black"
                             android:textSize="12sp" />
                     </LinearLayout>
@@ -323,6 +330,7 @@
                             android:textSize="18sp" />
 
                         <RadioGroup
+                            android:id="@+id/unitRadioGroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -333,12 +341,15 @@
                                 android:id="@+id/cmUnit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="onUnitClicked"
+                                android:checked="true"
                                 android:text="cm" />
 
                             <RadioButton
                                 android:id="@+id/ftUnit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="onUnitClicked"
                                 android:text="ft" />
                             <!--<RadioButton
                                 android:id="@+id/jour"
@@ -371,6 +382,7 @@
                             android:textSize="18sp" />
 
                         <RadioGroup
+                            android:id="@+id/weightRadioGroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="start"
@@ -381,12 +393,15 @@
                                 android:id="@+id/kgUnit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="onWeightClick"
+                                android:checked="true"
                                 android:text="kg" />
 
                             <RadioButton
                                 android:id="@+id/lbUnit"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:onClick="onWeightClick"
                                 android:text="lb" />
                             <!--<RadioButton
                                 android:id="@+id/jour"

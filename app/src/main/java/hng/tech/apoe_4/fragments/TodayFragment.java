@@ -153,7 +153,7 @@ private ProgressBar loadingQuestions;
 
 //        submit_button = view.findViewById(R.id.submit_button);
 
-        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
+//        Toasty.info(getContext(), CONSTANTS.getTimeOfDay()).show();
 
         todayPresenter = new TodayPresenter(getContext(), this);
 
