@@ -16,12 +16,14 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginTop: 50,
-    marginBottom: 50,
-    alignSelf: 'center'
+    marginBottom: 30,
+    alignSelf: 'center',
+    height: 100,
+    width:100
   },
   authContainer: {
     flexDirection: 'row',
-    width: width - 20,
+    width: width - 50,
     // alignItems: 'center',
     // justifyContent: 'center'
   },
@@ -50,9 +52,9 @@ const styles = StyleSheet.create({
   signInContainer: {
     flex: 1,
     borderWidth:1,
-    borderRadius: 15, 
+    borderRadius: 15,
     borderColor: '#FFF',
-    marginVertical: 20,
+    marginVertical: 10,
     padding: 10,
     backgroundColor: '#FFF',
     shadowColor: 'rgba(0, 0, 0, 0.15)',
@@ -72,8 +74,8 @@ const styles = StyleSheet.create({
   formBox: {
     flex:1,
     width:'100%',
-    marginTop:20, 
-    borderRadius:15, 
+    marginTop:20,
+    borderRadius:15,
     padding:10
   }
 })
@@ -113,7 +115,7 @@ export default class SignInScreen extends React.Component {
       <View style={styles.container}>
         <ScrollView>
           <View>
-            <Image style={styles.logo} source={ Logo } />
+            <Image style={styles.logo} source={ Logo } resizeMode="contain" />
           </View>
           <View style={styles.authContainer}>
             <TouchableOpacity
@@ -133,11 +135,11 @@ export default class SignInScreen extends React.Component {
             {view === 'signIn' ? <View style={styles.formBox}>
             <Text style={{fontSize: 25, fontWeight:'700', color: '#484848', marginLeft: 10}}>Sign In</Text>
             <View style={{width:'100%', marginVertical:20}}>
-              <Input 
+              <Input
                 placeholder=" Email Address"
                 inputContainerStyle={styles.input}
               />
-              <Input 
+              <Input
                 placeholder="Password"
                 secureTextEntry={!showPassword}
                 rightIcon={<Icon
@@ -145,9 +147,9 @@ export default class SignInScreen extends React.Component {
                   onPress={() => this.toggleSwitch()}
                 />}
                 component={TouchableOpacity}
-                inputContainerStyle={styles.input} 
+                inputContainerStyle={styles.input}
               />
-                   
+
               <View style={{flexDirection:'row',justifyContent:'space-between',marginBottom: 10,}}>
                 <View style={{flexDirection:'row', alignItems:'center'}}>
                   <CheckBox uncheckedColor={'#3380CC'} checked={checked} onPress={() => this.setState({checked: !checked})} />
@@ -178,14 +180,14 @@ export default class SignInScreen extends React.Component {
           </View> : <View style={styles.formBox}>
             <Text style={{fontSize:25, fontWeight:'700', color: '#484848'}}>Create New</Text>
             <View style={{width:'100%', marginVertical:20}}>
-              <Input 
+              <Input
                 placeholder="Full Name"
                 inputContainerStyle={styles.input}
               />
-              <Input 
+              <Input
               placeholder="Email Address"
               inputContainerStyle={styles.input} />
-              <Input 
+              <Input
                 placeholder="Password"
                 secureTextEntry={!showNewPassword}
                 rightIcon={<Icon
@@ -193,9 +195,9 @@ export default class SignInScreen extends React.Component {
                   onPress={() => this.toggleNewPasswordSwitch()}
                 />}
                 component={TouchableOpacity}
-                inputContainerStyle={styles.input} 
+                inputContainerStyle={styles.input}
               />
-              <Input 
+              <Input
                 placeholder="Confirm Password"
                 secureTextEntry={!showConfirmPassword}
                 rightIcon={<Icon
