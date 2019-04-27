@@ -48,6 +48,7 @@
             android:gravity="start|center_vertical"
             android:paddingStart="32dp"
             android:text="Button"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/question_title"
             app:layout_constraintStart_toStartOf="@+id/imageView8"
             app:layout_constraintTop_toBottomOf="@+id/question_title" />
@@ -61,6 +62,7 @@
             android:gravity="start|center_vertical"
             android:paddingStart="32dp"
             android:text="Button"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/question_title"
             app:layout_constraintStart_toStartOf="@+id/answer1"
             app:layout_constraintTop_toBottomOf="@+id/answer1" />
@@ -74,6 +76,7 @@
             android:gravity="start|center_vertical"
             android:paddingStart="32dp"
             android:text="Button"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/question_title"
             app:layout_constraintStart_toStartOf="@+id/answer1"
             app:layout_constraintTop_toBottomOf="@+id/answer2" />
@@ -87,6 +90,7 @@
             android:gravity="start|center_vertical"
             android:paddingStart="32dp"
             android:text="Button"
+            android:textAllCaps="false"
             app:layout_constraintEnd_toEndOf="@+id/question_title"
             app:layout_constraintStart_toStartOf="@+id/answer1"
             app:layout_constraintTop_toBottomOf="@+id/answer3" />

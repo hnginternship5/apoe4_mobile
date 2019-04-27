@@ -2,7 +2,14 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" android:opacity="opaque">
 
     <!-- The background color, preferably the same as your normal theme -->
-    <item android:drawable="@color/figmaBlue"/>
+    <item>
+        <shape android:shape="rectangle" >
+            <gradient
+                android:angle="90"
+                android:endColor="#032476"
+                android:startColor="#1741AB" />
+        </shape>
+    </item>
 
     <!-- Your product logo - 144dp color version of your app icon -->
     <item>
