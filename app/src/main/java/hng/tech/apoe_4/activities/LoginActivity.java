@@ -11,7 +11,6 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -24,7 +23,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -39,11 +37,9 @@ import com.pixplicity.easyprefs.library.Prefs;
 
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 import hng.tech.apoe_4.ForgotPassword;
@@ -85,6 +81,9 @@ public class LoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
 
+
+        login_email = findViewById(R.id.note);
+//        login_password = findViewById(R.id.log_show_password);
         login_email = findViewById(R.id.login_email);
         login_password = findViewById(R.id.login_pass);
         text5 = findViewById(R.id.textView5);

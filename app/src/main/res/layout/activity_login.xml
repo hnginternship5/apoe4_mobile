@@ -80,17 +80,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <!--<CheckBox-->
-            <!--android:id="@+id/log_show_password"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginStart="8dp"-->
-            <!--android:layout_marginTop="8dp"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:text="Show password"-->
-            <!--android:textSize="16sp"-->
-            <!--app:layout_constraintEnd_toEndOf="parent"-->
-            <!--app:layout_constraintStart_toEndOf="@+id/rememberMe"-->
-            <!--app:layout_constraintTop_toBottomOf="@+id/login_password" />-->
+        <!--android:id="@+id/log_show_password"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:text="Show password"-->
+        <!--android:textSize="16sp"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toEndOf="@+id/rememberMe"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/login_password" />-->
 
 
         <CheckBox

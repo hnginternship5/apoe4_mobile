@@ -118,7 +118,7 @@
         android:id="@+id/temp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/exercise_calc"
+        android:text="6km "
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"

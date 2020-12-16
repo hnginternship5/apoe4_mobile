@@ -16,10 +16,9 @@
 
         <ImageView
             android:id="@+id/app_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="@+id/textView11"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_logo" />
@@ -28,13 +27,14 @@
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="28dp"
             android:text="@string/sign_up"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+            android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/nameRegInput"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/app_logo" />
 
         <EditText
@@ -42,7 +42,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/text_bg"
             android:hint="Full Name"
@@ -107,6 +107,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passRegInput"  >
 
+
+        <CheckBox
+            android:id="@+id/reg_show_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Show password"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput"
+            app:layout_constraintVertical_bias="0.916" />
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/confirmPassReg"
                 android:layout_width="match_parent"
@@ -131,6 +146,7 @@
             <!--app:layout_constraintEnd_toEndOf="parent"-->
             <!--app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />-->
 
+
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/accept_terms_and_conditions"
             android:layout_width="wrap_content"
@@ -142,16 +158,17 @@
             app:layout_constraintTop_toTopOf="@+id/textView15" />
 
         <TextView
+            android:textColor="#000"
             android:id="@+id/textView15"
             android:layout_width="wrap_content"
-            android:layout_height="28dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
             android:text="Accept Terms and Conditions"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintHorizontal_bias="0.279"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/confirmPassRegInput" />
 
@@ -161,7 +178,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/button_blue_bg"
             android:gravity="center"
